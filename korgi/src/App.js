@@ -4,6 +4,7 @@ import Discover from "./pages/Discover";
 import About from "./pages/About";
 import Search from "./pages/Search";
 import Navbar from "./components/Navbar";
+import SignInSide from "./pages/SignInSide"; 
 import Footer from "./components/Footer";
 import Wrapper from "./components/Wrapper";
 
@@ -18,6 +19,7 @@ function App() {
           {/* <Route exact path="/userForm" component={UserForm} /> */}
           <Route exact path="/discover" component={Discover} />
           <Route exact path="/search" component={Search} />
+          <Route exact path="/login"  component={SignInSide} />
         </Wrapper>
         <Footer />
       </div>
@@ -26,3 +28,5 @@ function App() {
 }
 
 export default App;
+
+// /Users/TinX/Desktop/projects/korgi-project/korgi/src/components/SignInSide/SignInSide.js
