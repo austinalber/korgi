@@ -5,6 +5,7 @@ import About from "./pages/About";
 import Search from "./pages/Search";
 import Navbar from "./components/Navbar";
 import SignInSide from "./pages/SignInSide"; 
+import SignUp from "./pages/SignUp";
 import Footer from "./components/Footer";
 import Wrapper from "./components/Wrapper";
 
@@ -20,6 +21,7 @@ function App() {
           <Route exact path="/discover" component={Discover} />
           <Route exact path="/search" component={Search} />
           <Route exact path="/login"  component={SignInSide} />
+          <Route exact path="/signup" component={SignUp} />
         </Wrapper>
         <Footer />
       </div>
