@@ -7,7 +7,9 @@ import Navbar from "./components/Navbar";
 import SignInSide from "./pages/SignInSide"; 
 import SignUp from "./pages/SignUp";
 import Footer from "./components/Footer";
-import Wrapper from "./components/Wrapper";
+import Wrapper from "./components/Wrapper"; 
+import TaskBar from "./components/TaskBar"; 
+
 
 function App() {
   return (
@@ -22,6 +24,7 @@ function App() {
           <Route exact path="/search" component={Search} />
           <Route exact path="/login"  component={SignInSide} />
           <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/task" component={TaskBar} />
         </Wrapper>
         <Footer />
       </div>
