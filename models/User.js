@@ -24,7 +24,28 @@ const userSchema = new Schema({
             len: [1, 40]
         }
     },
-    zipCode: Number
-})
+    image: {
+        type: String,
+        required: false
+    },
+    birthDay: {
+        type: Number
+    },
+    birthMonth: {
+        type: Number
+    },
+    birthYear: {
+        type: Number
+    },
+    zipCode: Number,
+    friendList: {
+        // Array for all friends of this user
+        // Default is undefined or no friends initially
+        type: [friendSchema],
+        default: undefined
+    }
+});
 
 mongoose.model('User', userSchema);
+
+module.exports = User;
