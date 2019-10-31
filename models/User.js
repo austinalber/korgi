@@ -11,18 +11,18 @@ const userSchema = new Schema({
         type: String,
         required: true,
         allowNull: false,
-        validate: {
-            len: [1, 60]
-        }
+        // validate: {
+        //     len: [1, 60]
+        // }
     },
     email: {
         type: String,
         required: true,
         unique: true,
         allowNull: false,
-        validate: {
-            len: [1, 40]
-        }
+        // validate: {
+        //     len: [1, 40]
+        // }
     },
     image: {
         type: String,
@@ -37,15 +37,16 @@ const userSchema = new Schema({
     birthYear: {
         type: Number
     },
-    zipCode: Number,
-    friendList: {
-        // Array for all friends of this user
-        // Default is undefined or no friends initially
-        type: [friendSchema],
-        default: undefined
-    }
+    zipCode: Number
+    // ,
+    // friendList: {
+    //     // Array for all friends of this user
+    //     // Default is undefined or no friends initially
+    //     type: [friendSchema],
+    //     default: undefined
+    // }
 });
 
-mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;
