@@ -8,4 +8,6 @@ const productSchema = new Schema({
     description: String,
 })
 
-mongoose.model('products', productSchema);
+mongoose.model('Product', productSchema);
+
+module.exports = Product;
