@@ -1,3 +1,5 @@
+// This is a test model.
+// It will be used as a layout for future schema.
 const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
