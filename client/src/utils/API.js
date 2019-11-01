@@ -13,8 +13,8 @@ export default {
     return axios.get("https://dog.ceo/api/breeds/list");
   },
 
-    getRecipes: function(query) {
-      return axios.get("/api/recipes", { params: { q: query } });
+  getUser: function() {
+    return axios.get("/api/users");
   }
 };
 

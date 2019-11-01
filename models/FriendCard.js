@@ -1,20 +1,12 @@
 const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
-const userSchema = new Schema({
+const friendCardSchema = new Schema({
     firstName: {
         type: String,
         required: true
     },
     lastName: String,
-    password: {
-        type: String,
-        required: true,
-        allowNull: false,
-        // validate: {
-        //     len: [1, 60]
-        // }
-    },
     email: {
         type: String,
         required: true,
@@ -28,15 +20,6 @@ const userSchema = new Schema({
         type: String,
         required: false
     },
-    birthDay: {
-        type: Number
-    },
-    birthMonth: {
-        type: Number
-    },
-    birthYear: {
-        type: Number
-    },
     zipCode: Number
     // ,
     // friendList: {
@@ -47,6 +30,6 @@ const userSchema = new Schema({
     // }
 });
 
-const User = mongoose.model('User', userSchema);
+const FriendCard = mongoose.model('FriendCard', friendCardSchema);
 
-module.exports = User;
+module.exports = FriendCard;
