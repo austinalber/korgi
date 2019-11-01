@@ -1,8 +1,11 @@
-// NPM Dependencies
+// Require express for application
 const express = require('express');
+
+// NPM Dependencies
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const routes = require("./routes");
+const PORT = process.env.PORT || 5000;
 
 // Create Express Application
 const app = express();
@@ -25,7 +28,6 @@ if (process.env.NODE_ENV === 'production') {
 // Add routes, both API and view
 app.use(routes);
 
-const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`app running on port ${PORT}`)
 });
