@@ -1,14 +1,23 @@
+// Require data from config
+require("dotenv").config();
+
 // Require express for application
 const express = require('express');
 
 // NPM Dependencies
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const routes = require("./routes");
-const PORT = process.env.PORT || 5000;
+const passport = require("passport");
 
-// Create Express Application
+// Declare routes
+const routes = require("./routes");
+
+// Declare database
+const db = require("./models");
+
+// Create Express Application with PORT
 const app = express();
+const PORT = process.env.PORT || 5000;
 
 // Connect To Mongoose DB
 mongoose.Promise = global.Promise;
@@ -24,6 +33,9 @@ if (process.env.NODE_ENV === 'production') {
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
     })
 }
+
+// Passport config
+require("./config/passport/passport")(passport, db.user);
 
 // Add routes, both API and view
 app.use(routes);
