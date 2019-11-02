@@ -8,7 +8,7 @@ function About() {
   return (
     <div>
       <Hero backgroundImage="https://www.iconspng.com/images/contour-map/contour-map.jpg">
-        <h1 style={{color:'#FFD402'}}>Korgi</h1>
+        <h1 style={{color:'#FFD402', fontWeight: '700', letterSpacing: '1.25px'}}>Korgi</h1>
         <h2>Though she be but little, she is fearless</h2>
       </Hero>
       <Container style={{ marginTop: 30 }}>
