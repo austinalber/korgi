@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { BrowserRouter, Route } from 'react-router-dom'
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,6 +12,7 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+// import API from "../utils/API";
 
 function Copyright() {
   return (
@@ -55,7 +57,37 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function SignInSide() {
+  // Hook States
+  let [email, setEmail] = useState("");
+  let [password, setPassword] = useState("");
+  let [redirect, setRedirect] = useState(false);
+
+  // Styling
   const classes = useStyles();
+
+  // Function to take user info on login button click
+  const loginSubmit = (email, password) => {
+    let userData = [
+      email,
+      password
+    ];
+    console.log(userData);
+  }
+
+  const renderRedirect = event => {
+    event.preventDefault();
+    setRedirect(true)
+    loginSubmit(email, password);
+    if(redirect) {
+      return(
+        <BrowserRouter>
+          <Route 
+            path='/'
+          />
+        </BrowserRouter>
+      )
+    }
+  }
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -79,6 +111,8 @@ function SignInSide() {
               name="email"
               autoComplete="email"
               autoFocus
+              value={email}
+              onChange={e => setEmail(e.target.value)}
             />
             <TextField
               variant="outlined"
@@ -90,6 +124,8 @@ function SignInSide() {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -101,7 +137,10 @@ function SignInSide() {
               variant="contained"
               color="primary"
               className={classes.submit}
+              onSubmit={renderRedirect}
+              // component={Link} to="/about"
             >
+              <Link href="/about"></Link>
               Log In
             </Button>
             <Grid container>

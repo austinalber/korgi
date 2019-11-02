@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -56,7 +56,26 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function SignUp() {
+  // Styling
   const classes = useStyles();
+  // React Hook states
+  let [firstName, setFirstName] = useState("");
+  let [lastName, setLastName] = useState("");
+  let [email, setEmail] = useState("");
+  let [password, setPassword] = useState("");
+  let [zipCode, setZipCode] = useState("");
+  // useState for date of birth information
+
+  const saveUserInfo = () => {
+    let userData = [
+      firstName = this.firstName,
+      lastName = this.lastName,
+      email = this.email,
+      password = this.password,
+      zipCode = this.zipCode,
+    ];
+    console.log(userData);
+  }
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -78,6 +97,8 @@ function SignUp() {
               fullWidth
               id="firstName"
               label="First Name"
+              value={firstName}
+              onChange={e => setFirstName(e.target.value)}
               autoFocus
             />
             <TextField
@@ -88,6 +109,8 @@ function SignUp() {
               fullWidth
               id="lastName"
               label="Last Name"
+              value={lastName}
+              onChange={e => setLastName(e.target.value)}
               autoFocus
             />
               <TextField
@@ -97,7 +120,9 @@ function SignUp() {
                  id="email"
                  label="Email Address"
                  name="email"
+                 value={email}
                  autoComplete="email"
+                 onChange={e => setEmail(e.target.value)}
             />
             <TextField
               variant="outlined"
@@ -108,6 +133,8 @@ function SignUp() {
               label="Password"
               type="password"
               id="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
               autoComplete="current-password"
             />
             <TextField
@@ -116,6 +143,8 @@ function SignUp() {
                 fullWidth
                 name="zipCode"
                 label="Zip Code"
+                value={zipCode}
+                onChange={e => setZipCode(e.target.value)}
             />
 
             
@@ -130,6 +159,9 @@ function SignUp() {
               variant="contained"
               color="primary"
               className={classes.submit}
+              onSubmit={() => {
+                saveUserInfo();
+              }}
             >
               Join
             </Button>
