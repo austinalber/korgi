@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Input from "./components/Input";
-import Button from "./components/Button";
+// import Input from "./components/Input";
+// import Button from "./components/Button";
 import API from "./utils/API";
 import { FriendList, FriendListItem } from "./components/FriendList";
 import { Container, Row, Col } from "./components/Grid";
@@ -19,19 +19,13 @@ class userPage extends Component {
   }
 
   // SearchFriends is the search function in the component 
-  searchMovies = query => {
+  searchFriend = query => {
     API.search(query)
       .then(res => this.setState({ friends: res.data }))
       .catch(err => console.log(err));
   };
 
-  handleInputChange = event => {
-    const value = event.target.value;
-    const name = event.target.name;
-    this.setState({
-      [name]: value
-    });
-  };
+ 
 
   // handleFormSubmit = event => {
   //   // When the form is submitted, prevent its default behavior, get recipes update the recipes state
@@ -54,12 +48,12 @@ class userPage extends Component {
                 <Container>
                   <Row>
                     <Col size="xs-9 sm-10">
-                      <Card
+                      {/* <Card
                         name="friendSearch"
                         value={this.state.friendSearch}
                         onChange={this.handleInputChange}
                         placeholder=""
-                      />
+                      /> */}
                     </Col>
                     <Col size="xs-3 sm-2">
                     </Col>
@@ -74,14 +68,18 @@ class userPage extends Component {
                 <h1 className="text-center">No friends to Display</h1>
               ) : (
                 <FriendList>
-                  {this.state.friends.map(circle => {
+                  {this.state.friends.map(card => {
                     return (
-                      <RecipeListItem
-                        key={circle.id}
-                        title={circle.title}
-                        href={circle.href}
-                        note={circle.note}
-                        thumbnail={circle.thumbnail}
+                      <FriendListItem
+                        key={card.id}
+                        title={card.title}
+                        card={card.name}
+                        image={card.image}
+                        note={card.note}
+                        kodos={card.kudos}
+                        href={card.href}
+                        location={card.location}
+                        date={card.date}
                       />
                     );
                   })}
