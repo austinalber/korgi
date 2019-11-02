@@ -1,22 +1,20 @@
-// NPM Dependencies
+// Require express for application
 const express = require('express');
+
+// NPM Dependencies
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-
-// IMPORT MODELS
-require('./models/Product');
+const routes = require("./routes");
+const PORT = process.env.PORT || 5000;
 
 // Create Express Application
 const app = express();
 
 // Connect To Mongoose DB
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost:27017/korgi-project`);
+mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost/korgi-project`);
 
 app.use(bodyParser.json());
-
-//IMPORT ROUTES
-require('./routes/productRoute')(app);
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
@@ -25,10 +23,11 @@ if (process.env.NODE_ENV === 'production') {
     app.get('*', (req,res) => {
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
     })
-  
 }
 
-const PORT = process.env.PORT || 5000;
+// Add routes, both API and view
+app.use(routes);
+
 app.listen(PORT, () => {
   console.log(`app running on port ${PORT}`)
 });

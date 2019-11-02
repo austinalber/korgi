@@ -1,3 +1,5 @@
+// userPage setup - make each title a button 
+
 import React from "react";
 
 // Destructuring the type, className, children and onClick props, applying them to the button element
