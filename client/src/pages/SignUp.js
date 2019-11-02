@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -57,6 +57,12 @@ const useStyles = makeStyles(theme => ({
 
 function SignUp() {
   const classes = useStyles();
+  const [firstName, setFirstName] = useState(firstName);
+  const [lastName, setLastName] = useState(lastName);
+  const [email, setEmail] = useState(email);
+  const [password, setPassword] = useState(password);
+  const [zipCode, setZipCode] = useState(zipCode);
+  // useState for date of birth information
 
   return (
     <Grid container component="main" className={classes.root}>
