@@ -7,10 +7,15 @@ const express = require('express');
 // NPM Dependencies
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const passport = require("passport");
+
+// Declare routes
 const routes = require("./routes");
+
+// Declare database
 const db = require("./models");
 
-// Create Express Application
+// Create Express Application with PORT
 const app = express();
 const PORT = process.env.PORT || 5000;
 
