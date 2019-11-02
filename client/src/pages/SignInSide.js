@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function SignInSide() {
+function SignInSide(props) {
   // Hook States
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
@@ -81,7 +81,7 @@ function SignInSide() {
     loginSubmit(email, password);
 
     // return(this.history.push("/"));
-    return this.history.push("/");
+    return props.history.push("/about");
   }
 
   return (
