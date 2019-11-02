@@ -1,16 +1,15 @@
 import React, { Component } from "react";
 import Input from "./components/Input";
 import Button from "./components/Button";
-import API from "./utils/API";
-import { RecipeList, RecipeListItem } from "./components/RecipeList";
+// import API from "./utils/API";
+import { RecipeList, RecipeListItem } from "./components/FriendList";
 import { Container, Row, Col } from "./components/Grid";
 
-class App extends Component {
+class userPage extends Component {
 
   // state is where we initialize the start of our event 
   state = {
-    recipes: [],
-    recipeSearch: ""
+    friends: [],
   };
 
   handleInputChange = event => {
@@ -30,8 +29,8 @@ class App extends Component {
     event.preventDefault();
 
     //API.getRecipes grabs the info from the mongod server
-    API.getRecipes(this.state.recipeSearch)
-      .then(res => this.setState({ recipes: res.data }))
+    API.getFriends(this.state.friendSearch)
+      .then(res => this.setState({ friends: res.data }))
       .catch(err => console.log(err));
   };
 
@@ -47,20 +46,13 @@ class App extends Component {
                   <Row>
                     <Col size="xs-9 sm-10">
                       <Input
-                        name="recipeSearch"
-                        value={this.state.recipeSearch}
+                        name="friendSearch"
+                        value={this.state.friendSearch}
                         onChange={this.handleInputChange}
                         placeholder="Search For a Recipe"
                       />
                     </Col>
                     <Col size="xs-3 sm-2">
-                      <Button
-                        onClick={this.handleFormSubmit}
-                        type="success"
-                        className="input-lg"
-                      >
-                        Search
-                      </Button>
                     </Col>
                   </Row>
                 </Container>
@@ -69,22 +61,22 @@ class App extends Component {
           </Row>
           <Row>
             <Col size="xs-12">
-              {!this.state.recipes.length ? (
-                <h1 className="text-center">No Recipes to Display</h1>
+              {!this.state.friends.length ? (
+                <h1 className="text-center">No friends to Display</h1>
               ) : (
-                <RecipeList>
-                  {this.state.recipes.map(recipe => {
+                <FriendList>
+                  {this.state.friends.map(circle => {
                     return (
                       <RecipeListItem
-                        key={recipe.title}
-                        title={recipe.title}
-                        href={recipe.href}
-                        ingredients={recipe.ingredients}
-                        thumbnail={recipe.thumbnail}
+                        key={circle.id}
+                        title={circle.title}
+                        href={circle.href}
+                        note={circle.note}
+                        thumbnail={circle.thumbnail}
                       />
                     );
                   })}
-                </RecipeList>
+                </FriendList>
               )}
             </Col>
           </Row>
@@ -94,6 +86,6 @@ class App extends Component {
   }
 }
 
-export default App;
+export default userPage;
 
 
