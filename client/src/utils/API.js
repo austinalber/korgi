@@ -12,9 +12,9 @@ export default {
   getBaseBreedsList: function() {
     return axios.get("https://dog.ceo/api/breeds/list");
   },
-
-  getUser: function() {
-    return axios.get("/api/users");
+  // Search for all users
+  searchUsers: function() {
+    return axios.get("http://localhost:5000/api/users");
   }
 };
 
