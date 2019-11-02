@@ -1,38 +1,47 @@
 import React, { Component } from "react";
 import Input from "./components/Input";
 import Button from "./components/Button";
-// import API from "./utils/API";
-import { RecipeList, RecipeListItem } from "./components/FriendList";
+import API from "./utils/API";
+import { FriendList, FriendListItem } from "./components/FriendList";
 import { Container, Row, Col } from "./components/Grid";
 
 class userPage extends Component {
 
   // state is where we initialize the start of our event 
   state = {
-    friends: [],
+    friends: []
+  };
+
+
+  // When this component mounts, search for through a friend array
+  componentDidMount() {
+    this.searchFriends('');
+  }
+
+  // SearchFriends is the search function in the component 
+  searchMovies = query => {
+    API.search(query)
+      .then(res => this.setState({ friends: res.data }))
+      .catch(err => console.log(err));
   };
 
   handleInputChange = event => {
-    // Destructure the name and value properties off of event.target
-    // Update the appropriate state
-    const { name, value } = event.target;
-    // var name = event.target.name; 
-    // var value = event.target.value; 
-
+    const value = event.target.value;
+    const name = event.target.name;
     this.setState({
       [name]: value
     });
   };
 
-  handleFormSubmit = event => {
-    // When the form is submitted, prevent its default behavior, get recipes update the recipes state
-    event.preventDefault();
+  // handleFormSubmit = event => {
+  //   // When the form is submitted, prevent its default behavior, get recipes update the recipes state
+  //   event.preventDefault();
 
-    //API.getRecipes grabs the info from the mongod server
-    API.getFriends(this.state.friendSearch)
-      .then(res => this.setState({ friends: res.data }))
-      .catch(err => console.log(err));
-  };
+  //   //API.getRecipes grabs the info from the mongod server
+  //   API.getFriends(this.state.friendSearch)
+  //     .then(res => this.setState({ friends: res.data }))
+  //     .catch(err => console.log(err));
+  // };
 
   // This is where the page display the components 
   render() {
@@ -45,11 +54,11 @@ class userPage extends Component {
                 <Container>
                   <Row>
                     <Col size="xs-9 sm-10">
-                      <Input
+                      <Card
                         name="friendSearch"
                         value={this.state.friendSearch}
                         onChange={this.handleInputChange}
-                        placeholder="Search For a Recipe"
+                        placeholder=""
                       />
                     </Col>
                     <Col size="xs-3 sm-2">
@@ -82,7 +91,7 @@ class userPage extends Component {
           </Row>
         </Container>
       </div>
-    );
+   );
   }
 }
 
