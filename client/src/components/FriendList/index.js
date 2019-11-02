@@ -5,15 +5,15 @@ import { Container, Row, Col } from "../Grid";
 // Exporting both RecipeList and RecipeListItem from this file
 
 // RecipeList renders a bootstrap list item
-export function RecipeList({ children }) {
+export function FriendList({ children }) {
   return <ul className="list-group">{children}</ul>;
 }
 
 // RecipeListItem renders a bootstrap list item containing data from the recipe api call
-export function RecipeListItem({
+export function FriendListItem({
   thumbnail = "https://placehold.it/300x300",
   title,
-  ingredients,
+  comment,
   href
 }) {
   return (
@@ -25,9 +25,9 @@ export function RecipeListItem({
           </Col>
           <Col size="xs-8 sm-9">
             <h3>{title}</h3>
-            <p>Ingredients: {ingredients}</p>
+            <p>comment: {comment}</p>
             <a rel="noreferrer noopener" target="_blank" href={href}>
-              Go to recipe!
+              Discover More!
             </a>
           </Col>
         </Row>
