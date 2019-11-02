@@ -7,7 +7,7 @@ const express = require('express');
 // NPM Dependencies
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const passport = require("passport");
+// const passport = require("passport");
 
 // Declare routes
 const routes = require("./routes");

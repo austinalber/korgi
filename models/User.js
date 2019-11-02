@@ -1,6 +1,17 @@
 const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
+const friendSchema = new Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    }
+});
+
 const userSchema = new Schema({
     firstName: {
         type: String,
@@ -37,14 +48,13 @@ const userSchema = new Schema({
     birthYear: {
         type: Number
     },
-    zipCode: Number
-    // ,
-    // friendList: {
-    //     // Array for all friends of this user
-    //     // Default is undefined or no friends initially
-    //     type: [friendSchema],
-    //     default: undefined
-    // }
+    zipCode: Number,
+    friendList: {
+        // Array for all friends of this user
+        // Default is undefined or no friends initially
+        type: [friendSchema],
+        default: undefined
+    }
 });
 
 const User = mongoose.model('User', userSchema);

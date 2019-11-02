@@ -39,7 +39,6 @@ class UserPage extends Component {
 
   // This is where the page display the components 
   render() {
-    console.log(this.state.friends);
     return (
       <div>
         <Container>

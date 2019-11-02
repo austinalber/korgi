@@ -19,7 +19,17 @@ const userSeed = [
     birthDay: 25,
     birthMonth: 5,
     birthYear: 1997,
-    zipCode: 32746
+    zipCode: 32746,
+    friendList: [
+      {
+        name: "Tin",
+        email: "tin.doann@gmail.com"
+      },
+      {
+        name: "Michael",
+        email: "michael.pascuzzi@gmail.com"
+      }
+    ]
   },
   {
     firstName: "Tin",
@@ -30,7 +40,30 @@ const userSeed = [
     birthDay: 25,
     birthMonth: 5,
     birthYear: 1997,
-    zipCode: 32746
+    zipCode: 32746,
+    friendList: [
+      {
+        name: "Austin",
+        email: "austinalber@gmail.com"
+      }
+    ]
+  },
+  {
+    firstName: "Michael",
+    lastName: "Pascuzzi",
+    password: "test",
+    email: "michael.pascuzzi@gmail.com",
+    image: "https://radioimg.s3.amazonaws.com/kjkkfm/styles/alpha__380x250/s3/USATSI_11224695_168384848_lowres.jpg",
+    birthDay: 25,
+    birthMonth: 5,
+    birthYear: 1997,
+    zipCode: 32746,
+    friendList: [
+      {
+        name: "Austin",
+        email: "austinalber@gmail.com"
+      }
+    ]
   }
 ];
 

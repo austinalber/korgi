@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Route } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,7 +12,6 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import About from "./About"
 // import API from "../utils/API";
 
 function Copyright() {
@@ -75,15 +74,14 @@ function SignInSide() {
     console.log(userData);
   }
 
-  const renderRedirect = event => {
+  const handleSubmit = event => {
     event.preventDefault();
     setRedirect(true) // true for now until passport involved
+    // Save user info to db if valid info
     loginSubmit(email, password);
-    if(redirect) {
-      return(
-        <Route exact path="/" component={About} />
-      );
-    }
+
+    // return(this.history.push("/"));
+    return this.history.push("/");
   }
 
   return (
@@ -97,7 +95,7 @@ function SignInSide() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -134,7 +132,7 @@ function SignInSide() {
               variant="contained"
               color="primary"
               className={classes.submit}
-              onSubmit={renderRedirect}
+              // onSubmit={renderRedirect}
             >
               Log In
             </Button>
