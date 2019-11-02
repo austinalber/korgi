@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,6 +12,7 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import About from "./About"
 // import API from "../utils/API";
 
 function Copyright() {
@@ -76,16 +77,12 @@ function SignInSide() {
 
   const renderRedirect = event => {
     event.preventDefault();
-    setRedirect(true)
+    setRedirect(true) // true for now until passport involved
     loginSubmit(email, password);
     if(redirect) {
       return(
-        <BrowserRouter>
-          <Route 
-            path='/'
-          />
-        </BrowserRouter>
-      )
+        <Route exact path="/" component={About} />
+      );
     }
   }
 
@@ -138,9 +135,7 @@ function SignInSide() {
               color="primary"
               className={classes.submit}
               onSubmit={renderRedirect}
-              // component={Link} to="/about"
             >
-              <Link href="/about"></Link>
               Log In
             </Button>
             <Grid container>

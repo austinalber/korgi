@@ -1,26 +1,26 @@
 import React, { Component } from "react";
 // import Input from "./components/Input";
 // import Button from "./components/Button";
-import API from "./utils/API";
-import { FriendList, FriendListItem } from "./components/FriendList";
-import { Container, Row, Col } from "./components/Grid";
+import API from "../utils/API";
+import { FriendList, FriendListItem } from "../components/FriendList";
+import { Container, Row, Col } from "../components/Grid";
 
-class userPage extends Component {
-
+class UserPage extends Component {
   // state is where we initialize the start of our event 
   state = {
-    friends: []
+    friends: [],
+    search: "",
+    results: []
   };
-
 
   // When this component mounts, search for through a friend array
   componentDidMount() {
-    this.searchFriends('');
+    this.searchFriends("");
   }
 
   // SearchFriends is the search function in the component 
-  searchFriend = query => {
-    API.search(query)
+  searchFriends = (query) => {
+    API.searchUsers(query)
       .then(res => this.setState({ friends: res.data }))
       .catch(err => console.log(err));
   };
@@ -39,6 +39,7 @@ class userPage extends Component {
 
   // This is where the page display the components 
   render() {
+    console.log(this.state.friends);
     return (
       <div>
         <Container>
@@ -71,15 +72,17 @@ class userPage extends Component {
                   {this.state.friends.map(card => {
                     return (
                       <FriendListItem
-                        key={card.id}
-                        title={card.title}
-                        card={card.name}
+                        key={card._id}
+                        id={card._id}
+                        name={card.firstName}
+                        email={card.email}
                         image={card.image}
-                        note={card.note}
-                        kodos={card.kudos}
-                        href={card.href}
-                        location={card.location}
-                        date={card.date}
+                        // title={card.title}
+                        // note={card.note}
+                        // kodos={card.kudos}
+                        // href={card.href}
+                        // location={card.location}
+                        // date={card.date}
                       />
                     );
                   })}
@@ -93,6 +96,6 @@ class userPage extends Component {
   }
 }
 
-export default userPage;
+export default UserPage;
 
 
