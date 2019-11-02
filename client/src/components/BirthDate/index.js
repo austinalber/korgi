@@ -130,7 +130,14 @@ export default function CustomizedSelects() {
 
       <FormControl className={classes.margin}>
         <InputLabel htmlFor="demo-customized-textbox">Year</InputLabel>
-        <BootstrapInput id="demo-customized-textbox" />
+        <NativeSelect 
+          id="demo-customized-textbox"
+          value={year}
+          onChange={handleChange}
+          input={<BootstrapInput />}
+        >
+          <option value=""></option>
+        </NativeSelect>
       </FormControl>
     </div>
   );

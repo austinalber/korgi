@@ -57,11 +57,11 @@ const useStyles = makeStyles(theme => ({
 
 function SignUp() {
   const classes = useStyles();
-  const [firstName, setFirstName] = useState(firstName);
-  const [lastName, setLastName] = useState(lastName);
-  const [email, setEmail] = useState(email);
-  const [password, setPassword] = useState(password);
-  const [zipCode, setZipCode] = useState(zipCode);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [zipCode, setZipCode] = useState("");
   // useState for date of birth information
 
   return (
@@ -84,6 +84,8 @@ function SignUp() {
               fullWidth
               id="firstName"
               label="First Name"
+              value={firstName}
+              onChange={e => setFirstName(e.target.value)}
               autoFocus
             />
             <TextField
@@ -94,6 +96,8 @@ function SignUp() {
               fullWidth
               id="lastName"
               label="Last Name"
+              value={lastName}
+              onChange={e => setLastName(e.target.value)}
               autoFocus
             />
               <TextField
@@ -103,7 +107,9 @@ function SignUp() {
                  id="email"
                  label="Email Address"
                  name="email"
+                 value={email}
                  autoComplete="email"
+                 onChange={e => setEmail(e.target.value)}
             />
             <TextField
               variant="outlined"
@@ -114,6 +120,8 @@ function SignUp() {
               label="Password"
               type="password"
               id="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
               autoComplete="current-password"
             />
             <TextField
@@ -122,6 +130,8 @@ function SignUp() {
                 fullWidth
                 name="zipCode"
                 label="Zip Code"
+                value={zipCode}
+                onChange={e => setZipCode(e.target.value)}
             />
 
             
@@ -136,6 +146,13 @@ function SignUp() {
               variant="contained"
               color="primary"
               className={classes.submit}
+              onSubmit={() => {
+                setFirstName(firstName);
+                setLastName(lastName);
+                setEmail(email);
+                setPassword(password);
+                console.log(firstName, lastName, email, password);
+              }}
             >
               Join
             </Button>
