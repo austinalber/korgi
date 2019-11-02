@@ -56,13 +56,26 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function SignUp() {
+  // Styling
   const classes = useStyles();
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [zipCode, setZipCode] = useState("");
+  // React Hook states
+  let [firstName, setFirstName] = useState("");
+  let [lastName, setLastName] = useState("");
+  let [email, setEmail] = useState("");
+  let [password, setPassword] = useState("");
+  let [zipCode, setZipCode] = useState("");
   // useState for date of birth information
+
+  const saveUserInfo = () => {
+    let userData = [
+      firstName = this.firstName,
+      lastName = this.lastName,
+      email = this.email,
+      password = this.password,
+      zipCode = this.zipCode,
+    ];
+    console.log(userData);
+  }
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -147,11 +160,7 @@ function SignUp() {
               color="primary"
               className={classes.submit}
               onSubmit={() => {
-                setFirstName(firstName);
-                setLastName(lastName);
-                setEmail(email);
-                setPassword(password);
-                console.log(firstName, lastName, email, password);
+                saveUserInfo();
               }}
             >
               Join
