@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react'; 
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -50,9 +50,9 @@ const useStyles = makeStyles(theme => ({
 
 export default function CustomizedSelects() {
   const classes = useStyles();
-  const [month, day, year] = React.useState('');
-  const handleChange = event =>
-    (event.target.value);
+  const [month, setMonth] = useState('');
+  const [day, setDay] = useState('');
+  const [year, setYear] = useState('');
   
     return (
       <div>
@@ -63,10 +63,10 @@ export default function CustomizedSelects() {
             labelId="demo-customized-select-label"
             id="demo-customized-select"
             value={month}
-            onChange={handleChange}
+            onChange={e => setMonth(e.target.value)}
             input={<BootstrapInput />}
           >
-            <MenuItem value="{month}">
+            <MenuItem value="">
               <em>None</em>
             </MenuItem>
             <MenuItem value={1}>1</MenuItem>
@@ -81,25 +81,6 @@ export default function CustomizedSelects() {
             <MenuItem value={10}>10</MenuItem>
             <MenuItem value={11}>11</MenuItem>
             <MenuItem value={12}>12</MenuItem>
-            <MenuItem value={13}>13</MenuItem>
-            <MenuItem value={14}>14</MenuItem>
-            <MenuItem value={15}>15</MenuItem>
-            <MenuItem value={16}>16</MenuItem>
-            <MenuItem value={17}>17</MenuItem>
-            <MenuItem value={18}>18</MenuItem>
-            <MenuItem value={19}>19</MenuItem>
-            <MenuItem value={20}>20</MenuItem>
-            <MenuItem value={21}>21</MenuItem>
-            <MenuItem value={22}>22</MenuItem>
-            <MenuItem value={23}>23</MenuItem>
-            <MenuItem value={24}>24</MenuItem>
-            <MenuItem value={25}>25</MenuItem>
-            <MenuItem value={26}>26</MenuItem>
-            <MenuItem value={27}>27</MenuItem>
-            <MenuItem value={28}>28</MenuItem>
-            <MenuItem value={29}>29</MenuItem>
-            <MenuItem value={30}>30</MenuItem>
-            <MenuItem value={31}>31</MenuItem>
           </Select>
         </FormControl>
 
@@ -109,7 +90,7 @@ export default function CustomizedSelects() {
           <NativeSelect
             id="demo-customized-select-native"
             value={day}
-            onChange={handleChange}
+            onChange={e => setDay(e.target.value)}
             input={<BootstrapInput />}
           >
             <option value="" />
@@ -143,7 +124,7 @@ export default function CustomizedSelects() {
             <option value={28}>28</option>
             <option value={29}>29</option>
             <option value={30}>30</option>
-            <option value={11}>31</option>
+            <option value={31}>31</option>
           </NativeSelect>
         </FormControl>
   
@@ -153,7 +134,7 @@ export default function CustomizedSelects() {
           <BootstrapInput id="demo-customized-textbox" 
               id="demo-customized-select-native"
               value={year}
-              onChange={handleChange}/>
+              onChange= {e => setYear(e.target.value)}/>
         </FormControl>
       </div>
     );
