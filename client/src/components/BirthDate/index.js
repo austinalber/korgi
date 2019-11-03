@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const CustomizedSelects = () => {
+const BirthDate = () => {
   //Styling
   const classes = useStyles();
 
@@ -153,6 +153,6 @@ const CustomizedSelects = () => {
     );
   }
 
-  export default CustomizedSelects;
+  export default BirthDate;
 
 
