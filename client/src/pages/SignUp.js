@@ -11,7 +11,7 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import CustomizedSelects from '../components/BirthDate'; 
+import BirthDate from '../components/BirthDate'; 
 
 function Copyright() {
   return (
@@ -55,7 +55,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function SignUp() {
+const SignUp = () => {
   // Styling
   const classes = useStyles();
   // React Hook states
@@ -64,7 +64,6 @@ function SignUp() {
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
   let [zipCode, setZipCode] = useState("");
-  // useState for date of birth information
 
   const saveUserInfo = () => {
     let userData = [
@@ -148,7 +147,8 @@ function SignUp() {
             />
 
             
-<CustomizedSelects/>
+      <BirthDate/>
+
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
