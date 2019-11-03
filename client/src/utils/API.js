@@ -13,8 +13,15 @@ export default {
     return axios.get("https://dog.ceo/api/breeds/list");
   },
   // Search for all users
-  searchUsers: function() {
+  getUsers: function() {
     return axios.get("http://localhost:5000/api/users");
+  },
+  // Search for all users
+  getUser: function(id) {
+    return axios.get("http://localhost:5000/api/users/" + id);
+  },
+  saveUser: function(userData) {
+    return axios.post("/api/users", userData)
   }
 };
 

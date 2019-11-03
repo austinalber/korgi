@@ -20,21 +20,20 @@ class UserPage extends Component {
 
   // SearchFriends is the search function in the component / query is the search parameter
   searchFriends = (query) => {
-    API.searchUsers(query)
+    API.getUsers(query)
       .then(res => this.setState({ friends: res.data }))
       .catch(err => console.log(err));
   };
 
- 
-
   // handleFormSubmit = event => {
   //   // When the form is submitted, prevent its default behavior, get recipes update the recipes state
   //   event.preventDefault();
+  // }
 
   //   //API.getRecipes grabs the info from the mongod server
-  //   API.getFriends(this.state.friendSearch)
-  //     .then(res => this.setState({ friends: res.data }))
-  //     .catch(err => console.log(err));
+  // API.getFriends(this.state.friendSearch)
+  //   .then(res => this.setState({ friends: res.data }))
+  //   .catch(err => console.log(err));
   // };
 
   // This is where the page display the components 
