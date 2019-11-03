@@ -88,7 +88,7 @@ function SignUp() {
           <Typography component="h1" variant="h5">
             Register
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} Validate>
             <TextField
               variant="outlined"
               autoComplete="fname"

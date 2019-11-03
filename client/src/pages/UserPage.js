@@ -13,12 +13,12 @@ class UserPage extends Component {
     results: []
   };
 
-  // When this component mounts, search for through a friend array
+  // When this component mounts, search for our friend array database with findAll()
   componentDidMount() {
     this.searchFriends("");
   }
 
-  // SearchFriends is the search function in the component 
+  // SearchFriends is the search function in the component / query is the search parameter
   searchFriends = (query) => {
     API.searchUsers(query)
       .then(res => this.setState({ friends: res.data }))
