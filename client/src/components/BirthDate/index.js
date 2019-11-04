@@ -48,11 +48,24 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function CustomizedSelects() {
+
+const BirthDate = () => {
+  //Styling
   const classes = useStyles();
-  const [month, setMonth] = useState('');
-  const [day, setDay] = useState('');
-  const [year, setYear] = useState('');
+
+  // React Hook states
+  let [month, setMonth] = useState('');
+  let [day, setDay] = useState('');
+  let [year, setYear] = useState('');
+
+  const saveUserInfo = () => {
+    let userData = [
+      month = this.month,
+      day = this.day,
+      year = this.year
+    ];
+    console.log(userData);
+  }
   
     return (
       <div>
@@ -140,9 +153,6 @@ export default function CustomizedSelects() {
     );
   }
 
-// export default function CustomizedSelects() {
-//   const classes = useStyles();
-//   const [day, month, year] = React.useState('');
-//   const handleChange = event =>
-//     (event.target.value);
-  
+  export default BirthDate;
+
+
