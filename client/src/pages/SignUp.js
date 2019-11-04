@@ -292,6 +292,7 @@ export default SignUp;
 
 // email validation for material-ui react hooks
 // https://www.nearform.com/blog/forget-everything-you-learned-about-react-hooks-rock/
+// https://codesandbox.io/s/7zkn7rm10j
 
 // We name the function useInput.  The convention use[CustomHookName] is suggested by the react team when creating custom hooks for linting purposes.
 // The function creates two state variables and corresponding mutators for the components value and error state
