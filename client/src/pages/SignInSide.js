@@ -12,7 +12,7 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-// import API from "../utils/API";
+import API from "../utils/API";
 
 function Copyright() {
   return (
@@ -71,18 +71,36 @@ function SignInSide(props) {
       email,
       password
     ];
+    console.log(userData);
+    // Get users and see if information matches
+    API.getUsers()
+      .then(res => {
+        let users = res.data;
+        users.map(user => {
+          if(email === user.email && password === user.password) {
+            // Go to home page
+            console.log("Valid entry!")
+            return props.history.push("/about");
+          } else {
+            console.log("Invalid Entry");
+          }
+        });
+      });
 
     console.log(userData);
   }
 
   const handleSubmit = event => {
     event.preventDefault();
-    setRedirect(true) // true for now until passport involved
+    if(email && password) {
+      setRedirect(true) // true for now until passport involved
     // Save user info to db if valid info
-    loginSubmit(email, password);
-
+      loginSubmit(email, password);
     // return(this.history.push("/"));
-    return props.history.push("/about");
+      // return props.history.push("/about");
+    } else {
+      // Failure to save
+    }
   }
 
   return (
