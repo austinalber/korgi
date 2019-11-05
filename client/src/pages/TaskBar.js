@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-// import KudosCounter from 'KudosCounter'; 
+import KudosCounter from '../components/KudosCounter'; 
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -28,7 +28,7 @@ function TaskBar() {
         </Grid>
         <Grid item xs={6}>
           <Paper className={classes.paper}>
-          {/* <KudosCounter /> */}
+          {/* <KudosCounter />  */}
           
           </Paper>
         </Grid>

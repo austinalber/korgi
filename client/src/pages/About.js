@@ -21,7 +21,15 @@ function About() {
         <Row>
           <Col size="md-12">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+            Kor·gi - orginated from Wales, a mystical land of misty rolling hills. The word means little dog. 
+            A breed attributed for their warmth, cleverness, and curosity. 
+            Like the dog, this application is based on those same quirks. 
+            We serve as a platform for little humans or the one inside all of us to express our own individuality
+            without the need of words, but with objects. So bring your dog or borrow one and let explore together. 
+            Remember, it’s less of what we see but more of how we see things. 
+
+            <button type="button">Join</button>
+
             </p>
           </Col>
         </Row>
