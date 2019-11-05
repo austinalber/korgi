@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-class KudosCounter extends Component {
+class TaskList extends Component {
   state = {
     counter: 0
   }
@@ -13,10 +13,11 @@ class KudosCounter extends Component {
     return (
       <div style={{textAlign: "center"}}>
         <Typography variant='display4'>{this.state.counter}</Typography>
-        <Button color='secondary' variant='raised' onClick={this.handleAddClick}>Add</Button>
+        <h1>Weekly Task</h1>
+        <Button color='secondary' variant='raised' onClick={this.handleAddClick}>Task</Button>
       </div>
     )
   }
 }
 
-export default KudosCounter; 
+export default TaskList; 

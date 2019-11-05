@@ -9,7 +9,7 @@ import UserPage from "./pages/UserPage";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Wrapper from "./components/Wrapper"; 
-import TaskBar from "./components/TaskBar"; 
+import TaskBar from "./pages/TaskBar"; 
 
 function App() {
   return (

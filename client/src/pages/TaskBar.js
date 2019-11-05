@@ -2,7 +2,9 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-// import KudosCounter from 'KudosCounter'; 
+import KudosCounter from '../components/KudosCounter'; 
+import TaskList from '../components/TaskList'; 
+// import tasks from "../utils/tasks.json";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -23,22 +25,16 @@ function TaskBar() {
       <Grid container spacing={3}>
 
         <Grid item xs={3}>
-          {/* <Paper className={classes.paper}>xs=6</Paper> */}
+          <Paper className={classes.paper}>
           <KudosCounter />
+          </Paper>
         </Grid>
         <Grid item xs={6}>
           <Paper className={classes.paper}>
-          {/* <KudosCounter /> */}
-          
+            <TaskList />
           </Paper>
         </Grid>
         <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=6</Paper>
-        </Grid>
-        <Grid item xs={6}>
-          <Paper className={classes.paper}>xs=6</Paper>
-        </Grid>
-        <Grid item xs={6}>
           <Paper className={classes.paper}>xs=6</Paper>
         </Grid>
       </Grid>
