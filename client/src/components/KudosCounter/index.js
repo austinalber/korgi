@@ -12,7 +12,7 @@ class KudosCounter extends Component {
   render () {
     return (
       <div style={{textAlign: "center"}}>
-        <Typography variant='display4'>{this.state.counter}</Typography>
+        <Typography variant='display4'>{this.props}</Typography>
         <Button color='secondary' variant='raised' onClick={this.handleAddClick}>Add</Button>
       </div>
     )
