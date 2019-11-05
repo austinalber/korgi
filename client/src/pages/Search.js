@@ -8,15 +8,15 @@ import Alert from "../components/Alert";
 class Search extends Component {
   state = {
     search: "",
-    breeds: [],
+    users: [],
     results: [],
     error: ""
   };
 
   // When the component mounts, get a list of all available base breeds and update this.state.breeds
   componentDidMount() {
-    API.getBaseBreedsList()
-      .then(res => this.setState({ breeds: res.data.message }))
+    API.getUsers()
+      .then(res => this.setState({ users: res.data }))
       .catch(err => console.log(err));
   }
 
@@ -26,20 +26,33 @@ class Search extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    API.getDogsOfBreed(this.state.search)
-      .then(res => {
-        if (res.data.status === "error") {
-          throw new Error(res.data.message);
-        }
-        this.setState({ results: res.data.message, error: "" });
-      })
-      .catch(err => this.setState({ error: err.message }));
+    // If email matches search. Use that user's id to find their info.
+    this.state.users.map(result => {
+      if(this.state.search === result.email) {
+        API.getUser(result._id)
+          .then(res => {
+            if (res.data.status === "error") {
+              throw new Error(res.data.message);
+            }
+            this.setState({ results: res.data, error: "" })
+          })
+          .catch(err => this.setState({ error: err.message }));
+      } else {
+        // No emails under that name found
+      }
+    });
   };
+
+  saveFriend = event => {
+    event.preventDefault();
+    // Grab that specific user's info and save to current user's friend's list
+  };
+
   render() {
     return (
       <div>
         <Container style={{ minHeight: "80%" }}>
-          <h1 className="text-center">Search By Breed!</h1>
+          <h1 className="text-center">Search By Email!</h1>
           <Alert
             type="danger"
             style={{ opacity: this.state.error ? 1 : 0, marginBottom: 10 }}
@@ -49,9 +62,13 @@ class Search extends Component {
           <SearchForm
             handleFormSubmit={this.handleFormSubmit}
             handleInputChange={this.handleInputChange}
-            breeds={this.state.breeds}
+            users={this.state.users}
           />
-          <SearchResults results={this.state.results} />
+          <SearchResults 
+            results={this.state.results} 
+            search={this.state.search}
+            saveFriend={this.saveFriend}
+          />
         </Container>
       </div>
     );
