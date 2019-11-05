@@ -54,7 +54,7 @@ export default function CustomizedSelects() {
   const [day, setDay] = useState('');
   const [year, setYear] = useState('');
   
-  const saveUser = () => {
+  const handleSubmit = () => {
     let userData = {
       day,
       month,
@@ -66,7 +66,7 @@ export default function CustomizedSelects() {
   return (
     <div>
 
-      <FormControl className={classes.margin}>
+      <FormControl className={classes.margin} onSubmit={handleSubmit}>
         <InputLabel id="demo-customized-select-label">Month</InputLabel>
         <Select
           labelId="demo-customized-select-label"

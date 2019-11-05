@@ -12,6 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import CustomizedSelects from '../components/BirthDate'; 
+import API from '../utils/API';
 
 function Copyright() {
   return (
@@ -55,7 +56,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function SignUp() {
+const SignUp = () => {
   // Styling
   const classes = useStyles();
   // React Hook states
@@ -64,17 +65,42 @@ function SignUp() {
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
   let [zipCode, setZipCode] = useState("");
+  let [date, setDate] = useState("");
   // useState for date of birth information
 
-  const saveUserInfo = () => {
+  const saveUser = (firstName, lastName, email, password, zipCode, date) => {
     let userData = [
-      firstName = this.firstName,
-      lastName = this.lastName,
-      email = this.email,
-      password = this.password,
-      zipCode = this.zipCode,
+      firstName,
+      lastName,
+      email,
+      password,
+      zipCode,
+      date
     ];
     console.log(userData);
+
+    // Save userData
+  }
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    let canMakeUser = true;
+    // Run saveUser if any credentials don't match previous users
+    API.getUsers().then(res => {
+      let users = res.data;
+      users.map(user => {
+        if(email === user.email) {
+          canMakeUser = false;        
+        }
+      });
+      if(canMakeUser) {
+        console.log("User can be created");
+        saveUser(firstName, lastName, email, password, zipCode, date);
+      } else {
+        alert("Email is already in use. Please use another email address.");
+        console.log("Email is already in use")
+      }
+    });
   }
 
   return (
@@ -88,7 +114,7 @@ function SignUp() {
           <Typography component="h1" variant="h5">
             Register
           </Typography>
-          <form className={classes.form} Validate>
+          <form className={classes.form} Validate onSubmit={handleSubmit}>
             <TextField
               variant="outlined"
               autoComplete="fname"
@@ -148,7 +174,7 @@ function SignUp() {
             />
 
             
-<CustomizedSelects/>
+<CustomizedSelects onChange={e => setDate(e.target.value)}/>
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
@@ -159,9 +185,9 @@ function SignUp() {
               variant="contained"
               color="primary"
               className={classes.submit}
-              onSubmit={() => {
-                saveUserInfo();
-              }}
+              // onSubmit={() => {
+              //   handleSubmit();
+              // }}
             >
               Join
             </Button>

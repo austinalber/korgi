@@ -72,35 +72,26 @@ function SignInSide(props) {
       password
     ];
     console.log(userData);
-    // Get users and see if information matches
+    // Send user to their homepage
+    return props.history.push("/user-page");
+  }
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    // Search if user has account in db
     API.getUsers()
       .then(res => {
         let users = res.data;
         users.map(user => {
           if(email === user.email && password === user.password) {
             // Go to home page
-            console.log("Valid entry!")
-            return props.history.push("/about");
+            console.log("Valid entry")
+            loginSubmit(email, password);
           } else {
             console.log("Invalid Entry");
           }
         });
       });
-
-    console.log(userData);
-  }
-
-  const handleSubmit = event => {
-    event.preventDefault();
-    if(email && password) {
-      setRedirect(true) // true for now until passport involved
-    // Save user info to db if valid info
-      loginSubmit(email, password);
-    // return(this.history.push("/"));
-      // return props.history.push("/about");
-    } else {
-      // Failure to save
-    }
   }
 
   return (
