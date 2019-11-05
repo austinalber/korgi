@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Button from 'material-ui/Button'
 import Typography from 'material-ui/Typography'
 
-export default class KudosCounter extends Component {
+class KudosCounter extends Component {
   state = {
     counter: 0
   }
@@ -18,3 +18,5 @@ export default class KudosCounter extends Component {
     )
   }
 }
+
+export default KudosCounter; 
