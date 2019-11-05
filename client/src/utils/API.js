@@ -14,14 +14,17 @@ export default {
   },
   // Search for all users
   getUsers: function() {
-    return axios.get("http://localhost:5000/api/users");
+    return axios.get("https://localhost:5000/api/users");
   },
   // Search for all users
   getUser: function(id) {
-    return axios.get("http://localhost:5000/api/users/" + id);
+    return axios.get("https://localhost:5000/api/users/" + id);
   },
   saveUser: function(userData) {
     return axios.post("/api/users", userData)
+  },
+  saveFriend: function(id, friendData) {
+    return axios.post("/api/users/" + id, friendData);
   }
 };
 
