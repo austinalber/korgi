@@ -25,7 +25,7 @@ function About() {
             A breed attributed for their warmth, cleverness, and curosity. 
             Like the dog, this application is based on those same quirks. 
             We serve as a platform for little humans or the one inside all of us to express our own individuality
-            without the need of words, but with objects. So bring your dog or borrow one and let explore together. 
+            without the need of words, but with objects. So bring your dog or borrow one and lets explore together. 
             Remember, it’s less of what we see but more of how we see things. 
 
             <button type="button">Join</button>
