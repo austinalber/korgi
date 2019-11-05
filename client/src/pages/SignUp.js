@@ -65,7 +65,7 @@ const SignUp = () => {
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
   let [zipCode, setZipCode] = useState("");
-  let [date, setDate] = useState("");
+  let [date, setDate] = useState([]);
   // useState for date of birth information
 
   const saveUser = (firstName, lastName, email, password, zipCode, date) => {
@@ -117,7 +117,7 @@ const SignUp = () => {
           <form className={classes.form} Validate onSubmit={handleSubmit}>
             <TextField
               variant="outlined"
-              autoComplete="fname"
+              autoComplete="name"
               margin="normal"
               required
               fullWidth
@@ -139,16 +139,17 @@ const SignUp = () => {
               onChange={e => setLastName(e.target.value)}
               autoFocus
             />
-              <TextField
-                 variant="outlined"
-                 required
-                 fullWidth
-                 id="email"
-                 label="Email Address"
-                 name="email"
-                 value={email}
-                 autoComplete="email"
-                 onChange={e => setEmail(e.target.value)}
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              value={email}
+              autoComplete="email"
+              onChange={e => setEmail(e.target.value)}
             />
             <TextField
               variant="outlined"
@@ -164,17 +165,28 @@ const SignUp = () => {
               autoComplete="current-password"
             />
             <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="zipCode"
-                label="Zip Code"
-                value={zipCode}
-                onChange={e => setZipCode(e.target.value)}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="zipCode"
+              label="Zip Code"
+              value={zipCode}
+              onChange={e => setZipCode(e.target.value)}
             />
-
-            
-<CustomizedSelects onChange={e => setDate(e.target.value)}/>
+            {/* Date Form with external component */}
+            {/* <CustomizedSelects onChange={e => setDate(e.target.value)} value={date} /> */}
+            {/* Date Form without external component */}
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="date"
+              label="Birth Date"
+              value={date}
+              onChange={e => setDate(e.target.value)}
+            />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"

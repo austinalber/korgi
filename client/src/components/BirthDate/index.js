@@ -50,9 +50,9 @@ const useStyles = makeStyles(theme => ({
 
 export default function CustomizedSelects() {
   const classes = useStyles();
-  const [month, setMonth] = useState('');
-  const [day, setDay] = useState('');
-  const [year, setYear] = useState('');
+  const [month, setMonth] = useState("");
+  const [day, setDay] = useState("");
+  const [year, setYear] = useState("");
   
   const handleSubmit = () => {
     let userData = {
@@ -65,8 +65,7 @@ export default function CustomizedSelects() {
 
   return (
     <div>
-
-      <FormControl className={classes.margin} onSubmit={handleSubmit}>
+      <FormControl className={classes.margin} onChange={handleSubmit}>
         <InputLabel id="demo-customized-select-label">Month</InputLabel>
         <Select
           labelId="demo-customized-select-label"
@@ -141,9 +140,10 @@ export default function CustomizedSelects() {
   
         <InputLabel htmlFor="demo-customized-textbox">Year</InputLabel>
         <BootstrapInput id="demo-customized-textbox" 
-            id="demo-customized-select-native"
-            value={year}
-            onChange= {e => setYear(e.target.value)}/>
+          id="demo-customized-select-native"
+          value={year}
+          onChange= {e => setYear(e.target.value)}
+        />
       </FormControl>
     </div>
   );
