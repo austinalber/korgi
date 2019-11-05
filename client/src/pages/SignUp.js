@@ -11,6 +11,7 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import API from '../utils/API';
 import BirthDate from '../components/BirthDate'; 
 
 function Copyright() {
@@ -164,16 +165,42 @@ const SignUp = () => {
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
   let [zipCode, setZipCode] = useState("");
+  let [date, setDate] = useState([]);
+  // useState for date of birth information
 
-  const saveUserInfo = () => {
+  const saveUser = (firstName, lastName, email, password, zipCode, date) => {
     let userData = [
-      firstName = this.firstName,
-      lastName = this.lastName,
-      email = this.email,
-      password = this.password,
-      zipCode = this.zipCode,
+      firstName,
+      lastName,
+      email,
+      password,
+      zipCode,
+      date
     ];
     console.log(userData);
+
+    // Save userData
+  }
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    let canMakeUser = true;
+    // Run saveUser if any credentials don't match previous users
+    API.getUsers().then(res => {
+      let users = res.data;
+      users.map(user => {
+        if(email === user.email) {
+          canMakeUser = false;        
+        }
+      });
+      if(canMakeUser) {
+        console.log("User can be created");
+        saveUser(firstName, lastName, email, password, zipCode, date);
+      } else {
+        alert("Email is already in use. Please use another email address.");
+        console.log("Email is already in use")
+      }
+    });
   }
 
   return (
@@ -187,10 +214,10 @@ const SignUp = () => {
           <Typography component="h1" variant="h5">
             Register
           </Typography>
-          <form className={classes.form} Validate>
+          <form className={classes.form} Validate onSubmit={handleSubmit}>
             <TextField
               variant="outlined"
-              autoComplete="fname"
+              autoComplete="name"
               margin="normal"
               required
               fullWidth
@@ -212,16 +239,17 @@ const SignUp = () => {
               onChange={e => setLastName(e.target.value)}
               autoFocus
             />
-              <TextField
-                 variant="outlined"
-                 required
-                 fullWidth
-                 id="email"
-                 label="Email Address"
-                 name="email"
-                 value={email}
-                 autoComplete="email"
-                 onChange={e => setEmail(e.target.value)}
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              value={email}
+              autoComplete="email"
+              onChange={e => setEmail(e.target.value)}
             />
             <TextField
               variant="outlined"
@@ -237,18 +265,30 @@ const SignUp = () => {
               autoComplete="current-password"
             />
             <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="zipCode"
-                label="Zip Code"
-                value={zipCode}
-                onChange={e => setZipCode(e.target.value)}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="zipCode"
+              label="Zip Code"
+              value={zipCode}
+              onChange={e => setZipCode(e.target.value)}
             />
-
+            {/* Date Form with external component */}
+            {/* <CustomizedSelects onChange={e => setDate(e.target.value)} value={date} /> */}
+            {/* Date Form without external component */}
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="date"
+              label="Birth Date"
+              value={date}
+              onChange={e => setDate(e.target.value)}
+            />
             
-      <BirthDate/>
-
+            <BirthDate/>
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
@@ -259,9 +299,9 @@ const SignUp = () => {
               variant="contained"
               color="primary"
               className={classes.submit}
-              onSubmit={() => {
-                saveUserInfo();
-              }}
+              // onSubmit={() => {
+              //   handleSubmit();
+              // }}
             >
               Join
             </Button>

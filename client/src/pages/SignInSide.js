@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom'
+// import { Redirect } from 'react-router-dom'
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,7 +12,7 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-// import API from "../utils/API";
+import API from "../utils/API";
 
 function Copyright() {
   return (
@@ -72,16 +72,26 @@ function SignInSide(props) {
       password
     ];
     console.log(userData);
+    // Send user to their homepage
+    return props.history.push("/user-page");
   }
 
   const handleSubmit = event => {
     event.preventDefault();
-    setRedirect(true) // true for now until passport involved
-    // Save user info to db if valid info
-    loginSubmit(email, password);
-
-    // return(this.history.push("/"));
-    return props.history.push("/about");
+    // Search if user has account in db
+    API.getUsers()
+      .then(res => {
+        let users = res.data;
+        users.map(user => {
+          if(email === user.email && password === user.password) {
+            // Go to home page
+            console.log("Valid entry")
+            loginSubmit(email, password);
+          } else {
+            console.log("Invalid Entry");
+          }
+        });
+      });
   }
 
   return (
