@@ -11,8 +11,8 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import CustomizedSelects from '../components/BirthDate'; 
 import API from '../utils/API';
+import BirthDate from '../components/BirthDate'; 
 
 function Copyright() {
   return (
@@ -56,9 +56,109 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+// VALIDATION FOR EMAIL
+
+// useInput function
+const useInput = (name, defaultValue) => {
+  // set up the state for the inputs value prop and set it to the default value
+  const [value, setValue] = useState(defaultValue);
+  //set up state for the inputs error prop
+  const [error, setError] = useState(null);
+ 
+  // set up the event handler for onChange event
+  function handleChange(e) {
+    // set the state no matter what
+    setValue(e.target.value);
+    // cancel any error
+    setError(null);
+  }
+ 
+  // set up event handler for onBlur, if value is not set, setError to true
+  function handleBlur() {
+    if(!value) return 
+    setError(true)
+  }
+ 
+  // return object 
+  return {
+      name,
+      value,
+      onChange: handleChange,
+      onBlur: handleBlur,
+      error
+  };
+ }
+
+// useSubmit function 
+const useSubmit = (inputs, success) => {
+  // set up the state for the inputs causing errors
+  const [errorItems, setErrorItems] = useState(null);
+ 
+  // handle submit
+  function handleSubmit(e) {
+    e.preventDefault(); //prevent page refresh
+    //validate every input (in case there was no blur event)
+    const errorItems = inputs.filter(input => !input.validate());
+    //persist the error items to state
+    setErrorItems(errorItems);
+    // if no errors, call success with name, value pairs as parameter
+    if (errorItems && errorItems.length === 0) {
+      success &&
+        success(
+          inputs.map(({ props: { name, value } }) => ({
+            name,
+            value
+          }))
+        );
+    } 
+  }
+ 
+  return {
+    props: {
+      onSubmit: handleSubmit
+    },
+    errorItems
+  };
+ }
+
+// regular expression constants for validation
+const validations = {
+// eslint-disable-next-line
+Email: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+};
+
+// SignUp function 
 const SignUp = () => {
-  // Styling
+  // uses of hooks to bring classes style sheet in 
   const classes = useStyles();
+
+  // our custom validation function, which the hook calls back to
+  function handleValidation(value, regex) {
+    if (value && regex && value.match(regex)) return true; 
+    return false; 
+  }
+
+  const Email = useInput('Email', '', handleValidation, validations.Email); 
+
+  // the data we're going to submit, just using a standard useState hook to display
+
+  // the data we're going to submit destructed 
+  const [data, setData] = useState(null); 
+
+  const handleSuccess = (data) => {
+   // we're just setting the state here, but typically this would
+   // be sent to the server for further validation and persistence
+   setData(data); 
+
+  }
+
+  const submit = useSubmit([Email], handleSuccess);
+  //the custom hook that is called onSubmit, taking our two input hooks return values
+  //as parameters, this means the state from the two inputs is available to this hook
+  // our render method, which displays our form, text fields with error labels
+  // hooked up to the custom hooks, it also renders data that has been successfully
+  // validated by the form
+
   // React Hook states
   let [firstName, setFirstName] = useState("");
   let [lastName, setLastName] = useState("");
@@ -187,6 +287,8 @@ const SignUp = () => {
               value={date}
               onChange={e => setDate(e.target.value)}
             />
+            
+            <BirthDate/>
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
@@ -227,3 +329,12 @@ const SignUp = () => {
 }
 
 export default SignUp; 
+
+// email validation for material-ui react hooks
+// https://www.nearform.com/blog/forget-everything-you-learned-about-react-hooks-rock/
+// https://codesandbox.io/s/7zkn7rm10j
+
+// We name the function useInput.  The convention use[CustomHookName] is suggested by the react team when creating custom hooks for linting purposes.
+// The function creates two state variables and corresponding mutators for the components value and error state
+// It then creates handlers for onChange and onBlur, onChange to set the value, and onBlur to validate
+// Finally, we return an object with everything set up

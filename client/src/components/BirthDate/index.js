@@ -48,8 +48,11 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function CustomizedSelects() {
+
+const BirthDate = () => {
+  // Styling
   const classes = useStyles();
+  // React Hooks
   const [month, setMonth] = useState("");
   const [day, setDay] = useState("");
   const [year, setYear] = useState("");
@@ -149,9 +152,6 @@ export default function CustomizedSelects() {
   );
 }
 
-// export default function CustomizedSelects() {
-//   const classes = useStyles();
-//   const [day, month, year] = React.useState('');
-//   const handleChange = event =>
-//     (event.target.value);
-  
+  export default BirthDate;
+
+
