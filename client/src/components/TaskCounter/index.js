@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import Typography from '@material-ui/core/Typography';
 
-function KudosCounter(props) {
+function TaskCounter(props) {
   
     return (
       <div style={{textAlign: "center"}}>
-        <h3>Kudos</h3>
-        <Typography className="kudosCounter" variant='display4'>{props.kudosCounter}</Typography>
+        <h3>Task</h3>
+        <Typography className="TaskCounter" variant='display4'>{props.taskCounter}</Typography>
       </div>
     )
   }
   
 
-export default KudosCounter; 
+export default TaskCounter; 

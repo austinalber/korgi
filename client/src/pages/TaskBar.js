@@ -4,6 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import KudosCounter from '../components/KudosCounter'; 
 import TaskList from '../components/TaskList'; 
+import TaskCounter from '../components/TaskCounter'
 // import tasks from "../utils/tasks.json";
 
 const useStyles = makeStyles(theme => ({
@@ -35,7 +36,9 @@ function TaskBar() {
           </Paper>
         </Grid>
         <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=6</Paper>
+          <Paper className={classes.paper}>
+            <TaskCounter />
+          </Paper>
         </Grid>
       </Grid>
     </div>
