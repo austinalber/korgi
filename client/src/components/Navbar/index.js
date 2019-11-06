@@ -47,6 +47,14 @@ function Navbar() {
                         }>
                         Friend Seach
                     </Link>
+                    <Link to="/memento"
+                        className={
+                            window.location.pathname === "/memento"
+                                ? "nav-link active"
+                                : "nav-link"
+                        }>
+                        memento
+                    </Link>
                 </li>
                 <li style={{ float:"right" }}>
                     <Link to="/login"
