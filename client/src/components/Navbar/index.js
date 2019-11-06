@@ -53,7 +53,7 @@ function Navbar() {
                                 ? "nav-link active"
                                 : "nav-link"
                         }>
-                        memento
+                        Memento
                     </Link>
                 </li>
                 <li style={{ float:"right" }}>

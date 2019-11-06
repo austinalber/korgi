@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 // import './signin-style.css';
 // import dog from './dog.png'
 // import API from "../../utils/API";
@@ -85,7 +87,9 @@ const Memento = props => {
             placeholder="note" 
             name="note" 
             onChange={e => handleInputChange(e)}/>
-          <button className="post" onClick={handleSubmit}>Post</button>
+          <Link to="/user-page">
+            <button className="post" onClick={handleSubmit}>Post</button>
+          </Link>
           {/* <div className="divider-div"/>
           <p style={{fontSize: '0.7em', color: '#a9a9a9', bottom: 0, position: 'absolute'}}>Copyright © Korgi Inc 2019</p> */}
         </div>
