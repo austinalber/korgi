@@ -27,10 +27,8 @@ function About() {
             We serve as a platform for little humans or the one inside all of us to express our own individuality
             without the need of words, but with objects. So bring your dog or borrow one and lets explore together. 
             Remember, it’s less of what we see but more of how we see things. 
-
-            <button type="button">Join</button>
-
             </p>
+            <button style={{ flex: "flex-grow" }} type="button">Join</button>
           </Col>
         </Row>
       </Container>
