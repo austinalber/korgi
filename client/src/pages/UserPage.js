@@ -5,6 +5,7 @@ import API from "../utils/API";
 import { FriendList, FriendListItem } from "../components/FriendList";
 import { Container, Row, Col } from "../components/Grid";
 
+
 class UserPage extends Component {
   // state is where we initialize the start of our event 
   state = {
@@ -81,7 +82,7 @@ class UserPage extends Component {
                         // href={card.href}
                         // location={card.location}
                         // date={card.date}
-                      />
+                        />
                     );
                   })}
                 </FriendList>
