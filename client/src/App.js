@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Discover from "./pages/Discover";
 import About from "./pages/About";
 import Search from "./pages/Search";
-import SignInSide from "./pages/SignInSide"; 
-import SignUp from "./pages/SignUp";
+import SignIn from "./pages/SignIn/SignIn"; 
+import SignUp from "./pages/SignUp/SignUp";
 import UserPage from "./pages/UserPage";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -17,13 +17,13 @@ function App() {
       <div>
         <Navbar />
         <Wrapper>
-          <Route exact path="/" component={SignInSide} />
+          <Route exact path="/" component={SignIn} />
           <Route exact path="/about" component={About} />
           <Route exact path="/user-page" component={UserPage} />
           <Route exact path="/discover" component={Discover} />
           <Route exact path="/search" component={Search} />
-          <Route exact path="/login"  component={SignInSide} />
-          <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/login"  component={SignIn} />
+          <Route exact path="/sign-up" component={SignUp} />
           <Route exact path="/task" component={TaskBar} />
         </Wrapper>
         <Footer />
