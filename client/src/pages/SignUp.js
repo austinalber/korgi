@@ -56,108 +56,107 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-// VALIDATION FOR EMAIL
+// // VALIDATION FOR EMAIL
+// // useInput function
+// const useInput = (name, defaultValue) => {
+//   // set up the state for the inputs value prop and set it to the default value
+//   const [value, setValue] = useState(defaultValue);
+//   //set up state for the inputs error prop
+//   const [error, setError] = useState(null);
+ 
+//   // set up the event handler for onChange event
+//   function handleChange(e) {
+//     // set the state no matter what
+//     setValue(e.target.value);
+//     // cancel any error
+//     setError(null);
+//   }
+ 
+//   // set up event handler for onBlur, if value is not set, setError to true
+//   function handleBlur() {
+//     if(!value) return 
+//     setError(true)
+//   }
+ 
+//   // return object 
+//   return {
+//       name,
+//       value,
+//       onChange: handleChange,
+//       onBlur: handleBlur,
+//       error
+//   };
+//  }
 
-// useInput function
-const useInput = (name, defaultValue) => {
-  // set up the state for the inputs value prop and set it to the default value
-  const [value, setValue] = useState(defaultValue);
-  //set up state for the inputs error prop
-  const [error, setError] = useState(null);
+// // useSubmit function 
+// const useSubmit = (inputs, success) => {
+//   // set up the state for the inputs causing errors
+//   const [errorItems, setErrorItems] = useState(null);
  
-  // set up the event handler for onChange event
-  function handleChange(e) {
-    // set the state no matter what
-    setValue(e.target.value);
-    // cancel any error
-    setError(null);
-  }
+//   // handle submit
+//   function handleSubmit(e) {
+//     e.preventDefault(); //prevent page refresh
+//     //validate every input (in case there was no blur event)
+//     const errorItems = inputs.filter(input => !input.validate());
+//     //persist the error items to state
+//     setErrorItems(errorItems);
+//     // if no errors, call success with name, value pairs as parameter
+//     if (errorItems && errorItems.length === 0) {
+//       success &&
+//         success(
+//           inputs.map(({ props: { name, value } }) => ({
+//             name,
+//             value
+//           }))
+//         );
+//     } 
+//   }
  
-  // set up event handler for onBlur, if value is not set, setError to true
-  function handleBlur() {
-    if(!value) return 
-    setError(true)
-  }
- 
-  // return object 
-  return {
-      name,
-      value,
-      onChange: handleChange,
-      onBlur: handleBlur,
-      error
-  };
- }
+//   return {
+//     props: {
+//       onSubmit: handleSubmit
+//     },
+//     errorItems
+//   };
+//  }
 
-// useSubmit function 
-const useSubmit = (inputs, success) => {
-  // set up the state for the inputs causing errors
-  const [errorItems, setErrorItems] = useState(null);
- 
-  // handle submit
-  function handleSubmit(e) {
-    e.preventDefault(); //prevent page refresh
-    //validate every input (in case there was no blur event)
-    const errorItems = inputs.filter(input => !input.validate());
-    //persist the error items to state
-    setErrorItems(errorItems);
-    // if no errors, call success with name, value pairs as parameter
-    if (errorItems && errorItems.length === 0) {
-      success &&
-        success(
-          inputs.map(({ props: { name, value } }) => ({
-            name,
-            value
-          }))
-        );
-    } 
-  }
- 
-  return {
-    props: {
-      onSubmit: handleSubmit
-    },
-    errorItems
-  };
- }
-
-// regular expression constants for validation
-const validations = {
-// eslint-disable-next-line
-Email: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-};
+// // regular expression constants for validation
+// const validations = {
+// // eslint-disable-next-line
+// Email: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+// };
 
 // SignUp function 
-const SignUp = () => {
+const SignUp = props => {
   // uses of hooks to bring classes style sheet in 
   const classes = useStyles();
 
-  // our custom validation function, which the hook calls back to
-  function handleValidation(value, regex) {
-    if (value && regex && value.match(regex)) return true; 
-    return false; 
-  }
+  // // our custom validation function, which the hook calls back to
+  // function handleValidation(value, regex) {
+  //   if (value && regex && value.match(regex)) return true; 
+  //   return false; 
+  // }
 
-  const Email = useInput('Email', '', handleValidation, validations.Email); 
+  // const Email = useInput('Email', '', handleValidation, validations.Email); 
 
-  // the data we're going to submit, just using a standard useState hook to display
+  // // the data we're going to submit, just using a standard useState hook to display
 
-  // the data we're going to submit destructed 
-  const [data, setData] = useState(null); 
+  // // the data we're going to submit destructed 
+  // const [data, setData] = useState(null); 
 
-  const handleSuccess = (data) => {
-   // we're just setting the state here, but typically this would
-   // be sent to the server for further validation and persistence
-   setData(data); 
+  // const handleSuccess = (data) => {
+  //  // we're just setting the state here, but typically this would
+  //  // be sent to the server for further validation and persistence
+  //  setData(data); 
+  // }
 
-  }
+  // // const submit = useSubmit([Email], handleSuccess);
 
-  const submit = useSubmit([Email], handleSuccess);
-  //the custom hook that is called onSubmit, taking our two input hooks return values
-  //as parameters, this means the state from the two inputs is available to this hook
-  // our render method, which displays our form, text fields with error labels
-  // hooked up to the custom hooks, it also renders data that has been successfully
-  // validated by the form
+  // //the custom hook that is called onSubmit, taking our two input hooks return values
+  // //as parameters, this means the state from the two inputs is available to this hook
+  // // our render method, which displays our form, text fields with error labels
+  // // hooked up to the custom hooks, it also renders data that has been successfully
+  // // validated by the form
 
   // React Hook states
   let [firstName, setFirstName] = useState("");
@@ -165,21 +164,39 @@ const SignUp = () => {
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
   let [zipCode, setZipCode] = useState("");
-  let [date, setDate] = useState([]);
+  const [dateOfBirthForm, setDateOfBirthForm] = useState({
+    birthMonth: '',
+    birthDay: '',
+    birthYear: ''
+  });
+  const { birthMonth, birthDay, birthYear } = dateOfBirthForm;
   // useState for date of birth information
 
-  const saveUser = (firstName, lastName, email, password, zipCode, date) => {
+  const handleChange = e => {
+    const { name, value } = e.target;
+    // console.log(e.target.value);
+    // console.log(e.target.name);
+    setDateOfBirthForm({ ...dateOfBirthForm, [name]: value });
+    
+  }
+
+  const saveUser = (firstName, lastName, email, password, zipCode, birthMonth, birthDay, birthYear) => {
     let userData = [
       firstName,
       lastName,
       email,
       password,
       zipCode,
-      date
+      birthMonth,
+      birthDay,
+      birthYear
     ];
     console.log(userData);
 
     // Save userData
+
+    // Re-Route to Home Page
+    return props.history.push("/user-page");
   }
 
   const handleSubmit = event => {
@@ -188,20 +205,22 @@ const SignUp = () => {
     // Run saveUser if any credentials don't match previous users
     API.getUsers().then(res => {
       let users = res.data;
-      users.map(user => {
+      users.forEach(user => {
         if(email === user.email) {
           canMakeUser = false;        
         }
       });
       if(canMakeUser) {
         console.log("User can be created");
-        saveUser(firstName, lastName, email, password, zipCode, date);
+        saveUser(firstName, lastName, email, password, zipCode, birthMonth, birthDay, birthYear);
       } else {
         alert("Email is already in use. Please use another email address.");
         console.log("Email is already in use")
       }
+      return;
     });
   }
+
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -277,7 +296,7 @@ const SignUp = () => {
             {/* Date Form with external component */}
             {/* <CustomizedSelects onChange={e => setDate(e.target.value)} value={date} /> */}
             {/* Date Form without external component */}
-            <TextField
+            {/* <TextField
               variant="outlined"
               margin="normal"
               required
@@ -286,9 +305,12 @@ const SignUp = () => {
               label="Birth Date"
               value={date}
               onChange={e => setDate(e.target.value)}
-            />
+            /> */}
             
-            <BirthDate/>
+            <BirthDate 
+              handleChange={handleChange}
+            />
+
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
