@@ -1,0 +1,10 @@
+.signup-outer {
+    display: flex;
+    position: relative;
+    min-height: 100%;
+    padding-top: 50px;
+    font-family: "Gill Sans", san-serif, serif;
+    font-size: 1.2em;
+    width: 100vw;
+    overflow: auto;
+}
