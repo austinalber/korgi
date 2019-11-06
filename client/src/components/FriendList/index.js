@@ -1,6 +1,8 @@
 import React from "react";
 import Thumbnail from "../Thumbnail";
 import { Container, Row, Col } from "../Grid";
+import FriendCardBtn from "../FriendCardBtn"
+
 // import { PromiseProvider } from "mongoose";
 
 // Exporting both RecipeList and RecipeListItem from this file
@@ -25,6 +27,11 @@ export function FriendListItem(props) {
             <a rel="noreferrer noopener" target="_blank" href={props.image}>
               Discover More!
             </a>
+            <FriendCardBtn 
+            
+            onClick={props.handleBtnBlick}
+            data-value='pick' />
+
           </Col>
         </Row>
       </Container>
