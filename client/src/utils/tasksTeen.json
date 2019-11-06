@@ -203,13 +203,13 @@
       "message": "Something that cheers you up after a bad day"
   },
   {   "id": 57, 
-      "message": "An object that matches the personality of the future you"
-  },
-  {   "id": 58, 
       "message": "An object that you like to rearrange in some way"
   },
-  {   "id": 59, 
+  {   "id": 58, 
       "message": "A piece of fruit that you could eat every single day of your life"
+  },
+  {   "id": 57, 
+      "message": "An object that matches the character of the future you"
   }
 
 ]
