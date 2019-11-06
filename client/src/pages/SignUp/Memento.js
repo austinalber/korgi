@@ -45,10 +45,10 @@ const Memento = props => {
       <div className="post-outer">
         <div className="image-div">
           <div id="theimage"/>
-          {/*<img id="imagy" src={cover} alt=""/>*/}
+          {/*<img id="image" src={cover} alt=""/>*/}
         </div>
         <div className  ='post-div'>
-          <div id="image-outer">
+          <div id="">
             {/* <img className='pup-image' src={dog} alt=''/> */}
           </div>
           <h4 className="welcome-text">Mementos</h4>
@@ -56,7 +56,7 @@ const Memento = props => {
             value={date}
             className="input-style" 
             type="text"  
-            placeholder="Date [12/25]" 
+            placeholder="date" 
             name="date" 
             onChange={e => handleInputChange(e)}
           />
@@ -64,7 +64,7 @@ const Memento = props => {
             value={photo}
             className="input-style" 
             type="text"  
-            placeholder="photo link" 
+            placeholder="photo" 
             name="photo" 
             onChange={e => handleInputChange(e)}
           />
