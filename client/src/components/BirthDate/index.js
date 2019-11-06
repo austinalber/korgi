@@ -1,9 +1,7 @@
-import React, { useState } from 'react'; 
+import React from 'react'; 
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import InputBase from '@material-ui/core/InputBase';
 
@@ -49,60 +47,44 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const BirthDate = () => {
+const BirthDate = props => {
   // Styling
   const classes = useStyles();
-  // React Hooks
-  const [month, setMonth] = useState("");
-  const [day, setDay] = useState("");
-  const [year, setYear] = useState("");
-  
-  const handleSubmit = () => {
-    let userData = {
-      day,
-      month,
-      year
-    };
-    console.log(userData);
-  };
 
   return (
     <div>
-      <FormControl className={classes.margin} onChange={handleSubmit}>
-        <InputLabel id="demo-customized-select-label">Month</InputLabel>
-        <Select
-          labelId="demo-customized-select-label"
-          id="demo-customized-select"
-          value={month}
-          onChange={e => setMonth(e.target.value)}
+      <FormControl className={classes.margin}>
+        <InputLabel id="month-input-label">Month</InputLabel>
+        <NativeSelect
+          id="month-select-form"
+          onChange={e => props.handleChange(e)}
           input={<BootstrapInput />}
+          name="month"
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={1}>1</MenuItem>
-          <MenuItem value={2}>2</MenuItem>
-          <MenuItem value={3}>3</MenuItem>
-          <MenuItem value={4}>4</MenuItem>
-          <MenuItem value={5}>5</MenuItem>
-          <MenuItem value={6}>6</MenuItem>
-          <MenuItem value={7}>7</MenuItem>
-          <MenuItem value={8}>8</MenuItem>
-          <MenuItem value={9}>9</MenuItem>
-          <MenuItem value={10}>10</MenuItem>
-          <MenuItem value={11}>11</MenuItem>
-          <MenuItem value={12}>12</MenuItem>
-        </Select>
+          <option value="" />
+          <option value={1}>1</option>
+          <option value={2}>2</option>
+          <option value={3}>3</option>
+          <option value={4}>4</option>
+          <option value={5}>5</option>
+          <option value={6}>6</option>
+          <option value={7}>7</option>
+          <option value={8}>8</option>
+          <option value={9}>9</option>
+          <option value={10}>10</option>
+          <option value={11}>11</option>
+          <option value={12}>12</option>
+        </NativeSelect>
       </FormControl>
 
 
       <FormControl className={classes.margin}>
-        <InputLabel htmlFor="demo-customized-select-native">Day</InputLabel>
+        <InputLabel htmlFor="day-input-label">Day</InputLabel>
         <NativeSelect
-          id="demo-customized-select-native"
-          value={day}
-          onChange={e => setDay(e.target.value)}
+          id="day-select-form"
+          onChange={e => props.handleChange(e)}
           input={<BootstrapInput />}
+          name="day"
         >
           <option value="" />
           <option value={1}>1</option>
@@ -118,7 +100,7 @@ const BirthDate = () => {
           <option value={11}>11</option>
           <option value={12}>12</option>
           <option value={13}>13</option>
-          <option value={14}>114</option>
+          <option value={14}>14</option>
           <option value={15}>15</option>
           <option value={16}>16</option>
           <option value={17}>17</option>
@@ -141,11 +123,11 @@ const BirthDate = () => {
 
       <FormControl className={classes.margin}>
   
-        <InputLabel htmlFor="demo-customized-textbox">Year</InputLabel>
-        <BootstrapInput id="demo-customized-textbox" 
-          id="demo-customized-select-native"
-          value={year}
-          onChange= {e => setYear(e.target.value)}
+        <InputLabel htmlFor="year-input-label">Year</InputLabel>
+        <BootstrapInput 
+          id="year-input-textbox" 
+          onChange= {e => props.handleChange(e)}
+          name="year"
         />
       </FormControl>
     </div>

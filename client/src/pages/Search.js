@@ -27,7 +27,7 @@ class Search extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     // If email matches search. Use that user's id to find their info.
-    this.state.users.map(result => {
+    this.state.users.forEach(result => {
       if(this.state.search === result.email) {
         API.getUser(result._id)
           .then(res => {

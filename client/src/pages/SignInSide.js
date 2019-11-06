@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import { Redirect } from 'react-router-dom'
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -60,7 +59,7 @@ function SignInSide(props) {
   // Hook States
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
-  let [redirect, setRedirect] = useState(false);
+  // let [redirect, setRedirect] = useState(false);
 
   // Styling
   const classes = useStyles();
@@ -82,11 +81,11 @@ function SignInSide(props) {
     API.getUsers()
       .then(res => {
         let users = res.data;
-        users.map(user => {
+        users.forEach(user => {
           if(email === user.email && password === user.password) {
             // Go to home page
-            console.log("Valid entry")
-            loginSubmit(email, password);
+              console.log("Valid entry")
+              loginSubmit(email, password);
           } else {
             console.log("Invalid Entry");
           }
