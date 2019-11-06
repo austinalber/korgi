@@ -18,8 +18,10 @@ const Memento = props => {
       [e.target.name]: e.target.value
     }); 
 
-    const { date, photo, location, note } = formData; 
-  // const handleSubmit = event => {
+  const { date, photo, location, note } = formData; 
+
+  const handleSubmit = e => {
+      console.log(e.target.value);
   //   event.preventDefault();
   //   // Determine if user exists
   //   let canLogin = false;
@@ -37,7 +39,7 @@ const Memento = props => {
   //       alert("Email and/or password are incorrect. Please try again.");
   //     }
   //   });
-  // };
+  };
 
   return (
       <div className="post-outer">
@@ -56,7 +58,7 @@ const Memento = props => {
             type="text"  
             placeholder="Date [12/25]" 
             name="date" 
-            onChange={handleInputChange}
+            onChange={e => handleInputChange(e)}
           />
           <input 
             value={photo}
@@ -64,7 +66,7 @@ const Memento = props => {
             type="text"  
             placeholder="photo link" 
             name="photo" 
-            onChange={handleInputChange}
+            onChange={e => handleInputChange(e)}
           />
 
           <input 
@@ -73,7 +75,7 @@ const Memento = props => {
             type="text"
             placeholder="location"
             name="location"
-            onChange={handleInputChange}
+            onChange={e => handleInputChange(e)}
           />
 
           <input 
@@ -82,8 +84,8 @@ const Memento = props => {
             type="text"  
             placeholder="note" 
             name="note" 
-            onChange={handleInputChange}/>
-          {/* <button className="post" onClick={handleSubmit}>Post</button> */}
+            onChange={e => handleInputChange(e)}/>
+          <button className="post" onClick={handleSubmit}>Post</button>
           {/* <div className="divider-div"/>
           <p style={{fontSize: '0.7em', color: '#a9a9a9', bottom: 0, position: 'absolute'}}>Copyright © Korgi Inc 2019</p> */}
         </div>
