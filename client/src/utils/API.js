@@ -13,7 +13,7 @@ export default {
   },
   // Search for all users
   getUsers: function() {
-    return axios.get("http://localhost:5000/api/users");
+    return axios.get("/api/users");
   },
   // Search for all users
   getUser: function(id) {
@@ -26,6 +26,18 @@ export default {
   // Save friend for user
   saveFriend: function(id, friendData) {
     return axios.post("/api/users/" + id, friendData);
+  },
+  // Get all cards
+  getAllCards: function() {
+    return axios.get("/api/cards/");
+  },
+  // Get a specific card(s)
+  getCards: function(id) {
+    return axios.get("/api/cards/" + id);
+  },
+  // Post a card
+  postCard: function(cardData) {
+    return axios.post("/api/cards/", cardData);
   }
 };
 

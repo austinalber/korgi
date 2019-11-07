@@ -15,11 +15,9 @@ const userSeed = [
     lastName: "Alber",
     password: "gamecube",
     email: "austinalber@gmail.com",
-    image: "https://pbs.twimg.com/profile_images/748686391295418368/q_Juy4FH_400x400.jpg",
-    birthDay: 25,
-    birthMonth: 5,
-    birthYear: 1997,
-    zipCode: 32746,
+    userImage: "https://pbs.twimg.com/profile_images/748686391295418368/q_Juy4FH_400x400.jpg",
+    dateOfBirth: "05/25/1997",
+    zipcode: 32746,
     friendList: [
       {
         friendId: "5dbdbc1048b9e958c1efbee4"
@@ -34,11 +32,9 @@ const userSeed = [
     lastName: "Doan",
     password: "test",
     email: "tin.doann@gmail.com",
-    image: "https://images-na.ssl-images-amazon.com/images/I/61Syo19tVWL._SL1280_.jpg",
-    birthDay: 25,
-    birthMonth: 5,
-    birthYear: 1997,
-    zipCode: 32746,
+    userImage: "https://images-na.ssl-images-amazon.com/images/I/61Syo19tVWL._SL1280_.jpg",
+    dateOfBirth: "05/25/1997",
+    zipcode: 32746,
     friendList: [
       {
         friendId: "5dbdbc1048b9e958c1efbee3"
@@ -50,11 +46,9 @@ const userSeed = [
     lastName: "Pascuzzi",
     password: "test",
     email: "michael.pascuzzi@gmail.com",
-    image: "https://radioimg.s3.amazonaws.com/kjkkfm/styles/alpha__380x250/s3/USATSI_11224695_168384848_lowres.jpg",
-    birthDay: 25,
-    birthMonth: 5,
-    birthYear: 1997,
-    zipCode: 32746,
+    userImage: "https://radioimg.s3.amazonaws.com/kjkkfm/styles/alpha__380x250/s3/USATSI_11224695_168384848_lowres.jpg",
+    dateOfBirth: "05/25/1997",
+    zipcode: 32746,
     friendList: [
       {
         friendId: "5dbdbc1048b9e958c1efbee3"

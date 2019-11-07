@@ -19,12 +19,12 @@ export function FriendListItem(props) {
       <Container>
         <Row>
           <Col size="xs-4 sm-2">
-            <Thumbnail src={props.image} />
+            <Thumbnail src={props.userImage} />
           </Col>
           <Col size="xs-8 sm-9">
             <h3>Name: {props.name}</h3>
             <h2>Email: {props.email}</h2>
-            <a rel="noreferrer noopener" target="_blank" href={props.image}>
+            <a rel="noreferrer noopener" target="_blank" href={props.userImage}>
               Discover More!
             </a>
             <FriendCardBtn 
