@@ -5,7 +5,7 @@ import About from "./pages/About";
 import Search from "./pages/Search";
 import SignIn from "./pages/SignIn/SignIn"; 
 import SignUp from "./pages/SignUp/SignUp";
-import UserPage from "./pages/UserPage";
+import UserPage from "./pages/UserPage/UserPage";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Wrapper from "./components/Wrapper"; 
@@ -27,7 +27,6 @@ function App() {
           <Route exact path="/sign-up" component={SignUp} />
           <Route exact path="/task" component={TaskBar} />
           <Route exact path="/memento" component={Memento} />
-
         </Wrapper>
         <Footer />
       </div>

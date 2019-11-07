@@ -14,14 +14,6 @@ const userSchema = new Schema({
         required: true
     },
     lastName: String,
-    password: {
-        type: String,
-        required: true,
-        allowNull: false,
-        // validate: {
-        //     len: [1, 60]
-        // }
-    },
     email: {
         type: String,
         required: true,
@@ -31,7 +23,15 @@ const userSchema = new Schema({
         //     len: [1, 40]
         // }
     },
-    image: {
+    password: {
+        type: String,
+        required: true,
+        allowNull: false,
+        // validate: {
+        //     len: [1, 60]
+        // }
+    },
+    userImage: {
         type: String,
         required: false
     },

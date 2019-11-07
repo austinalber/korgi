@@ -24,10 +24,12 @@ const SignUp = props => {
   const [signUpForm, setSignUpForm] = useState({
     firstName: "",
     lastName: "",
-    email: "",
     password: "",
+    email: "",
+    userImage: "https://www.pngkey.com/png/detail/230-2301779_best-classified-apps-default-user-profile.png",
+    dateOfBirth: "",
     zipcode: "",
-    dateOfBirth: ""
+    friendList: []
   });
 
   const handleInputChange = event => {
@@ -60,9 +62,12 @@ const SignUp = props => {
   const saveUser = () => {
     console.log(signUpForm);
     // Save userData
-
-    // Re-Route to Home Page
-    return props.history.push("/user-page");
+    API.saveUser(signUpForm)
+      .then(res => {
+        // Re-Route to Home Page
+        return props.history.push("/user-page");
+      })
+      .catch(err => console.log(err));
   }
 
   return (
