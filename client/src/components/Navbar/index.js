@@ -47,6 +47,8 @@ function Navbar() {
                         }>
                         Friend Seach
                     </Link>
+                </li>
+                <li>
                     <Link to="/memento"
                         className={
                             window.location.pathname === "/memento"
