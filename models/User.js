@@ -2,11 +2,7 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
 const friendSchema = new Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    email: {
+    friendId: {
         type: String,
         required: true
     }
@@ -54,6 +50,10 @@ const userSchema = new Schema({
         // Default is undefined or no friends initially
         type: [friendSchema],
         default: undefined
+    },
+    creationDate: {
+        type: Date,
+        default: Date.now
     }
 });
 

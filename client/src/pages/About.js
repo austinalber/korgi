@@ -34,7 +34,7 @@ function About() {
             Remember, it’s less of what we see but more of how we see things. 
             </p>
 
-            <Link to="/signup">
+            <Link to="/sign-up">
               <button className="join" style={{ flex: "flex-grow" }} type="button">Join</button>
             </Link>
           </Col>

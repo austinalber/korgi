@@ -2,20 +2,32 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
 const cardSchema = new Schema({
-    user: {
+    userId: {
         type: String,
         required: true
     },
-    title: {
+    userImage: {
         type: String,
-        required: true
     },
-    story: {
+    postImage: {
         type: String,
         required: false
     },
+    caption: {
+        type: String,
+        required: true
+    },
+    likes: {
+        type: Number,
+        default: 0
+    },
+    hasBeenLiked: {
+        type: Boolean,
+        default: false
+    },
     location: {
-        type: String
+        type: String,
+        required: false
     },
     date: {
         type: Date,
