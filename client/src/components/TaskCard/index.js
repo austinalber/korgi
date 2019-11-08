@@ -14,6 +14,7 @@ import { red } from "@material-ui/core/colors";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import PetsIcon from '@material-ui/icons/Pets';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -61,7 +62,7 @@ function TaskCard() {
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
-        <IconButton
+        <PetsIcon
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded
           })}
@@ -70,7 +71,7 @@ function TaskCard() {
           aria-label="show more"
         >
           <ExpandMoreIcon />
-        </IconButton>
+        </PetsIcon>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardHeader
