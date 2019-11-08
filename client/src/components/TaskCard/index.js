@@ -16,6 +16,8 @@ import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import PetsIcon from '@material-ui/icons/Pets';
 
+
+// styling
 const useStyles = makeStyles(theme => ({
   card: {
     maxWidth: 325
@@ -38,7 +40,9 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: red[500]
   }
 }));
+// end of styling 
 
+// logic 
 function TaskCard() {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
@@ -47,19 +51,24 @@ function TaskCard() {
     setExpanded(!expanded);
   };
 
+// end of logic 
+
+
+// display 
+
   return (
     <Card className={classes.card}>
       <CardMedia
         className={classes.media}
         image="/static/images/cards/paella.jpg"
-        title="Paella dish"
+        taskTitle="Paella dish"
       />
       <CardContent />
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
+        <IconButton className="taskLikes" aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
-        <IconButton aria-label="share">
+        <IconButton className="taskLocation" aria-label="share">
           <ShareIcon />
         </IconButton>
         <PetsIcon
@@ -76,7 +85,7 @@ function TaskCard() {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardHeader
           avatar={
-            <Avatar aria-label="recipe" className={classes.avatar}>
+            <Avatar aria-label="userImage" className={classes.avatar}>
               K
             </Avatar>
           }
@@ -84,11 +93,11 @@ function TaskCard() {
             <IconButton aria-label="settings">
             </IconButton>
           }
-          title="Task of the Week"
-          subheader="September 14, 2016"
+          taskTitle="Task of the Week"
+          taskDate="September 14, 2016" 
         />
         <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography className="taskNotes" variant="body2" color="textSecondary" component="p">
             I heart sriracha!
           </Typography>
         </CardContent>
