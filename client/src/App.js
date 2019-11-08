@@ -11,6 +11,8 @@ import Footer from "./components/Footer";
 import Wrapper from "./components/Wrapper"; 
 import TaskBar from "./pages/TaskBar"; 
 import Memento from "./pages/SignUp/Memento"; 
+import TaskCard from "./components/TaskCard"; 
+
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
           <Route exact path="/sign-up" component={SignUp} />
           <Route exact path="/task" component={TaskBar} />
           <Route exact path="/memento" component={Memento} />
+          <Route exact path="/taskcard" component={TaskCard} />
+
         </Wrapper>
         <Footer />
       </div>
