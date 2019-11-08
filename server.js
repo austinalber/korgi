@@ -3,7 +3,7 @@ require("dotenv").config();
 
 // Require express for application
 const express = require('express');
-
+const path = require("path");
 // NPM Dependencies
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -35,12 +35,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 app.use(bodyParser.json());
 
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('client/build'));
-  
-    const path = require('path');
-    app.get('*', (req,res) => {
-        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
-    })
+  app.use(express.static('client/build'));
 }
 
 // Passport config
@@ -55,6 +50,10 @@ router.get('/users', (req, res) => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true, data: data });
   });
+});
+
+app.get("*", function(req, res) {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
 app.listen(PORT, () => {
