@@ -99,3 +99,5 @@ function TaskCard() {
 
 export default TaskCard; 
 
+// need to convert to css
+// pass props with task and user model 
