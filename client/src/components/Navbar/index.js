@@ -58,6 +58,16 @@ function Navbar() {
                         Memento
                     </Link>
                 </li>
+                <li>
+                    <Link to="/taskcard"
+                        className={
+                            window.location.pathname === "/taskcard"
+                                ? "nav-link active"
+                                : "nav-link"
+                        }>
+                        TaskCard
+                    </Link>
+                </li>
                 <li style={{ float:"right" }}>
                     <Link to="/login"
                         className={
