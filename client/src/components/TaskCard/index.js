@@ -93,8 +93,8 @@ function TaskCard() {
             <IconButton aria-label="settings">
             </IconButton>
           }
-          taskTitle="Task of the Week"
-          taskDate="September 14, 2016" 
+          title="Task of the Week"
+          subheader="September 14, 2016" 
         />
         <CardContent>
           <Typography className="taskNotes" variant="body2" color="textSecondary" component="p">
