@@ -4,7 +4,10 @@ import Container from "../components/Container";
 import Row from "../components/Row";
 import Col from "../components/Col";
 import { Link } from 'react-router-dom';
+import { NONAME } from "dns";
+import { fontStyle } from "@material-ui/system";
 // import API from "../utils/API";
+
 
 function About() {
   return (
@@ -28,7 +31,7 @@ function About() {
             In their Welsh language, it means little dog. 
             A breed attributed for their warmth, cleverness, and curosity. 
 
-            Like the dog, this application is based on those same quirks. 
+            Like the dog, this application is based on those same <Link to="discover" style={{ textDecoration: 'blank', color: 'black'}}>quirks</Link>. 
             We serve as a platform for little humans and the one inside all of us to express our own individuality
             without the need of words, but with objects. So bring your dog or borrow one and lets explore together. 
             Remember, it’s less of what we see but more of how we see things. 
