@@ -6,19 +6,6 @@ import dog from "../SignIn/dog.png";
 import ImageSVG from "./ImageSVG";
 import API from "../../utils/API";
 
-// function Copyright() {
-//   return (
-//     <Typography variant="body2" color="textSecondary" align="center">
-//       {'Copyright © '}
-//       <Link color="inherit" href="https://material-ui.com/">
-//         Korgi Inc
-//       </Link>{' '}
-//       {new Date().getFullYear()}
-//       {'.'}
-//     </Typography>
-//   );
-// }
-
 const SignUp = props => {
   // Hook States
   const [signUpForm, setSignUpForm] = useState({

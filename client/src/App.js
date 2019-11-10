@@ -12,8 +12,6 @@ import Wrapper from "./components/Wrapper";
 import TaskBar from "./components/TaskBar"; 
 import Memento from "./pages/Memento"; 
 import TaskCard from "./components/TaskCard"; 
-import Memento from "./pages/Memento"; 
-
 
 function App() {
   return (
@@ -21,7 +19,7 @@ function App() {
       <div>
         <Navbar />
         <Wrapper>
-          <Route exact path="/" component={SignIn} />
+          <Route exact path="/" component={About} />
           <Route exact path="/about" component={About} />
           <Route exact path="/user-page" component={UserPage} />
           <Route exact path="/discover" component={Discover} />
@@ -31,7 +29,6 @@ function App() {
           <Route exact path="/task" component={TaskBar} />
           <Route exact path="/memento" component={Memento} />
           <Route exact path="/taskcard" component={TaskCard} />
-
         </Wrapper>
         <Footer />
       </div>
