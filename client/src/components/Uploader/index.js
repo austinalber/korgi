@@ -25,14 +25,6 @@ class Uploader extends React.Component {
   render() {
     return (
       <div className="container">
-        <div className="jumbotron">
-          <h1 className="display-4">Image Uplaoder</h1>
-          <p className="lead">
-            This is a simple application to upload and retrieve images from a
-            database
-          </p>
-          <hr className="my-4" />
-        </div>
         <div className="input-group mb-3">
           <div className="custom-file">
             <input
@@ -42,7 +34,7 @@ class Uploader extends React.Component {
               aria-describedby="inputGroupFileAddon01"
             />
             <label className="custom-file-label" htmlFor="inputGroupFile01">
-              Choose file
+              Search Image
             </label>
           </div>
         </div>
