@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-Post = e => {
+const Post = e => {
   e.preventDefault()
   const file = document.getElementById('inputGroupFile01').files
   const formData = new FormData()
@@ -15,6 +15,10 @@ Post = e => {
   })
   console.log(file[0])
 }
+
+document
+  .getElementById('img')
+  .setAttribute('src', `http://localhost:5000/${file[0].name}`)
 
 
 class Uploader extends Component {
@@ -44,6 +48,14 @@ class Uploader extends Component {
       <button type="button" className="btn btn-primary">
         Upload
       </button>
+
+      <img
+          id="img"
+          style={{
+            display: "block"
+          }}
+        >
+     </img>
     </div>
       )
     }
