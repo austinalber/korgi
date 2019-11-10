@@ -1,13 +1,14 @@
-// Require data from config
 require("dotenv").config();
-
-// Require express for application
 const express = require('express');
-
-// NPM Dependencies
-const mongoose = require('mongoose');
+const GridFsStorage = require('multer-gridfs-storage');
+const mongoose = require('mongoose')
 const bodyParser = require('body-parser');
+const Grid = require("gridfs-stream");
+const crypto = require("crypto");
+const cors = require("cors");
+const multer = require("multer");
 // const passport = require("passport");
+
 
 // Declare routes
 const routes = require("./routes");
@@ -33,9 +34,10 @@ db.once('open', () => console.log('connected to the database'));
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.use(bodyParser.json());
+app.use(cors()); // multer
 
 // multer configuration
-app.use(express.static(path.join(__direname, '..', 'public')))
+// app.use(express.static(path.join(__direname, '..', 'public')))
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
@@ -60,7 +62,24 @@ router.get('/users', (req, res) => {
   });
 });
 
-// Create storage engine
+//Connect to DB - Multer
+const mongoURI = "mongodb+srv://Tin:Huong1225@uploader-rutws.mongodb.net/test?retryWrites=true&w=majority";
+
+const conn = mongoose.createConnection(mongoURI)
+conn.once('open', () => {
+  console.log('Connection Successful')
+});
+
+// multer
+let gfs
+
+conn.once('open', () => {
+  gfs = Grid(conn.db, mongoose.mongo)
+  gfs.collection('uploads')
+  console.log('Connection Successful')
+})
+
+// Create storage engine multer
 const storage = new GridFsStorage({
   url: mongoURI,
   file: (req, file) => {
@@ -78,15 +97,42 @@ const storage = new GridFsStorage({
       })
     })
   },
-})
+});
+
+const upload = multer({ storage })
+
+// multer - routes for the image to post to 
 
 app.post('/', upload.single('img'), (req, res, err) => {
   if (err) throw err
   res.status(201).send()
 })
 
-const upload = multer({ storage })
+// multer 
+
+app.get('/:filename', (req, res) => {
+  gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
+    // Check if file
+    if (!file || file.length === 0) {
+      return res.status(404).json({
+        err: 'No file exists',
+      })
+    }
+
+    // Check if image
+    if (file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
+      // Read output to browser
+      const readstream = gfs.createReadStream(file.filename)
+      readstream.pipe(res)
+    } else {
+      res.status(404).json({
+        err: 'Not an image',
+      })
+    }
+  })
+})
 
 app.listen(PORT, () => {
   console.log(`app running on port ${PORT}`)
 });
+
