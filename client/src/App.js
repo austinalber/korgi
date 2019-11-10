@@ -12,6 +12,7 @@ import Wrapper from "./components/Wrapper";
 import TaskBar from "./components/TaskBar"; 
 import Memento from "./pages/Memento"; 
 import TaskCard from "./components/TaskCard"; 
+import Memento from "./pages/Memento"; 
 
 
 function App() {
@@ -37,7 +38,7 @@ function App() {
     </Router>
   );
 }
-
+ //hello error
 export default App;
 //
 // /Users/TinX/Desktop/projects/korgi-project/korgi/src/components/SignInSide/SignInSide.js

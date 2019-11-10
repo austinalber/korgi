@@ -3,7 +3,6 @@ require("dotenv").config();
 const express = require('express');
 const path = require("path");
 const GridFsStorage = require('multer-gridfs-storage');
-const mongoose = require('mongoose')
 const bodyParser = require('body-parser');
 const Grid = require("gridfs-stream");
 const crypto = require("crypto");
@@ -132,10 +131,6 @@ app.get('/:filename', (req, res) => {
     }
   })
 })
-
-app.get("*", function(req, res) {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
 
 app.listen(PORT, () => {
   console.log(`app running on port ${PORT}`)
