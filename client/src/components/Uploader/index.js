@@ -42,7 +42,8 @@ class Uploader extends React.Component {
           Upload
         </button>
         <img
-          id="img"
+          id="img" 
+          alt='i'
           style={{
             display: "block"
           }}
