@@ -43,6 +43,7 @@ class Uploader extends React.Component {
         <img
           id="img"
           alt="pic"
+
           style={{
             display: "block"
           }}

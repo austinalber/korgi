@@ -9,14 +9,11 @@ import UserPage from "./pages/UserPage/UserPage";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Wrapper from "./components/Wrapper"; 
-import TaskBar from "./pages/TaskBar"; 
-<<<<<<< HEAD
-import Memento from "./pages/SignUp/Memento"; 
-import TaskCard from "./components/TaskCard"; 
-
-=======
+import TaskBar from "./components/TaskBar"; 
 import Memento from "./pages/Memento"; 
->>>>>>> multer
+import TaskCard from "./components/TaskCard"; 
+import Memento from "./pages/Memento"; 
+
 
 function App() {
   return (
@@ -43,5 +40,5 @@ function App() {
 }
  //hello error
 export default App;
-
+//
 // /Users/TinX/Desktop/projects/korgi-project/korgi/src/components/SignInSide/SignInSide.js
