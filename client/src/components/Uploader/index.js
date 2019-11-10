@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-  class Uploader extends component {
+  class Uploader extends Component {
     render() {
     return (
       <div className="container">

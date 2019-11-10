@@ -10,7 +10,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Wrapper from "./components/Wrapper"; 
 import TaskBar from "./pages/TaskBar"; 
-import Memento from "./pages/SignUp/Memento"; 
+import Memento from "./pages/Memento"; 
 
 function App() {
   return (
