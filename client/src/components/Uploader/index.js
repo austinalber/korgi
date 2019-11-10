@@ -16,9 +16,8 @@ class Uploader extends React.Component {
       console.log(r);
     });
 
-    document
-      .getElementById("img")
-      .setAttribute("src", `http://localhost:5000/${file[0].name}`);
+    document.getElementById("img")
+    .setAttribute("src", `http://localhost:5000/${file[0].name}`);
     console.log(file[0]);
   };
 
@@ -42,8 +41,9 @@ class Uploader extends React.Component {
           Upload
         </button>
         <img
-          id="img" 
-          alt='i'
+          id="img"
+          alt="pic"
+
           style={{
             display: "block"
           }}
