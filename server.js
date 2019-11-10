@@ -80,6 +80,11 @@ const storage = new GridFsStorage({
   },
 })
 
+app.post('/', upload.single('img'), (req, res, err) => {
+  if (err) throw err
+  res.status(201).send()
+})
+
 const upload = multer({ storage })
 
 app.listen(PORT, () => {
