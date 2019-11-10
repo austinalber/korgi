@@ -1,7 +1,9 @@
+// NPM Dependencies
 require("dotenv").config();
 const express = require('express');
 const GridFsStorage = require('multer-gridfs-storage');
 const mongoose = require('mongoose')
+const path = require("path");
 const bodyParser = require('body-parser');
 const Grid = require("gridfs-stream");
 const crypto = require("crypto");
@@ -40,12 +42,7 @@ app.use(cors()); // multer
 // app.use(express.static(path.join(__direname, '..', 'public')))
 
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('client/build'));
-  
-    const path = require('path');
-    app.get('*', (req,res) => {
-        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
-    })
+  app.use(express.static('client/build'));
 }
 
 // Passport config
@@ -131,6 +128,10 @@ app.get('/:filename', (req, res) => {
     }
   })
 })
+
+app.get("*", function(req, res) {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
 
 app.listen(PORT, () => {
   console.log(`app running on port ${PORT}`)
