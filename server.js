@@ -34,6 +34,9 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.use(bodyParser.json());
 
+// multer configuration
+app.use(express.static(path.join(__direname, '..', 'public')))
+
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
   
