@@ -9,7 +9,7 @@ import { fontStyle } from "@material-ui/system";
 // import API from "../utils/API";
 
 
-function About() {
+const About = props => {
   return (
     <div>
       <Hero backgroundImage="https://www.iconspng.com/images/contour-map/contour-map.jpg">
