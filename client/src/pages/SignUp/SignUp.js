@@ -18,6 +18,7 @@ const SignUp = props => {
     zipcode: "",
     friendList: []
   });
+  const [signedIn, setSignedIn] = useState(false);
 
   const handleInputChange = event => {
     const { name, value } = event.target;
@@ -52,7 +53,10 @@ const SignUp = props => {
     API.saveUser(signUpForm)
       .then(res => {
         // Re-Route to Home Page
-        return props.history.push("/user-page");
+        setSignedIn(true);
+        if(signedIn) {
+          return props.history.push("/user-page");
+        }
       })
       .catch(err => console.log(err));
   }
