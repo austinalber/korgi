@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import PrivateRoute from './PrivateRoute';
 import { AuthContext } from "./context/auth";
+
 // Pages
 import Discover from "./pages/Discover";
 import About from "./pages/About";
@@ -11,13 +12,14 @@ import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
 import UserPage from "./pages/UserPage/UserPage";
 import Memento from "./pages/Memento"; 
+import Profile from "./pages/Profile"; 
+
 // Components
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Wrapper from "./components/Wrapper"; 
 import TaskBar from "./components/TaskBar"; 
 import TaskCard from "./components/TaskCard"; 
-import ProfileCard from "./components/ProfileCard"; 
 
 const App = () => {
 
@@ -37,7 +39,7 @@ const App = () => {
           <Route exact path="/sign-up" component={SignUp} />
           <Route exact path="/task" component={TaskBar} />
           <Route exact path="/memento" component={Memento} />
-          <Route exact path="/profile" component={ProfileCard} />
+          <Route exact path="/profile" component={Profile} />
           <Route exact path="/taskcard" component={TaskCard} />
         </Wrapper>
         <Footer />

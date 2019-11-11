@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import ProfileCard from "./components/ProfileCard";
-import Wrapper from "./components/Wrapper";
-import Title from "./components/Title";
-import User from "./Models/User.js";
+import ProfileCard from "../components/ProfileCard";
+import Wrapper from "../components/Wrapper";
+import Title from "../components/Title";
+import User from "../models/User.js"
 
 class Profile extends Component {
   // Setting this.state.friends to the friends json array
@@ -11,15 +11,15 @@ class Profile extends Component {
   };
 
    // When this component mounts, search for our User array database with findAll()
-   componentDidMount() {
-    API.getUsers("")
-      .then(res => this.setState({ User: res.data }))
-      .catch(err => console.log(err));
-   }
+  //  componentDidMount() {
+  //   API.getUsers("")
+  //     .then(res => this.setState({ User: res.data }))
+  //     .catch(err => console.log(err));
+  //  }
 
-   editProfile = id => {
-     console.log(hello); 
-   }
+  //  editProfile = id => {
+  //    console.log(hello); 
+  //  }
 
   // editUser = id => {
   //   // Filter this.state.friends for friends with an id not equal to the id being removed
@@ -39,11 +39,11 @@ class Profile extends Component {
               firstName={profile.firstName}
               lastName={profile.lastName}
               email={profile.email}
-              birthDay={dateOfBirth}
+              birthDay={profile.dateOfBirth}
               image={profile.userImage}
               creation={profile.creationDate}
             />
-            <button onClick={() => this.editProfile(_id)} className="edit">
+            <button onClick={() => this.editProfile()} className="edit">
               edit
             </button>
           </div>
