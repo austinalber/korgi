@@ -2,17 +2,17 @@ import React from "react";
 import Thumbnail from "../Thumbnail";
 import { Container, Row, Col } from "../Grid";
 import FriendCardBtn from "../FriendCardBtn"
-
 // import { PromiseProvider } from "mongoose";
 
-// Exporting both RecipeList and RecipeListItem from this file
+// Exporting both FriendList and FriendListItem from this file
 
-// RecipeList renders a bootstrap list item
+// FriendList renders a bootstrap list item
 export function FriendList({ children }) {
-  return <ul className="list-group">{children}</ul>;
+  return 
+  // <ul className="list-group">{children}</ul>;
 }
 
-// RecipeListItem renders a bootstrap list item containing data from the recipe api call
+// FriendListItem renders a bootstrap list item containing data from the recipe api call
 export function FriendListItem(props) {
   return (
     <li className="list-group-item">

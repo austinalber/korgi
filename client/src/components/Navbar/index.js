@@ -67,6 +67,14 @@ const Navbar = () => {
                         }>
                         TaskCard
                     </Link>
+                    <Link to="/profile"
+                        className={
+                            window.location.pathname === "/profile"
+                                ? "nav-link active"
+                                : "nav-link"
+                        }>
+                        Profile
+                    </Link>
                 </li>
                 <li style={{ float:"right" }}>
                     <Link to="/login"

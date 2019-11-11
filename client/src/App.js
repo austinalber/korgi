@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import PrivateRoute from './PrivateRoute';
 import { AuthContext } from "./context/auth";
+
 // Pages
 import Discover from "./pages/Discover";
 import About from "./pages/About";
@@ -11,6 +12,8 @@ import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
 import UserPage from "./pages/UserPage/UserPage";
 import Memento from "./pages/Memento"; 
+import Profile from "./pages/Profile"; 
+
 // Components
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -27,16 +30,17 @@ const App = () => {
       <div>
         <Navbar/>
         <Wrapper>
-          <Route exact path="/" component={About} />
-          <Route path="/about" component={About} />
-          <Route path="/discover" component={Discover} />
-          <Route path="/login"  component={SignIn} />
-          <Route path="/sign-up" component={SignUp} />
-          <PrivateRoute path="/search" component={Search} />
-          <PrivateRoute path="/user-page" component={UserPage} />
-          <PrivateRoute path="/task" component={TaskBar} />
-          <PrivateRoute path="/memento" component={Memento} />
-          <PrivateRoute path="/taskcard" component={TaskCard} />
+          <Route exact path="/" component={SignIn} />
+          <Route exact path="/about" component={About} />
+          <Route exact path="/user-page" component={UserPage} />
+          <Route exact path="/discover" component={Discover} />
+          <Route exact path="/search" component={Search} />
+          <Route exact path="/login"  component={SignIn} />
+          <Route exact path="/sign-up" component={SignUp} />
+          <Route exact path="/task" component={TaskBar} />
+          <Route exact path="/memento" component={Memento} />
+          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/taskcard" component={TaskCard} />
         </Wrapper>
         <Footer />
       </div>

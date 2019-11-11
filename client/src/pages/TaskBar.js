@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import KudosCounter from '../components/KudosCounter'; 
+// import KudosCounter from '../components/KudosCounter'; 
 import TaskList from '../components/TaskList'; 
 import TaskCounter from '../components/TaskCounter'
 // import tasks from "../utils/tasks.json";
@@ -27,7 +27,7 @@ function TaskBar() {
 
         <Grid item xs={3}>
           <Paper className={classes.paper}>
-          <KudosCounter />
+          {/* <KudosCounter /> */}
           </Paper>
         </Grid>
         <Grid item xs={6}>
