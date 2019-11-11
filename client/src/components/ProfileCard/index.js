@@ -21,9 +21,7 @@ const ProfileCard = (props) => {
                     </div>
                     <div>
                         <h5>Date of Birth</h5>
-                        <p>Month: {props.birthMonth}</p>
-                        <p>Day: {props.birthDay}</p>
-                        <p>Year: {props.birthYear}</p> 
+                        <p>Birthday: {props.dateOfBirth}</p>
                     </div>
                     <div>
                         <h5>Zip Code</h5>
@@ -35,7 +33,7 @@ const ProfileCard = (props) => {
                     </div>
               </div>
 
-              <button onClick={() => props.editProfile(props.id)} className="editBtn">
+              <button onClick={() => props.editProfile(props.id)} className="edit">
                   Edit
               </button> 
         </React.fragment>
