@@ -13,7 +13,6 @@ import TaskBar from "./components/TaskBar";
 import Memento from "./pages/Memento"; 
 import TaskCard from "./components/TaskCard"; 
 import Profile from "./components/Profile"; 
-import Memento from "./pages/Memento"; 
 
 
 function App() {
