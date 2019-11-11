@@ -3,6 +3,7 @@ import React, { Component } from "react";
 // import Button from "./components/Button";
 import API from "../../utils/API";
 import { FriendList, FriendListItem } from "../../components/FriendList";
+import TaskBar from "../../components/TaskBar"; 
 import "./UserPageStyle.css";
 
 
@@ -29,6 +30,8 @@ class UserPage extends Component {
   // This is where the page display the components 
   render() {
     return (
+      <React.Fragment>
+      <TaskBar />
       <div className="user-page-container">
         <div className="friends-container">
           {!this.state.friends.length ? (
@@ -56,6 +59,7 @@ class UserPage extends Component {
           {/* Post all user cards here */}
         </div>
       </div>
+      </React.Fragment>
    );
   }
 }

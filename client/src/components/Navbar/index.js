@@ -19,16 +19,6 @@ const Navbar = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link to="/task"
-                        className={
-                            window.location.pathname === "/task"
-                                ? "nav-link active"
-                                : "nav-link"
-                        }>
-                        Tasks
-                    </Link>
-                </li>
-                <li>
                     <Link to="/user-page"
                         className={
                             window.location.pathname === "/user-page"
