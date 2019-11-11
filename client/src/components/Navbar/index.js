@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import "./style.css";
 import track from "./track.png";
 
-function Navbar() {
+const Navbar = () => {
     return (
         <nav className="navbar">
             <img id="remove-image" src={track} alt="Main page" />
