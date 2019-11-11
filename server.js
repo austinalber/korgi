@@ -24,7 +24,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Connect To Mongoose DB
-const mongoRoute = process.env.MONGODB_URI || `mongodb://localhost/korgi-project`
+const mongoRoute = process.env.MONGODB_URI || `mongodb://austinalber:Gamecube1:localhost/korgi-project`
 mongoose.Promise = global.Promise;
 mongoose.connect(mongoRoute);
 
