@@ -12,7 +12,7 @@ import Wrapper from "./components/Wrapper";
 import TaskBar from "./components/TaskBar"; 
 import Memento from "./pages/Memento"; 
 import TaskCard from "./components/TaskCard"; 
-import Profile from "./components/Profile"; 
+import ProfileCard from "./components/ProfileCard"; 
 
 
 function App() {
@@ -30,7 +30,7 @@ function App() {
           <Route exact path="/sign-up" component={SignUp} />
           <Route exact path="/task" component={TaskBar} />
           <Route exact path="/memento" component={Memento} />
-          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/profile" component={ProfileCard} />
           <Route exact path="/taskcard" component={TaskCard} />
 
         </Wrapper>
