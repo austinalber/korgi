@@ -7,8 +7,9 @@ const ProfileCard = (props) => {
         <React.fragment>
             <div className="profile-container">
                 <h1 className="text-center">User Profile: {props.firstName}</h1>
+
                     <div className="profileImg">
-                        <Thumbnail src={props.userImage} alt={'Avatar'} Thumbnail/>
+                        <Thumbnail src={props.userImage} alt={'Avatar'} className="Avatar" Thumbnail/>
                     </div>
                       <div className="card-body">
                         <div>
