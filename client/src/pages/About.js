@@ -3,7 +3,6 @@ import Hero from "../components/Hero";
 import Container from "../components/Container";
 import Row from "../components/Row";
 import Col from "../components/Col";
-import Modals from "../components/Modals"
 import { Link } from 'react-router-dom';
 import { NONAME } from "dns";
 import { fontStyle } from "@material-ui/system";
@@ -37,7 +36,6 @@ const About = props => {
             without the need of words, but with objects. So bring your dog or borrow one and lets explore together. 
             Remember, it’s less of what we see but more of how we see things. 
             </p>
-            <Modals/>
             <Link to="/sign-up">
               <button className="join" style={{ flex: "flex-grow" }} type="button">Join</button>
             </Link>
