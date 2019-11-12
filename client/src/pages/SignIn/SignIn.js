@@ -1,45 +1,82 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import './signin-style.css';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { loginUser } from "../../actions/authActions";
+import classnames from "classnames";
 import dog from './dog.png'
 import API from "../../utils/API";
 
-const SignInSide = props => {
-  // Hook States
-  const [loginForm, setLoginForm] = useState({
-    email: "",
-    password: ""
-  });
+class SignIn extends Component {
+  constructor() {
+    super();
+    this.state = {
+      email: "",
+      password: "",
+      errors: {}
+    };
+  }
+  // // Hook States
+  // const [loginForm, setLoginForm] = useState({
+  //   email: "",
+  //   password: ""
+  // });
 
-  const userData =  loginForm;
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push("/dashboard"); // push user to about when they login
+    }
 
-  const handleInputChange = event => {
-    const { name, value } = event.target;
-    setLoginForm({ ...loginForm, [name]: value });
+  if (nextProps.errors) {
+    this.setState({
+      errors: nextProps.errors
+    });
+  }
+  }
+
+  onChange = e => {
+    this.setState({ [e.target.id]: e.target.value });
   };
+  onSubmit = e => {
+    e.preventDefault();
+    const userData = {
+      email: this.state.email,
+      password: this.state.password
+    };
 
-  const handleSubmit = event => {
-    event.preventDefault();
+  this.props.loginUser(userData);
+  }
 
-    console.log(userData);
-    // Determine if user exists
-    // let canLogin = false;
-    // API.getUsers().then(res => {
-    //   let users = res.data;
-    //   users.forEach(user => {
-    //     if(loginForm.email === user.email && loginForm.password === user.password) {
-    //       canLogin = true;       
-    //     }
-    //   });
-    //   if(canLogin) {
-    //     // Save credentials and redirect user
-    //     return props.history.push("/user-page");
-    //   } else {
-    //     alert("Email and/or password are incorrect. Please try again.");
-    //   }
-    // });
-  };
+  // const handleInputChange = event => {
+  //   const { name, value } = event.target;
+  //   setLoginForm({ ...loginForm, [name]: value });
+  // };
 
+  // const handleSubmit = event => {
+  //   event.preventDefault();
+
+  //   console.log(userData);
+  //   // Determine if user exists
+  //   // let canLogin = false;
+  //   // API.getUsers().then(res => {
+  //   //   let users = res.data;
+  //   //   users.forEach(user => {
+  //   //     if(loginForm.email === user.email && loginForm.password === user.password) {
+  //   //       canLogin = true;       
+  //   //     }
+  //   //   });
+  //   //   if(canLogin) {
+  //   //     // Save credentials and redirect user
+  //   //     return props.history.push("/user-page");
+  //   //   } else {
+  //   //     alert("Email and/or password are incorrect. Please try again.");
+  //   //   }
+  //   // });
+  // };
+
+  render() {
+    const { errors } = this.state;
   return (
       <div className="signin-outer">
         <div className="image-div">
@@ -51,14 +88,14 @@ const SignInSide = props => {
             <img className='pup-image' src={dog} alt=''/>
           </div>
           <h4 className="welcome-text">Welcome to Korgi !</h4>
-          <input className="input-style" type="email"  placeholder="Email" name="email" onChange={handleInputChange}/>
-          <input className="input-style" type="password"  placeholder="Password" name="password" onChange={handleInputChange}/>
+          <input className="input-style" type="email"  placeholder="Email" name="email" onChange={this.onChange}/>
+          <input className="input-style" type="password"  placeholder="Password" name="password" onChange={this.onChange}/>
           <div className="remember-me-forgot-pass-div">
             <input className="checkbox-input" type="checkbox" id="remember-me"/>
             <label htmlFor="remember-me">Remember me</label>
             <Link to='/forgot-password'>Forgot password?</Link>
           </div>
-          <button className="sign-in" onClick={handleSubmit}>Sign In</button>
+          <button className="sign-in" onClick={this.onSubmit}>Sign In</button>
           <div className="divider-div"/>
           <h6>Just in case...</h6>
           <h5 style={{marginTop: '30px'}}>Don't have an account? <Link to={'/sign-up'}>Create one</Link></h5>
@@ -66,6 +103,19 @@ const SignInSide = props => {
         </div>
       </div>
   );
+  }
 }
 
-export default SignInSide;
+SignIn.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(SignIn);
