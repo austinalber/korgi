@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 // import Link from '@material-ui/core/Link';
 // import Typography from '@material-ui/core/Typography';
 import "./signup-style.css";
@@ -13,53 +14,55 @@ const SignUp = props => {
     lastName: "",
     password: "",
     email: "",
-    userImage: "https://www.pngkey.com/png/detail/230-2301779_best-classified-apps-default-user-profile.png",
     dateOfBirth: "",
-    zipcode: "",
-    friendList: []
+    zipcode: ""
   });
-  const [signedIn, setSignedIn] = useState(false);
+  const [error, setError] = useState({})
 
   const handleInputChange = event => {
     const { name, value } = event.target;
     setSignUpForm({ ...signUpForm, [name]: value });
   };
+  
+  const newUser = signUpForm;
 
   const handleSubmit = event => {
     event.preventDefault();
-    let canMakeUser = true;
-    // Run saveUser if any credentials don't match previous users
-    API.getUsers().then(res => {
-      let users = res.data;
-      users.forEach(user => {
-        if(signUpForm.email === user.email) {
-          canMakeUser = false;        
-        }
-      });
-      if(canMakeUser) {
-        console.log("User can be created");
-        saveUser();
-      } else {
-        alert("Email is already in use. Please use another email address.");
-        console.log("Email is already in use")
-      }
-      return;
-    });
+
+    console.log(newUser);
+    // let canMakeUser = true;
+    // // Run saveUser if any credentials don't match previous users
+    // API.getUsers().then(res => {
+    //   let users = res.data;
+    //   users.forEach(user => {
+    //     if(signUpForm.email === user.email) {
+    //       canMakeUser = false;        
+    //     }
+    //   });
+    //   if(canMakeUser) {
+    //     console.log("User can be created");
+    //     saveUser();
+    //   } else {
+    //     alert("Email is already in use. Please use another email address.");
+    //     console.log("Email is already in use")
+    //   }
+    //   return;
+    // });
   }
 
-  const saveUser = () => {
-    console.log(signUpForm);
-    // Save userData
-    API.saveUser(signUpForm)
-      .then(res => {
-        // Re-Route to Home Page
-        setSignedIn(true);
-        if(signedIn) {
-          return props.history.push("/user-page");
-        }
-      })
-      .catch(err => console.log(err));
-  }
+  // const saveUser = () => {
+  //   console.log(signUpForm);
+  //   // Save userData
+  //   API.saveUser(signUpForm)
+  //     .then(res => {
+  //       // Re-Route to Home Page
+  //       setSignedIn(true);
+  //       if(signedIn) {
+  //         return props.history.push("/user-page");
+  //       }
+  //     })
+  //     .catch(err => console.log(err));
+  // }
 
   return (
       <div className="signup-outer">
@@ -84,8 +87,8 @@ const SignUp = props => {
               </div>
               <button className="sign-in" onClick={handleSubmit}>Sign Up</button>
               <div className="divider-div"/>
-              {/* <h6>Just in case...</h6> */}
-              {/* <h5 style={{marginTop: '30px'}}>Don't have an account? <Link to={'/sign-up'}>Create one</Link></h5> */}
+              <h6>Just in case...</h6>
+              <h5 style={{marginTop: '30px'}}>Aready have an account? <Link to={'/login'}>Login</Link></h5>
               <p style={{fontSize: '0.7em', color: '#a9a9a9', bottom: 0, position: 'absolute'}}>Copyright © Korgi Inc 2019</p>
           </div>
       </div>

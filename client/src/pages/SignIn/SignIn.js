@@ -11,6 +11,8 @@ const SignInSide = props => {
     password: ""
   });
 
+  const userData =  loginForm;
+
   const handleInputChange = event => {
     const { name, value } = event.target;
     setLoginForm({ ...loginForm, [name]: value });
@@ -18,22 +20,24 @@ const SignInSide = props => {
 
   const handleSubmit = event => {
     event.preventDefault();
+
+    console.log(userData);
     // Determine if user exists
-    let canLogin = false;
-    API.getUsers().then(res => {
-      let users = res.data;
-      users.forEach(user => {
-        if(loginForm.email === user.email && loginForm.password === user.password) {
-          canLogin = true;       
-        }
-      });
-      if(canLogin) {
-        // Save credentials and redirect user
-        return props.history.push("/user-page");
-      } else {
-        alert("Email and/or password are incorrect. Please try again.");
-      }
-    });
+    // let canLogin = false;
+    // API.getUsers().then(res => {
+    //   let users = res.data;
+    //   users.forEach(user => {
+    //     if(loginForm.email === user.email && loginForm.password === user.password) {
+    //       canLogin = true;       
+    //     }
+    //   });
+    //   if(canLogin) {
+    //     // Save credentials and redirect user
+    //     return props.history.push("/user-page");
+    //   } else {
+    //     alert("Email and/or password are incorrect. Please try again.");
+    //   }
+    // });
   };
 
   return (
