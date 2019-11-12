@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Uploader from '../components/Uploader'; 
+import React, { useState } from "react"; 
 // import './signin-style.css';
 // import dog from './dog.png'
 // import API from "../../utils/API";
