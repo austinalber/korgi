@@ -95,7 +95,7 @@ const Memento = props => {
           <p style={{fontSize: '0.7em', color: '#a9a9a9', bottom: 0, position: 'absolute'}}>Copyright © Korgi Inc 2019</p> */}
 
           <Uploader />
-          <Modals />
+          <Modals text='Create a moment with the Korgi community'/>
         </div>
       </div>
   );

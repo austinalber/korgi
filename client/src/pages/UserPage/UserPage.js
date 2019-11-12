@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 import { FriendList, FriendListItem } from "../../components/FriendList";
 import TaskBar from "../../components/TaskBar"; 
+import Modals from '../Modals'; 
 import "./UserPageStyle.css";
 
 
@@ -32,6 +33,7 @@ class UserPage extends Component {
     return (
       <React.Fragment>
       <TaskBar />
+      <Modals text="Kudos! Thank you for joining the Korgi community, take a journey with us for 1 year - 52 unique experience" />
       <div className="user-page-container">
         <div className="friends-container">
           {!this.state.friends.length ? (
@@ -65,5 +67,7 @@ class UserPage extends Component {
 }
 
 export default UserPage;
+
+
 
 

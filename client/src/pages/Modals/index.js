@@ -7,15 +7,15 @@ import './style.css';
 // which are show and setShow. setShow is a function used 
 // to update the state and show is a value, useState holds the current state
 
-const Modals = () => {
+const Modals = (props) => {
   const [show, setShow] = useState(false); 
   const openModal = () => setShow(true); 
   const closeModal = () => setShow(false); 
 
 // !show in front of button element so that button only renders when a modal is not open 
   return (
-    <div className="Modal">  
-      {!show && <button onClick={openModal}>Create a moment with the Korgi community</button>}
+    <div className="Modal">
+      {!show && <button onClick={openModal}>{props.text}</button>}
       <Modal closeModal={closeModal} show={show} />
     </div>
    ); 
