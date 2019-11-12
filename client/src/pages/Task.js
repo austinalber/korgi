@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import taskList from "./taskList.json"
 import Wrapper from "../components/Wrapper";
-
-import axios from "axios";
 import TaskBar from "../components/TaskBar/index.js";
+import axios from "axios";
 
 class TaskTimer extends Component {
   // set the initial state 
