@@ -33,7 +33,7 @@ class UserPage extends Component {
     return (
       <React.Fragment>
       <TaskBar />
-      <Modals text="Kudos! Thank you for joining the Korgi community, take a journey with us for 1 year - 52 unique experience" />
+      <Modals text="Kudos! Thank you for joining the Korgi community, take a journey with us for 1 year - 52 unique experiences" />
       <div className="user-page-container">
         <div className="friends-container">
           {!this.state.friends.length ? (

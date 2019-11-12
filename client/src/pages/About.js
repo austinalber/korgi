@@ -25,11 +25,11 @@ const About = props => {
         <Row>
           <Col size="md-12">
             <p>
-            Kor·gi - the word orginates from Wales, 
+            Kor·gi - the word originates from Wales, 
             a mystical land of foggy rolling hills and castles.
 
             In their Welsh language, it means little dog. 
-            A breed attributed for their warmth, cleverness, and curosity. 
+            A breed attributed for their warmth, cleverness, and curiosity. 
 
             Like the dog, this application is based on those same <Link to="discover" style={{ textDecoration: 'blank', color: 'black'}}>quirks</Link>. 
             We serve as a platform for little humans and the one inside all of us to express our own individuality
