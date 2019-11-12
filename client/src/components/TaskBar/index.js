@@ -8,7 +8,7 @@ const TaskBar = props => {
   return (
       <nav className="navbar navbar-expand-sm bg-light justify-content-center ">
          <div className="navbar-nav">
-            <h1 id='task'>{props.tasks}</h1>
+           <h1 style={{textAlign: "center"}}>Hello</h1> 
             {/* <div>
                <div>{props.tasks.task.map((item) => <p>{item}</p>)}</div>
             </div> */}
