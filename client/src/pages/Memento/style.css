@@ -19,3 +19,9 @@
     width: 80%;
     margin: 25px 0;
 }
+
+.post-outer {
+    margin-top: 40px;
+    margin-left: 80px;
+    text-align: center;
+}
