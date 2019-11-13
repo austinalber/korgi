@@ -26,22 +26,22 @@ module.exports = function validateRegisterInput(data) {
   if (Validator.isEmpty(data.password)) {
     errors.password = "Password field is required";
   }
-  if (!Validator.isLength(data.password, { min: 2, max: 30 })) {
-    errors.password = "Password must be at least 2 characters";
+  if (!Validator.isLength(data.password, { min: 6, max: 30 })) {
+    errors.password = "Password must be at least 6 characters";
   }
 // Zipcode check
   if (Validator.isEmpty(data.zipcode)) {
     errors.zipcode = "Zipcode field is required";
   }
   if (!Validator.isLength(data.zipcode, { min:5, max:5 })) {
-    errors.zipcode = "Zipcode must be 5 characters";
+    errors.zipcode = "Must be valide zipcode";
   }
 // Date check
   if (Validator.isEmpty(data.birthday)) {
     errors.birthday = "Birthday field is required";
   }
   if (!Validator.isLength(data.birthday, { min:10, max:10 })) {
-    errors.birthday = "Birthday must be 6 characters";
+    errors.birthday = "Birthday must be valid date format (MM/DD/YYYY)";
   }
 return {
     errors,

@@ -75,50 +75,56 @@ class SignUp extends Component  {
                 {errors.firstName && (
                   <p className="error-text">{errors.firstName}</p>
                 )}
-                
                 <input className="input-style" type="lastName"  placeholder="Last Name" name="lastName" 
                   onChange={this.onChange} 
                   value={this.state.lastName} 
                   error={errors.lastName} 
                   id="lastName"
                 />
+                {errors.lastName && (
+                  <p className="error-text">{errors.lastName}</p>
+                )}
+                <input className={`input-style ${errors.email && "input-error"}`} type="email" placeholder="Email" name="email" 
+                  onChange={this.onChange} 
+                  value={this.state.email} 
+                  error={errors.email} 
+                  id="email"
+                />
+                  {errors.email && (
+                      <p className="error-text">{errors.email}</p>
+                  )}
+                <input className="input-style" type="password"  placeholder="Password" name="password" 
+                  onChange={this.onChange} 
+                  value={this.state.password} 
+                  error={errors.password} 
+                  id="password"
+                />
+                  {errors.password && (
+                      <p className="error-text">{errors.password}</p>
+                  )}
+                <input className="input-style input-in-group" type="zipcode"  placeholder="Zip Code" name="zipcode" 
+                  onChange={this.onChange} 
+                  value={this.state.zipcode} 
+                  error={errors.zipcode} 
+                  id="zipcode"
+                />
+                  {errors.zipcode && (
+                      <p className="error-text">{errors.zipcode}</p>
+                  )}
+                <input className="input-style" type="date" name="birthday" 
+                  onChange={this.onChange} 
+                  value={this.state.birthday} 
+                  error={errors.birthday} 
+                  id="birthday"
+                />
+                {errors.birthday && (
+                    <p className="error-text">{errors.birthday}</p>
+                )}
 
-
-              <input className={`input-style ${errors.email && "input-error"}`} type="email" placeholder="Email" name="email" 
-                onChange={this.onChange} 
-                value={this.state.email} 
-                error={errors.email} 
-                id="email"
-              />
-              {errors.email && (
-                  <p className="error-text">{errors.email}</p>
-              )}
-
-              <input className="input-style" type="password"  placeholder="Password" name="password" 
-                onChange={this.onChange} 
-                value={this.state.password} 
-                error={errors.password} 
-                id="password"
-              />
-
-              <input className="input-style input-in-group" type="zipcode"  placeholder="Zip Code" name="zipcode" 
-                onChange={this.onChange} 
-                value={this.state.zipcode} 
-                error={errors.zipcode} 
-                id="zipcode"
-              />
-
-              <input className="input-style" type="date" name="birthday" 
-                onChange={this.onChange} 
-                value={this.state.birthday} 
-                error={errors.birthday} 
-                id="birthday"
-              />
-              
               <button className="sign-in sign-up" type="submit" onClick={this.onSubmit}>Sign Up</button>
               <div className="divider-div"/>
               <h6>Just in case...</h6>
-              <h5 style={{marginTop: '30px'}}>Aready have an account? <Link to={'/login'}>Login</Link></h5>
+              <h5 style={{marginTop: '30px'}}>Already have an account? <Link to={'/login'}>Login</Link></h5>
               <p style={{fontSize: '0.7em', color: '#a9a9a9', bottom: 0, position: 'absolute'}}>Copyright © Korgi Inc 2019</p>
           </div>
       </form>

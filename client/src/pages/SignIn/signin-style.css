@@ -25,7 +25,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #ffdada;
+    background-color: rgb(139, 155, 241);
 }
 
 #theimage {
