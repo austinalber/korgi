@@ -20,8 +20,8 @@ input[type="date"]::before {
     justify-content: space-between;
 }
 
-.input-in-group {
-    width: 49%;
+.input-group-div {
+    width: 48%;
 }
 
 .sign-up {

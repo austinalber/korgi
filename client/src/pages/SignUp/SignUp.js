@@ -66,46 +66,55 @@ class SignUp extends Component  {
                   <img className='pup-image' src={dog} alt=''/>
               </div>
               <h4 className="welcome-text">Welcome Korgi's New Member !</h4>
-              <div className="group-input-div">
-                <input className="input-style input-in-group" type="firstName"  placeholder="* First Name" name="firstName" 
+                <input className={`input-style ${errors.firstName && "input-error"}`} type="firstName"  placeholder="First Name" name="firstName" 
                   onChange={this.onChange} 
                   value={this.state.firstName} 
                   error={errors.firstName} 
                   id="firstName"
                 />
-                <input className="input-style input-in-group" type="lastName"  placeholder="* Last Name" name="lastName" 
+                {errors.firstName && (
+                  <p className="error-text">{errors.firstName}</p>
+                )}
+                
+                <input className="input-style" type="lastName"  placeholder="Last Name" name="lastName" 
                   onChange={this.onChange} 
                   value={this.state.lastName} 
                   error={errors.lastName} 
                   id="lastName"
                 />
-              </div>
-              <input className="input-style" type="email"  placeholder="* Email" name="email" 
+
+
+              <input className={`input-style ${errors.email && "input-error"}`} type="email" placeholder="Email" name="email" 
                 onChange={this.onChange} 
                 value={this.state.email} 
                 error={errors.email} 
                 id="email"
               />
-              <div className="group-input-div">
-                <input className="input-style input-in-group" type="password"  placeholder="* Password" name="password" 
-                  onChange={this.onChange} 
-                  value={this.state.password} 
-                  error={errors.password} 
-                  id="password"
-                />
-                <input className="input-style input-in-group" type="zipcode"  placeholder="* Zip Code" name="zipcode" 
-                  onChange={this.onChange} 
-                  value={this.state.zipcode} 
-                  error={errors.zipcode} 
-                  id="zipcode"
-                />
-              </div>
-                <input className="input-style" type="date" name="birthday" 
-                  onChange={this.onChange} 
-                  value={this.state.birthday} 
-                  error={errors.birthday} 
-                  id="birthday"
-                />
+              {errors.email && (
+                  <p className="error-text">{errors.email}</p>
+              )}
+
+              <input className="input-style" type="password"  placeholder="Password" name="password" 
+                onChange={this.onChange} 
+                value={this.state.password} 
+                error={errors.password} 
+                id="password"
+              />
+
+              <input className="input-style input-in-group" type="zipcode"  placeholder="Zip Code" name="zipcode" 
+                onChange={this.onChange} 
+                value={this.state.zipcode} 
+                error={errors.zipcode} 
+                id="zipcode"
+              />
+
+              <input className="input-style" type="date" name="birthday" 
+                onChange={this.onChange} 
+                value={this.state.birthday} 
+                error={errors.birthday} 
+                id="birthday"
+              />
+              
               <button className="sign-in sign-up" type="submit" onClick={this.onSubmit}>Sign Up</button>
               <div className="divider-div"/>
               <h6>Just in case...</h6>
