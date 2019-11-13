@@ -13,7 +13,7 @@ import Search from "./pages/Search";
 import SignIn from "./pages/SignIn/SignIn"; 
 import SignUp from "./pages/SignUp/SignUp";
 import UserPage from "./pages/UserPage/UserPage";
-import Memento from "./pages/Memento"; 
+import Memento from "./pages/Memento/Memento"; 
 import Dashboard from "./pages/Dashboard/Dashboard";
 // Components
 import Navbar from "./components/Navbar";

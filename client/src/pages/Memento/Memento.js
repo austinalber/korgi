@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+// import { Link } from 'react-router-dom';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Uploader from '../components/Uploader';
-// import { logoutUser, getUser } from "../../actions/authActions";
-// import './signin-style.css';
+import Uploader from "../../components/Uploader";
+import { postCard } from "../../actions/authActions";
+import "./style.css";
 // import dog from './dog.png'
 // import API from "../../utils/API";
 
@@ -17,9 +17,17 @@ class Memento extends Component {
       postImage: "",
       caption: "",
       location: "",
-      date: "",
+      // date: "",
       errors: {}
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({
+        errors: nextProps.errors
+      });
+    }
   }
 
   onChange = e => {
@@ -29,19 +37,20 @@ class Memento extends Component {
   onSubmit = e => {
     e.preventDefault();
     const postData = {
-      userId: "",
-      userImage: "",
-      postImage: "",
-      caption: "",
-      location: "",
-      date: ""
+      userId: this.props.auth.user.id,
+      userImage: this.props.auth.user.userImage,
+      postImage: this.state.postImage,
+      caption: this.state.caption,
+      location: this.state.location
+      // date: ""
     };
 
     console.log(postData);
+    this.props.postCard(postData);
   }
 
   render() {
-    // const { errors } = this.state;
+    const { errors } = this.state;
 
     return (
         <div className="post-outer">
@@ -54,21 +63,34 @@ class Memento extends Component {
               {/* <img className='pup-image' src={dog} alt=''/> */}
             {/* </div> */}
             <h4 className="welcome-text">Mementos</h4>
-            <input 
+            {/* <input 
               value={this.state.date}
               className="input-style" 
-              type="date"  
-              placeholder="Date of Post (MM/DD/YYYY)" 
+              type="date"
               name="date" 
-              onChange={e => this.onChange}
+              id="date"
+              onChange={this.onChange}
+              error={errors.date}
+            /> */}
+            <input 
+              value={this.state.caption}
+              className="input-style" 
+              type="caption"  
+              placeholder="Caption" 
+              name="caption" 
+              id="caption"
+              onChange={this.onChange}
+              error={errors.caption}
             />
             <input 
               value={this.state.postImage}
               className="input-style" 
               type="postImage"  
               placeholder="Post Image" 
-              name="postImage" 
-              onChange={e => this.onChange}
+              name="postImage"
+              id="postImage" 
+              onChange={this.onChange}
+              error={errors.postImage}
             />
             <input 
               value={this.state.location}
@@ -76,21 +98,15 @@ class Memento extends Component {
               type="location"
               placeholder="Location"
               name="location"
-              onChange={e => this.onChange}
-            />
-            <input 
-              value={this.state.caption}
-              className="input-field-style" 
-              type="caption"  
-              placeholder="Caption" 
-              name="caption" 
-              onChange={e => this.onChange}
+              id="location"
+              onChange={this.onChange}
+              error={errors.location}
             />
             {/* <Link to="/user-page"> */}
-            <button className="post" onClick={this.onSubmit}>Post Card!</button>
+            <button className="post-card" onClick={this.onSubmit}>Post Card!</button>
             {/* </Link> */}
-            {/* <div className="divider-div"/>
-            <p style={{fontSize: '0.7em', color: '#a9a9a9', bottom: 0, position: 'absolute'}}>Copyright © Korgi Inc 2019</p> */}
+            <div className="divider-div"/>
+            {/* <p style={{fontSize: '0.7em', color: '#a9a9a9', bottom: 0, position: 'absolute'}}>Copyright © Korgi Inc 2019</p> */}
             <Uploader />
           </div>
         </div>
@@ -99,7 +115,7 @@ class Memento extends Component {
 }
 
 Memento.propTypes = {
-  // postCard: PropTypes.func.isRequired,
+  postCard: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -109,5 +125,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { }
+  { postCard }
 )(Memento);

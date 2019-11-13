@@ -1,0 +1,21 @@
+.post-div > input[type="date"]::before {
+    color: #7f7f7f;
+    content: attr(placeholder) "Date:\00a0" !important;
+}
+
+.post-card {
+    background-color: #9BB1FE;
+    border-width: 0;
+    border-radius: 500px;
+    width: 150px;
+    padding: 5px;
+    transition: all .2s;
+    margin-top: 30px;
+}
+
+.divider-div {
+    background-color: rgba(192,192,192,0.35);
+    height: 1px;
+    width: 80%;
+    margin: 25px 0;
+}

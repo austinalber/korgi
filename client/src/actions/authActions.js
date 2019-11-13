@@ -19,6 +19,18 @@ export const getUser = userData => dispatch => {
       })
     )
 };
+// Post Card
+export const postCard = postData => dispatch => {
+  axios
+    .post("/api/cards", postData)
+    .then(res => console.log(res)) // Log response. Used for testing
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
 // Register User
 export const registerUser = (userData, history) => dispatch => {
   axios
