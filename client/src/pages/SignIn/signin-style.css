@@ -96,6 +96,7 @@ input[type=checkbox] + label:active:before {
     width: 150px;
     padding: 5px;
     transition: all .2s;
+    margin-top: 30px;
 }
 
 .sign-in:hover {
