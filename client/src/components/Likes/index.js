@@ -1,8 +1,10 @@
 import React, {Component} from 'react'; 
+import classNames from 'classnames';
+
 
 class Likes extends Component {
   state = {
-    liked = false, 
+    liked: false, 
     count: 1
   };
 
@@ -15,16 +17,14 @@ class Likes extends Component {
     }); 
   }
 
-  render(){
-    let classes = className({
-      'like-btn': true, 
+  render () {
+    var classes = classNames({
+      'like-button': true,
       'liked': this.state.liked
     });
-    return (
-      <div className="button-wrap">
-        <div className={classes} onClick={() => this.updateLikes()}>Heart</div>
-      </div>
-    )
+    return <div className="button-wrap">
+      <div className={classes} onClick={() => this.updateLikes()}>Likes | <span className="like-count">{this.state.count}</span></div>
+          </div>
   }
 }
 
