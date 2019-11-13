@@ -8,7 +8,7 @@ import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 // Pages
 import Discover from "./pages/Discover";
-import About from "./pages/About";
+import Home from "./pages/Home/Home";
 import Search from "./pages/Search";
 import SignIn from "./pages/SignIn/SignIn"; 
 import SignUp from "./pages/SignUp/SignUp";
@@ -50,8 +50,8 @@ const App = () => {
       <div className="app">
         <Navbar/>
         <Wrapper>
-          <Route exact path="/" component={About} />
-          <Route exact path="/about" component={About} />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/home" component={Home} />
           <Route exact path="/discover" component={Discover} />
           <Route exact path="/login"  component={SignIn} />
           <Route exact path="/sign-up" component={SignUp} />
@@ -64,7 +64,6 @@ const App = () => {
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
           </Switch>
         </Wrapper>
-        <Footer />
       </div>
     </Router>
     </Provider>

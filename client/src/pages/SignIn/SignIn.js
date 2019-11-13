@@ -4,9 +4,7 @@ import './signin-style.css';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
-import dog from './dog.png'
-// import classnames from "classnames";
-// import API from "../../utils/API";
+import dog from './dog.png';
 
 class SignIn extends Component {
   constructor() {
@@ -44,13 +42,12 @@ class SignIn extends Component {
 
   render() {
     // const { errors } = this.state;
-  return (
+    return (
       <div className="signin-outer">
         <div className="image-div">
           <div id="theimage"/>
-          {/*<img id="imagy" src={cover} alt=""/>*/}
         </div>
-        <div className='signin-div'>
+        <form noValidate onSubmit={this.onSubmit} className='signin-div'>
           <div id="image-outer">
             <img className='pup-image' src={dog} alt=''/>
           </div>
@@ -67,9 +64,9 @@ class SignIn extends Component {
           <h6>Just in case...</h6>
           <h5 style={{marginTop: '30px'}}>Don't have an account? <Link to={'/sign-up'}>Create one</Link></h5>
           <p style={{fontSize: '0.7em', color: '#a9a9a9', bottom: 0, position: 'absolute'}}>Copyright © Korgi Inc 2019</p>
-        </div>
+        </form>
       </div>
-  );
+    );
   }
 }
 

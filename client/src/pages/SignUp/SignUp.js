@@ -6,8 +6,6 @@ import { registerUser } from "../../actions/authActions";
 import "./signup-style.css";
 import dog from "../SignIn/dog.png";
 import ImageSVG from "./ImageSVG";
-// import API from "../../utils/API";
-// import classnames from "classnames";
 
 class SignUp extends Component  {
   constructor() {

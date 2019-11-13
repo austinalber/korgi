@@ -7,34 +7,32 @@ import "./style.css";
 import track from "./track.png";
 
 class Navbar extends Component {
+    // May be unnecessary
     componentWillReceiveProps(nextProps) {
         if (nextProps.auth.isAuthenticated) {
-            console.log("Authenticated!")
-        //   this.props.history.push("/dashboard"); // push user to about when they login
+            console.log("User is currently logged in.")
         }
-        console.log("not auth")
+        console.log("User is not currently logged in.")
         if (nextProps.errors) {
-        //   this.setState({ errors: nextProps.errors });
+            console.log(nextProps.errors);
         }
     }
     onLogoutClick = e => {
         e.preventDefault();
         this.props.logoutUser();
+        this.props.history.push("/home");
     };
     
     render() {
-        const auth = this.props.auth.isAuthenticated;
-        console.log(auth);
-
         if(this.props.auth.isAuthenticated) {
             return(        
             <nav className="navbar">
             <img id="remove-image" src={track} alt="Main page" />
             <ul id="menu">
             <li>
-                <Link to="/about"
+                <Link to="/home"
                     className={
-                        window.location.pathname === "/" || window.location.pathname === "/about"
+                        window.location.pathname === "/" || window.location.pathname === "/home"
                             ? "nav-link active"
                             : "nav-link"
                     }>
@@ -92,10 +90,10 @@ class Navbar extends Component {
                 </Link>
             </li>
             <li style={{ float:"right" }}>
-                <Link to="/about"
+                <Link to="/home"
                     onClick={this.onLogoutClick}
                     className={
-                        window.location.pathname === "/about"
+                        window.location.pathname === "/home"
                             ? "nav-link active"
                             : "nav-link"
                     }>
@@ -110,9 +108,9 @@ class Navbar extends Component {
                 <img id="remove-image" src={track} alt="Main page" />
                 <ul id="menu">
                 <li>
-                    <Link to="/about"
+                    <Link to="/home"
                         className={
-                            window.location.pathname === "/" || window.location.pathname === "/about"
+                            window.location.pathname === "/" || window.location.pathname === "/home"
                                 ? "nav-link active"
                                 : "nav-link"
                         }>

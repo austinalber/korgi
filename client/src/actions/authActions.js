@@ -9,9 +9,15 @@ import {
 
 // Get User
 export const getUser = userData => dispatch => {
-  axios.get("/api/users/user", userData)
-    .then(res => console.log(res))
-    .catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data}))
+  axios
+    .get("/api/users/user", userData)
+    .then(res => console.log(res)) // Log response. Used for testing
+    .catch(err => 
+      dispatch({ 
+        type: GET_ERRORS, 
+        payload: err.response.data
+      })
+    )
 };
 // Register User
 export const registerUser = (userData, history) => dispatch => {
@@ -26,7 +32,7 @@ export const registerUser = (userData, history) => dispatch => {
     );
 };
 // Login - get user token
-export const loginUser = userData => dispatch => {
+export const loginUser = (userData) => dispatch => {
   axios
     .post("/api/users/login", userData)
     .then(res => {
