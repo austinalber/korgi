@@ -10,9 +10,9 @@ class Navbar extends Component {
     // May be unnecessary
     componentWillReceiveProps(nextProps) {
         if (nextProps.auth.isAuthenticated) {
-            console.log("User is currently logged in.")
+            // console.log("User is currently logged in.")
         }
-        console.log("User is not currently logged in.")
+            // console.log("User is not currently logged in.")
         if (nextProps.errors) {
             console.log(nextProps.errors);
         }
