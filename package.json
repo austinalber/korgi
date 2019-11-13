@@ -13,7 +13,7 @@
     "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "repository": {
     "type": "git",
@@ -47,7 +47,8 @@
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "typeface-roboto": "0.0.75",
-    "validator": "^12.0.0"
+    "validator": "^12.0.0",
+    "concurrently": "^5.0.0",
   },
   "devDependencies": {
     "concurrently": "^5.0.0",
