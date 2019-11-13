@@ -4,8 +4,8 @@ import Container from "../components/Container";
 import Row from "../components/Row";
 import Col from "../components/Col";
 import { Link } from 'react-router-dom';
-import { NONAME } from "dns";
-import { fontStyle } from "@material-ui/system";
+// import { NONAME } from "dns";
+// import { fontStyle } from "@material-ui/system";
 // import API from "../utils/API";
 
 

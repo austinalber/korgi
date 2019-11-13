@@ -36,6 +36,9 @@ require("./config/passport")(passport);
 // Routes
 app.use("/api/users", users);
 
+// CORS
+app.use(require("cors"));
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server up and running on PORT: ${PORT}`));

@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { logoutUser } from "../../actions/authActions";
+import { logoutUser, getUser } from "../../actions/authActions";
 
 class Dashboard extends Component {
-
   onLogoutClick = e => {
     e.preventDefault();
     this.props.logoutUser();
@@ -12,12 +11,14 @@ class Dashboard extends Component {
 
 render() {
     const { user } = this.props.auth;
+    // console.log(user);
+
 return (
-      <div style={{ height: "75vh" }} className="container valign-wrapper">
+      <div style={{ height: "75vh", marginTop:"60px" }} className="container valign-wrapper">
         <div className="row">
           <div className="col s12 center-align">
             <h4>
-              <b>Hey there,</b> {user.name.split(" ")[0]}
+              <b>Hey there,</b> {user.firstName}
               <p className="flow-text grey-text text-darken-1">
                 You are logged into a full-stack{" "}
                 <span style={{ fontFamily: "monospace" }}>MERN</span> app 👏
@@ -42,6 +43,7 @@ return (
   }
 }
 Dashboard.propTypes = {
+  getUser: PropTypes.func.isRequired,
   logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
@@ -50,5 +52,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { logoutUser }
+  { logoutUser, getUser }
 )(Dashboard);

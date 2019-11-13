@@ -1,13 +1,114 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
+import { Link, withRouter } from 'react-router-dom';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { logoutUser } from "../../actions/authActions";
 import "./style.css";
 import track from "./track.png";
 
-const Navbar = () => {
-    return (
-        <nav className="navbar">
+class Navbar extends Component {
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.auth.isAuthenticated) {
+            console.log("Authenticated!")
+        //   this.props.history.push("/dashboard"); // push user to about when they login
+        }
+        console.log("not auth")
+        if (nextProps.errors) {
+        //   this.setState({ errors: nextProps.errors });
+        }
+    }
+    onLogoutClick = e => {
+        e.preventDefault();
+        this.props.logoutUser();
+    };
+    
+    render() {
+        const auth = this.props.auth.isAuthenticated;
+        console.log(auth);
+
+        if(this.props.auth.isAuthenticated) {
+            return(        
+            <nav className="navbar">
             <img id="remove-image" src={track} alt="Main page" />
             <ul id="menu">
+            <li>
+                <Link to="/about"
+                    className={
+                        window.location.pathname === "/" || window.location.pathname === "/about"
+                            ? "nav-link active"
+                            : "nav-link"
+                    }>
+                    Home
+                </Link>
+            </li>
+            <li>
+                <Link to="/task"
+                    className={
+                        window.location.pathname === "/task"
+                            ? "nav-link active"
+                            : "nav-link"
+                    }>
+                    Tasks
+                </Link>
+            </li>
+            <li>
+                <Link to="/user-page"
+                    className={
+                        window.location.pathname === "/user-page"
+                            ? "nav-link active"
+                            : "nav-link"
+                    }>
+                    My Page
+                </Link>
+            </li>
+            <li>
+                <Link to="/search"
+                    className={
+                        window.location.pathname === "/search"
+                            ? "nav-link active"
+                            : "nav-link"
+                    }>
+                    Friend Seach
+                </Link>
+            </li>
+            <li>
+                <Link to="/memento"
+                    className={
+                        window.location.pathname === "/memento"
+                            ? "nav-link active"
+                            : "nav-link"
+                    }>
+                    Memento
+                </Link>
+            </li>
+            <li>
+                <Link to="/taskcard"
+                    className={
+                        window.location.pathname === "/taskcard"
+                            ? "nav-link active"
+                            : "nav-link"
+                    }>
+                    TaskCard
+                </Link>
+            </li>
+            <li style={{ float:"right" }}>
+                <Link to="/about"
+                    onClick={this.onLogoutClick}
+                    className={
+                        window.location.pathname === "/about"
+                            ? "nav-link active"
+                            : "nav-link"
+                    }>
+                    Log Out
+                </Link>
+            </li>
+        </ul>
+        </nav>
+        )} else {
+            return(
+                <nav className="navbar">
+                <img id="remove-image" src={track} alt="Main page" />
+                <ul id="menu">
                 <li>
                     <Link to="/about"
                         className={
@@ -16,56 +117,6 @@ const Navbar = () => {
                                 : "nav-link"
                         }>
                         Home
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/task"
-                        className={
-                            window.location.pathname === "/task"
-                                ? "nav-link active"
-                                : "nav-link"
-                        }>
-                        Tasks
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/user-page"
-                        className={
-                            window.location.pathname === "/user-page"
-                                ? "nav-link active"
-                                : "nav-link"
-                        }>
-                        My Page
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/search"
-                        className={
-                            window.location.pathname === "/search"
-                                ? "nav-link active"
-                                : "nav-link"
-                        }>
-                        Friend Seach
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/memento"
-                        className={
-                            window.location.pathname === "/memento"
-                                ? "nav-link active"
-                                : "nav-link"
-                        }>
-                        Memento
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/taskcard"
-                        className={
-                            window.location.pathname === "/taskcard"
-                                ? "nav-link active"
-                                : "nav-link"
-                        }>
-                        TaskCard
                     </Link>
                 </li>
                 <li style={{ float:"right" }}>
@@ -79,25 +130,23 @@ const Navbar = () => {
                     </Link>
                 </li>
             </ul>
-            {/*<AppBar position="static">*/}
-            {/*  <Toolbar>*/}
-            {/*    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">*/}
-            {/*      <MenuIcon component={Link} to="abossut" />*/}
-            {/*    </IconButton>*/}
-            {/*    <Button component={Link} to="discover">*/}
-            {/*      Explore*/}
-            {/*    </Button>*/}
-            {/*    <Button component={Link} to="task">*/}
-            {/*      Task*/}
-            {/*    </Button>*/}
-            {/*    <Button component={Link} to="user-page">*/}
-            {/*      User Page*/}
-            {/*    </Button>*/}
-            {/*    <Button className={classes.Login} color="inherit" component={Link} to="login">Login</Button>*/}
-            {/*  </Toolbar>*/}
-            {/*</AppBar>*/}
-        </nav>
-    );
+            </nav>   
+            )
+
+        }
+    }
 }
 
-export default Navbar; 
+Navbar.propTypes = {
+    logoutUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+  };
+  const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+  });
+  export default connect(
+    mapStateToProps,
+    { logoutUser }
+  )(withRouter(Navbar));

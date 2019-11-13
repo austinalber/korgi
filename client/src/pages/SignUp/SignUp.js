@@ -3,11 +3,11 @@ import { Link, withRouter } from 'react-router-dom';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
-import classnames from "classnames";
 import "./signup-style.css";
 import dog from "../SignIn/dog.png";
 import ImageSVG from "./ImageSVG";
-import API from "../../utils/API";
+// import API from "../../utils/API";
+// import classnames from "classnames";
 
 class SignUp extends Component  {
   constructor() {
@@ -17,21 +17,17 @@ class SignUp extends Component  {
       lastName: "",
       email: "",
       password: "",
-      dateOfBirth: "",
+      birthday: "",
       zipcode: "",
       errors: {}
     };
   }
-  // Hook States
-  // const [signUpForm, setSignUpForm] = useState({
-  //   firstName: "",
-  //   lastName: "",
-  //   password: "",
-  //   email: "",
-  //   dateOfBirth: "",
-  //   zipcode: ""
-  // });
-  // const [error, setError] = useState({})
+  componentDidMount() {
+    // If logged in and user navigates to Register page, should redirect them to dashboard
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
@@ -53,56 +49,11 @@ class SignUp extends Component  {
       email: this.state.email,
       password: this.state.password,
       zipcode: this.state.zipcode,
-      dateOfBirth: this.state.dateOfBirth,
+      birthday: this.state.birthday,
     };
 
   this.props.registerUser(newUser, this.props.history); 
   };
-  
-  // const handleInputChange = event => {
-  //   const { name, value } = event.target;
-  //   setSignUpForm({ ...signUpForm, [name]: value });
-  // };
-  
-  // const newUser = signUpForm;
-
-  // const handleSubmit = event => {
-  //   event.preventDefault();
-
-  //   console.log(newUser);
-  //   // let canMakeUser = true;
-  //   // // Run saveUser if any credentials don't match previous users
-  //   // API.getUsers().then(res => {
-  //   //   let users = res.data;
-  //   //   users.forEach(user => {
-  //   //     if(signUpForm.email === user.email) {
-  //   //       canMakeUser = false;        
-  //   //     }
-  //   //   });
-  //   //   if(canMakeUser) {
-  //   //     console.log("User can be created");
-  //   //     saveUser();
-  //   //   } else {
-  //   //     alert("Email is already in use. Please use another email address.");
-  //   //     console.log("Email is already in use")
-  //   //   }
-  //   //   return;
-  //   // });
-  // }
-
-  // // const saveUser = () => {
-  // //   console.log(signUpForm);
-  // //   // Save userData
-  // //   API.saveUser(signUpForm)
-  // //     .then(res => {
-  // //       // Re-Route to Home Page
-  // //       setSignedIn(true);
-  // //       if(signedIn) {
-  // //         return props.history.push("/user-page");
-  // //       }
-  // //     })
-  // //     .catch(err => console.log(err));
-  // // }
 
   render() {
   const { errors } = this.state;
@@ -147,11 +98,11 @@ class SignUp extends Component  {
                 error={errors.zipcode} 
                 id="zipcode"
               />
-              <input className="input-style" type="dateOfBirth"  placeholder="Date of Birth: (MM/DD/YYYY)" name="dateOfBirth" 
+              <input className="input-style" type="birthday"  placeholder="Date of Birth: (MM/DD/YYYY)" name="birthday" 
                 onChange={this.onChange} 
-                value={this.state.dateOfBirth} 
-                error={errors.dateOfBirth} 
-                id="dateOfBirth"
+                value={this.state.birthday} 
+                error={errors.birthday} 
+                id="birthday"
               />
               <div className="remember-me-forgot-pass-div">
                   <input className="checkbox-input" type="checkbox" id="remember-me"/>

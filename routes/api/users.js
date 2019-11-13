@@ -9,6 +9,17 @@ const validateLoginInput = require("../../validation/login");
 // Load User model
 const User = require("../../models/User");
 
+router.get("/user", (req, res) => {
+  const id = req.body._id;
+  User.findOne({ id }).then(user => {
+    if(!user) return res.status(406).json({message: "User not found"});
+    else { 
+      console.log(user);
+      return user;
+    }
+  })
+})
+
 router.post("/register", (req, res) => {
     // Form validation
   const { errors, isValid } = validateRegisterInput(req.body);
@@ -46,6 +57,7 @@ router.post("/register", (req, res) => {
   router.post("/login", (req, res) => {
     // Form validation
   const { errors, isValid } = validateLoginInput(req.body);
+  console.log(req.body);
   // Check validation
     if (!isValid) {
       return res.status(400).json(errors);
@@ -58,16 +70,21 @@ router.post("/register", (req, res) => {
       if (!user) {
         return res.status(404).json({ emailnotfound: "Email not found" });
       }
-  // Check password
+      // Check password
       bcrypt.compare(password, user.password).then(isMatch => {
         if (isMatch) {
           // User matched
           // Create JWT Payload
           const payload = {
             id: user.id,
-            name: user.name
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            userImage: user.userImage,
+            zipcode: user.zipcode,
+            birthday: user.birthday
           };
-  // Sign token
+          // Sign token
           jwt.sign(
             payload,
             keys.secretOrKey,

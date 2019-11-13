@@ -4,9 +4,9 @@ import './signin-style.css';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
-import classnames from "classnames";
 import dog from './dog.png'
-import API from "../../utils/API";
+// import classnames from "classnames";
+// import API from "../../utils/API";
 
 class SignIn extends Component {
   constructor() {
@@ -17,27 +17,21 @@ class SignIn extends Component {
       errors: {}
     };
   }
-  // // Hook States
-  // const [loginForm, setLoginForm] = useState({
-  //   email: "",
-  //   password: ""
-  // });
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
       this.props.history.push("/dashboard"); // push user to about when they login
     }
 
-  if (nextProps.errors) {
-    this.setState({
-      errors: nextProps.errors
-    });
-  }
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
   }
 
   onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
   };
+
   onSubmit = e => {
     e.preventDefault();
     const userData = {
@@ -46,37 +40,10 @@ class SignIn extends Component {
     };
 
   this.props.loginUser(userData);
-  }
-
-  // const handleInputChange = event => {
-  //   const { name, value } = event.target;
-  //   setLoginForm({ ...loginForm, [name]: value });
-  // };
-
-  // const handleSubmit = event => {
-  //   event.preventDefault();
-
-  //   console.log(userData);
-  //   // Determine if user exists
-  //   // let canLogin = false;
-  //   // API.getUsers().then(res => {
-  //   //   let users = res.data;
-  //   //   users.forEach(user => {
-  //   //     if(loginForm.email === user.email && loginForm.password === user.password) {
-  //   //       canLogin = true;       
-  //   //     }
-  //   //   });
-  //   //   if(canLogin) {
-  //   //     // Save credentials and redirect user
-  //   //     return props.history.push("/user-page");
-  //   //   } else {
-  //   //     alert("Email and/or password are incorrect. Please try again.");
-  //   //   }
-  //   // });
-  // };
+  };
 
   render() {
-    const { errors } = this.state;
+    // const { errors } = this.state;
   return (
       <div className="signin-outer">
         <div className="image-div">
@@ -88,8 +55,8 @@ class SignIn extends Component {
             <img className='pup-image' src={dog} alt=''/>
           </div>
           <h4 className="welcome-text">Welcome to Korgi !</h4>
-          <input className="input-style" type="email"  placeholder="Email" name="email" onChange={this.onChange}/>
-          <input className="input-style" type="password"  placeholder="Password" name="password" onChange={this.onChange}/>
+          <input className="input-style" type="email"  placeholder="Email" name="email" id="email" value={this.state.email} onChange={this.onChange}/>
+          <input className="input-style" type="password"  placeholder="Password" name="password" id="password" value={this.state.password} onChange={this.onChange}/>
           <div className="remember-me-forgot-pass-div">
             <input className="checkbox-input" type="checkbox" id="remember-me"/>
             <label htmlFor="remember-me">Remember me</label>
