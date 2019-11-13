@@ -9,14 +9,4 @@
     "website": "https://korgi-08152002.herokuapp.com/",
     "repository": "https://github.com/tindoann/korgi-project",
     "success_url": "/home",
-    "scripts": {
-      "postdeploy": "mongod"
-    },
-    "environments": {
-      "test": {
-        "scripts": {
-          "test": "npm run dev"
-        }
-      }
-    }
-  }
+}
