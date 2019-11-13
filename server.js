@@ -42,7 +42,6 @@ app.use("/api/cards", cards);
 app.use(require("cors"));
 
 const PORT = process.env.PORT || 5000;
-console.log(PORT);
 
 app.listen(PORT, () => console.log(`Server up and running on PORT: ${PORT}`));
 
