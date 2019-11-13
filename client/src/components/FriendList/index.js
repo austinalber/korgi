@@ -9,7 +9,7 @@ import FriendCardBtn from "../FriendCardBtn"
 // FriendList renders a bootstrap list item
 export function FriendList({ children }) {
   return 
-  <ul className="list-group">{children}</ul>;
+  // <ul className="list-group">{children}</ul>;
 }
 
 // FriendListItem renders a bootstrap list item containing data from the recipe api call

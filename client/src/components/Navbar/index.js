@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import "./style.css";
 import track from "./track.png";
 
-function Navbar() {
+const Navbar = () => {
     return (
         <nav className="navbar">
             <img id="remove-image" src={track} alt="Main page" />
@@ -16,16 +16,6 @@ function Navbar() {
                                 : "nav-link"
                         }>
                         Home
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/task"
-                        className={
-                            window.location.pathname === "/task"
-                                ? "nav-link active"
-                                : "nav-link"
-                        }>
-                        Tasks
                     </Link>
                 </li>
                 <li>
@@ -66,6 +56,14 @@ function Navbar() {
                                 : "nav-link"
                         }>
                         TaskCard
+                    </Link>
+                    <Link to="/profile"
+                        className={
+                            window.location.pathname === "/profile"
+                                ? "nav-link active"
+                                : "nav-link"
+                        }>
+                        Profile
                     </Link>
                 </li>
                 <li style={{ float:"right" }}>

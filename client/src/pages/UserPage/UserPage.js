@@ -3,6 +3,8 @@ import React, { Component } from "react";
 // import Button from "./components/Button";
 import API from "../../utils/API";
 import { FriendList, FriendListItem } from "../../components/FriendList";
+import TaskBar from "../../components/TaskBar"; 
+import Modals from '../Modals'; 
 import "./UserPageStyle.css";
 
 
@@ -29,6 +31,9 @@ class UserPage extends Component {
   // This is where the page display the components 
   render() {
     return (
+      <React.Fragment>
+      <TaskBar />
+      <Modals text="Kudos! Thank you for joining the Korgi community, take a journey with us for 1 year - 52 unique experiences" />
       <div className="user-page-container">
         <div className="friends-container">
           {!this.state.friends.length ? (
@@ -56,55 +61,13 @@ class UserPage extends Component {
           {/* Post all user cards here */}
         </div>
       </div>
+      </React.Fragment>
    );
   }
 }
-//   render() {
-//     return (
-//       <div>
-//         <Container>
-//           <Row>
-//             <Col size="md-12">
-//               <form>
-//                 <Container>
-//                   <Row>
-//                     <Col size="xs-9 sm-10">
-//                       <h1>Hello!</h1>
-//                     </Col>
-//                     <Col size="xs-3 sm-2">
-//                     </Col>
-//                   </Row>
-//                 </Container>
-//               </form>
-//             </Col>
-//           </Row>
-//           <Row>
-//             <Col size="xs-12">
-//               {!this.state.friends.length ? (
-//                 <h1 className="text-center">No friends to Display</h1>
-//               ) : (
-//                 <FriendList>
-//                   {this.state.friends.map(card => {
-//                     return (
-//                       <FriendListItem
-//                         key={card._id}
-//                         id={card._id}
-//                         name={card.firstName}
-//                         email={card.email}
-//                         image={card.userImage}
-//                         />
-//                     );
-//                   })}
-//                 </FriendList>
-//               )}
-//             </Col>
-//           </Row>
-//         </Container>
-//       </div>
-//    );
-//   }
-// }
 
 export default UserPage;
+
+
 
 
