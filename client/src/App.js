@@ -17,7 +17,7 @@ import Memento from "./pages/Memento";
 import Dashboard from "./pages/Dashboard/Dashboard";
 // Components
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+// // import Footer from "./components/Footer";
 import Wrapper from "./components/Wrapper"; 
 import TaskBar from "./components/TaskBar"; 
 import TaskCard from "./components/TaskCard"; 
@@ -47,7 +47,6 @@ const App = () => {
   return (
     <Provider store={store}>
     <Router>
-      <div className="app">
         <Navbar/>
         <Wrapper>
           <Route exact path="/" component={Home} />
@@ -64,7 +63,6 @@ const App = () => {
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
           </Switch>
         </Wrapper>
-      </div>
     </Router>
     </Provider>
   );

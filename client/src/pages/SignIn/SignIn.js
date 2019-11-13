@@ -54,11 +54,11 @@ class SignIn extends Component {
           <h4 className="welcome-text">Welcome to Korgi !</h4>
           <input className="input-style" type="email"  placeholder="Email" name="email" id="email" value={this.state.email} onChange={this.onChange}/>
           <input className="input-style" type="password"  placeholder="Password" name="password" id="password" value={this.state.password} onChange={this.onChange}/>
-          <div className="remember-me-forgot-pass-div">
+          {/* <div className="remember-me-forgot-pass-div">
             <input className="checkbox-input" type="checkbox" id="remember-me"/>
             <label htmlFor="remember-me">Remember me</label>
             <Link to='/forgot-password'>Forgot password?</Link>
-          </div>
+          </div> */}
           <button className="sign-in" onClick={this.onSubmit}>Sign In</button>
           <div className="divider-div"/>
           <h6>Just in case...</h6>
