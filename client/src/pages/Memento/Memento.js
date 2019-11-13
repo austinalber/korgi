@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import { Link } from 'react-router-dom';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Uploader from "../../components/Uploader";
+// import Uploader from "../../components/Uploader";
 import { postCard } from "../../actions/authActions";
 import "./style.css";
 // import dog from './dog.png'
@@ -107,7 +107,7 @@ class Memento extends Component {
             {/* </Link> */}
             <div className="divider-div"/>
             {/* <p style={{fontSize: '0.7em', color: '#a9a9a9', bottom: 0, position: 'absolute'}}>Copyright © Korgi Inc 2019</p> */}
-            <Uploader />
+            {/* <Uploader /> */}
           </div>
         </div>
     );

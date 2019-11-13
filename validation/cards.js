@@ -8,11 +8,11 @@ module.exports = function validatePostInput(data) {
   data.postImage = !isEmpty(data.postImage) ? data.postImage : "";
   data.caption = !isEmpty(data.caption) ? data.caption : "";
   data.location = !isEmpty(data.location) ? data.location : "";
-  data.date = !isEmpty(data.date) ? data.date : "";
+  // // data.date = !isEmpty(data.date) ? data.date : "";
 // User checks
   if (Validator.isEmpty(data.userId)) {
     errors.userId = "User is required";
-  } else if (!Validator.isEmpty(data.userImage)) {
+  } else if (Validator.isEmpty(data.userImage)) {
     errors.userImage = "User image is required";
   }
 // Post checks
@@ -22,18 +22,18 @@ module.exports = function validatePostInput(data) {
   if (Validator.isEmpty(data.caption)) {
     errors.caption = "Caption field is required";
   }
-  if (Validator.isLength(data.caption, { min: 2, max: 60 })) {
+  if (!Validator.isLength(data.caption, { min: 2, max: 60 })) {
     errors.caption = "Caption field must be at least 2 characters";
   }
   if (Validator.isEmpty(data.location)) {
     errors.location = "Location field is required";
   }
-  if (Validator.isEmpty(data.date)) {
-    errors.date = "Date field is required";
-  }
-  if (Validator.isLength(data.date, { min: 10, max: 10 })) {
-    errors.date = "Birthday must be valid date format (MM/DD/YYYY)";
-  } 
+  // // if (Validator.isEmpty(data.date)) {
+  // //   errors.date = "Date field is required";
+  // // }
+  // // if (Validator.isLength(data.date, { min: 10, max: 10 })) {
+  // //   errors.date = "Birthday must be valid date format (MM/DD/YYYY)";
+  // // } 
 return {
     errors,
     isValid: isEmpty(errors)
