@@ -55,13 +55,13 @@ const App = () => {
           <Route exact path="/discover" component={Discover} />
           <Route exact path="/login"  component={SignIn} />
           <Route exact path="/sign-up" component={SignUp} />
-          <Route exact path="/search" component={Search} />
-          <Route exact path="/user-page" component={UserPage} />
-          <Route exact path="/task" component={TaskBar} />
-          <Route exact path="/memento" component={Memento} />
-          <Route exact path="/taskcard" component={TaskCard} />
           <Switch>
-              <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            <PrivateRoute exact path="/search" component={Search} />
+            <PrivateRoute exact path="/user-page" component={UserPage} />
+            <PrivateRoute exact path="/task" component={TaskBar} />
+            <PrivateRoute exact path="/memento" component={Memento} />
+            <PrivateRoute exact path="/taskcard" component={TaskCard} />
+            <PrivateRoute exact path="/dashboard" component={Dashboard} />
           </Switch>
         </Wrapper>
       </div>
