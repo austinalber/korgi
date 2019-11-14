@@ -10,7 +10,7 @@ router.get("/card", (req, res) => {
     const id = req.body._id;
     console.log(id);
     let arr = []
-    Card.findAll({ id })
+    Card.findOne({ id })
         .then(card => {
         if(!card) return res.status(406).json({ message: "Card not found" });
         else {
