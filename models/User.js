@@ -35,7 +35,7 @@ const userSchema = new Schema({
     userImage: {
         type: String,
         // required: false
-        default: "https://i.pinimg.com/236x/a7/37/6f/a7376f87f665bb03ced61105550e068d--corgi-drawing-drawing-simple.jpg"
+        default: "https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png"
     },
     birthday: {
         type: String,

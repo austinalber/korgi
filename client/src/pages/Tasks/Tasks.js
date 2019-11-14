@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getUser } from "../../actions/authActions";
 import adultTasks from "../../utils/taskAdults.json";
 import teenTasks from "../../utils/tasksTeen.json";
 import kidTasks from "../../utils/tasksKids.json";
+import "./task-style.css"
 
 class Tasks extends Component {
 
@@ -16,16 +18,16 @@ class Tasks extends Component {
     let currentYear = currentDateArr.getUTCFullYear()
 
     if((currentYear - userYear) > 18) {
-        return this.displayTask(adultTasks, 64);
+        return this.displayTask(adultTasks, 63);
     } else if((currentYear - userYear) > 13) {
-        return this.displayTask(teenTasks, 64);
+        return this.displayTask(teenTasks, 58);
     } else {
-        return this.displayTask(kidTasks, 64);
+        return this.displayTask(kidTasks, 57);
     }
   };
 
   displayTask = (obj, length) => {
-    let randomTask = Math.floor(Math.random() * (length - 0)) + 0;
+    let randomTask = Math.floor(Math.random() * (length - 0)) + 1;
     return obj[randomTask].task;
   }
 
@@ -34,18 +36,20 @@ render() {
     let taskItem = this.determineAgeGroup(user.birthday);
 
 return (
-      <div style={{ height: "75vh", marginTop:"60px" }} className="container valign-wrapper">
-        <div className="row">
-          <div className="col s12 center-align">
-            <h4>
-              <b>Hey there,</b> {user.firstName}
-              <p className="flow-text grey-text text-darken-1">
-                You've been tasked to find something relating to: <b>{taskItem}</b>
-              </p>
-            </h4>
-          </div>
-        </div>
+<div className="parent-div">
+      <div className="top-div">
+        <p>Task Generator</p>
+        <h5>Todays task is to find something related to . . .</h5>
       </div>
+      <div className="bottom-div">
+        <h3>
+          {taskItem}
+        </h3>
+        <Link to="/memento" className="link">
+          <button className="join" type="button">Create Post!</button>
+        </Link>
+      </div>
+    </div>
     );
   }
 }

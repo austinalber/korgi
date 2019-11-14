@@ -1,0 +1,85 @@
+.outer-div {
+    width: 100%;
+    padding-top: 25px;
+    text-align: center;
+    float: center;
+    padding-bottom: 20%;
+}
+
+.user-profile {
+    float: center;
+    text-align: center;
+    margin-bottom: -200px;
+}
+
+.image-div {
+    float: center;
+    background-color: white;
+}
+
+.info-div {
+    float: center;
+    text-align: center;
+}
+
+.divider-div {
+    background-color: rgba(192,192,192,0.35);
+    height: 3px;
+    width: 100%;
+    margin: 5px;
+    float: center;
+    text-align: center;
+}
+
+.divider-div-blank {
+    height: 3px;
+    width: 100%;
+    margin: 5px;
+    float: center;
+    text-align: center;
+}
+
+.user-posts {
+    float: center;
+    text-align: center;
+}
+
+.center-div {
+    /* padding-top: 100px; */
+    padding-bottom: 100px;
+}
+
+.user-posts {
+    height: 50%;
+}
+
+.posts-div {
+    width: 60%;
+    text-align: center;
+    border-style: solid;
+    border-width: 3px;
+    margin: auto;
+}
+
+.posts-div > .post-image {
+    height: 200px;
+    width: 200px;
+    margin: auto;
+    padding-top: 5px;
+    text-align: center;
+    display: block;
+}
+
+.posts-div > .post-image > img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.posts-div > .post-caption {
+    text-align: center;
+}
+
+.post-header {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
