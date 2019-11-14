@@ -1,5 +1,4 @@
-if (process.env.NODE_ENV === 'production') {
-  module.exports = require('./keys_prod'); 
-} else {
-  module.exports = require('./keys_dev'); 
-}
+module.exports = {
+    mongoURI: "mongodb://austinalber:Gamecube1@ds141208.mlab.com:41208/heroku_v3sdsmd9",
+    secretOrKey: "secret"
+};

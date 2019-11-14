@@ -1,67 +1,85 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import './signin-style.css';
-import dog from './dog.png'
-import API from "../../utils/API";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { loginUser } from "../../actions/authActions";
+import dog from './dog.png';
 
-const SignInSide = props => {
-  // Hook States
-  const [loginForm, setLoginForm] = useState({
-    email: "",
-    password: ""
-  });
+class SignIn extends Component {
+  constructor() {
+    super();
+    this.state = {
+      email: "",
+      password: "",
+      errors: {}
+    };
+  }
 
-  const handleInputChange = event => {
-    const { name, value } = event.target;
-    setLoginForm({ ...loginForm, [name]: value });
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push("/dashboard"); // push user to about when they login
+    }
+
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
+  onChange = e => {
+    this.setState({ [e.target.id]: e.target.value });
   };
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    // Determine if user exists
-    let canLogin = false;
-    API.getUsers().then(res => {
-      let users = res.data;
-      users.forEach(user => {
-        if(loginForm.email === user.email && loginForm.password === user.password) {
-          canLogin = true;       
-        }
-      });
-      if(canLogin) {
-        // Save credentials and redirect user
-        return props.history.push("/user-page");
-      } else {
-        alert("Email and/or password are incorrect. Please try again.");
-      }
-    });
+  onSubmit = e => {
+    e.preventDefault();
+    const userData = {
+      email: this.state.email,
+      password: this.state.password
+    };
+
+  this.props.loginUser(userData);
   };
 
-  return (
+  render() {
+    // const { errors } = this.state;
+    return (
       <div className="signin-outer">
         <div className="image-div">
           <div id="theimage"/>
-          {/*<img id="imagy" src={cover} alt=""/>*/}
         </div>
-        <div className='signin-div'>
+        <form noValidate onSubmit={this.onSubmit} className='signin-div'>
           <div id="image-outer">
             <img className='pup-image' src={dog} alt=''/>
           </div>
           <h4 className="welcome-text">Welcome to Korgi !</h4>
-          <input className="input-style" type="email"  placeholder="Email" name="email" onChange={handleInputChange}/>
-          <input className="input-style" type="password"  placeholder="Password" name="password" onChange={handleInputChange}/>
-          <div className="remember-me-forgot-pass-div">
+          <input className="input-style" type="email"  placeholder="Email" name="email" id="email" value={this.state.email} onChange={this.onChange}/>
+          <input className="input-style" type="password"  placeholder="Password" name="password" id="password" value={this.state.password} onChange={this.onChange}/>
+          {/* <div className="remember-me-forgot-pass-div">
             <input className="checkbox-input" type="checkbox" id="remember-me"/>
             <label htmlFor="remember-me">Remember me</label>
             <Link to='/forgot-password'>Forgot password?</Link>
-          </div>
-          <button className="sign-in" onClick={handleSubmit}>Sign In</button>
+          </div> */}
+          <button className="sign-in" onClick={this.onSubmit}>Sign In</button>
           <div className="divider-div"/>
           <h6>Just in case...</h6>
           <h5 style={{marginTop: '30px'}}>Don't have an account? <Link to={'/sign-up'}>Create one</Link></h5>
           <p style={{fontSize: '0.7em', color: '#a9a9a9', bottom: 0, position: 'absolute'}}>Copyright © Korgi Inc 2019</p>
-        </div>
+        </form>
       </div>
-  );
+    );
+  }
 }
 
-export default SignInSide;
+SignIn.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(SignIn);
