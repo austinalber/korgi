@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
@@ -15,6 +15,7 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import PetsIcon from '@material-ui/icons/Pets';
+import Likes from '../Likes'; 
 
 
 // styling
@@ -45,7 +46,9 @@ const useStyles = makeStyles(theme => ({
 // logic 
 function TaskCard() {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
+
+
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -81,6 +84,7 @@ function TaskCard() {
         >
           <ExpandMoreIcon />
         </PetsIcon>
+        <Likes />
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardHeader

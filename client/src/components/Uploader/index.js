@@ -1,7 +1,7 @@
-import React from "react";
+import React, {Component} from "react";
 
 
-class Uploader extends React.Component {
+class Uploader extends Component {
   Post = e => {
     e.preventDefault();
     const file = document.getElementById("inputGroupFile01").files;

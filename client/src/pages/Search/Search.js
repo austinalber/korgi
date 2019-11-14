@@ -29,7 +29,7 @@ class Search extends Component {
     // If email matches search. Use that user's id to find their info.
     this.state.users.forEach(result => {
       if(this.state.search === result.email) {
-        API.getUser(result._id)
+        API.getUsers(result._id)
           .then(res => {
             if (res.data.status === "error") {
               throw new Error(res.data.message);

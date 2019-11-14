@@ -21,7 +21,7 @@ const cardSchema = new Schema({
         type: Number,
         default: 0
     },
-    hasBeenLiked: {
+    likedBefore: {
         type: Boolean,
         default: false
     },
