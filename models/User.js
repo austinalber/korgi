@@ -13,12 +13,14 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    lastName: String,
+    lastName: {
+        type: String,
+        required: true
+    },
     email: {
         type: String,
         required: true,
         unique: true,
-        allowNull: false,
         // validate: {
         //     len: [1, 40]
         // }
@@ -26,25 +28,23 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true,
-        allowNull: false,
         // validate: {
         //     len: [1, 60]
         // }
     },
     userImage: {
         type: String,
-        required: false
+        // required: false
+        default: "https://i.pinimg.com/236x/a7/37/6f/a7376f87f665bb03ced61105550e068d--corgi-drawing-drawing-simple.jpg"
     },
-    birthDay: {
-        type: Number
+    birthday: {
+        type: String,
+        required: true
     },
-    birthMonth: {
-        type: Number
+    zipcode: {
+        type: Number,
+        required: true
     },
-    birthYear: {
-        type: Number
-    },
-    zipCode: Number,
     friendList: {
         // Array for all friends of this user
         // Default is undefined or no friends initially
