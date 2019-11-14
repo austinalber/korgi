@@ -36,7 +36,6 @@ class Search extends Component {
 
   render() {
     const { errors } = this.state;
-    console.log(this.state.users);
 
     return (
       <div className="parent-div">
