@@ -8,13 +8,16 @@ const Card = require("../../models/Card");
 // Get all cards by id
 router.get("/card", (req, res) => {
     const id = req.body._id;
-    Card.findOne({ id })
+    console.log(id);
+    let arr = []
+    Card.findAll({ id })
         .then(card => {
         if(!card) return res.status(406).json({ message: "Card not found" });
         else {
             console.log(card);
-            return card;
+            arr.push(card);
         }
+        return arr;
     });
 });
 // Post card

@@ -4,6 +4,7 @@ import Container from "../../components/Container";
 import SearchForm from "../../components/SearchForm";
 import SearchResults from "../../components/SearchResults";
 import Alert from "../../components/Alert";
+import "./search-style.css";
 
 class Search extends Component {
   state = {
@@ -15,10 +16,11 @@ class Search extends Component {
 
   // When the component mounts, get a list of all available base breeds and update this.state.breeds
   componentDidMount() {
-    API.getUsers()
+    for(var i = 0; i < 5; i++) {
+    API.getUsers(i)
       .then(res => this.setState({ users: res.data }))
       .catch(err => console.log(err));
-  }
+  }}
 
   handleInputChange = event => {
     this.setState({ search: event.target.value });
@@ -49,6 +51,7 @@ class Search extends Component {
   };
 
   render() {
+    console.log(this.state.users);
     return (
       <div>
         <Container style={{ minHeight: "80%" }}>

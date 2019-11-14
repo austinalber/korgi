@@ -12,8 +12,8 @@ export default {
     return axios.get("https://dog.ceo/api/breeds/list");
   },
   // Search for all users
-  getUsers: function() {
-    return axios.get("/api/users");
+  getUsers: function(user) {
+    return axios.get("/api/users/user", user);
   },
   // Search for all users
   getUser: function(id) {
@@ -29,7 +29,7 @@ export default {
   },
   // Get all cards
   getAllCards: function() {
-    return axios.get("/api/cards/");
+    axios.get("/api/cards/card")
   },
   // Get a specific card(s)
   getCards: function(id) {

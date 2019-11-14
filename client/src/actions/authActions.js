@@ -19,6 +19,18 @@ export const getUser = userData => dispatch => {
       })
     )
 };
+// Get Cards
+export const getCard = (id) => dispatch => {
+  return axios
+    .get("/api/cards/:id", id)
+    .then(res => { console.log(res) })
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
 // Post Card
 export const postCard = postData => dispatch => {
   axios
