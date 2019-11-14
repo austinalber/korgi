@@ -12,7 +12,7 @@ const About = props => {
       <div className="bottom-div">
         <h3>Welcome!</h3>
         <p>
-          Kor·gi - the word orginates from Wales, 
+          Kor· gi - the word orginates from Wales, 
           a mystical land of foggy rolling hills and castles.
 
           In their Welsh language, it means little dog. 

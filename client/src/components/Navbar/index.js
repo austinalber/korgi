@@ -59,7 +59,7 @@ class Navbar extends Component {
                     Memento
                 </Link>
             </li>
-            <li>
+            {/* <li>
                 <Link to="/user-page"
                     className={
                         window.location.pathname === "/user-page"
@@ -68,7 +68,7 @@ class Navbar extends Component {
                     }>
                     My Page
                 </Link>
-            </li>
+            </li> */}
             <li style={{ float:"right" }}>
                 <Link to="/home"
                     onClick={this.onLogoutClick}
