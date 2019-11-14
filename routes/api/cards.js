@@ -23,22 +23,33 @@ router.post("/card", (req, res) => {
     const { errors, isValid } = validatePostInput(req.body);
     // Check validation
     if(!isValid) return res.status(400).json(errors);
-    Card.findOne({ id: req.body.id }).then(card => {
-        if(card) return res.status(400).json({ id: "Post id already exists" });
-        else {
-            const newPost = new Card({
-                userId: req.body.userId,
-                userImage: req.body.userImage,
-                postImage: req.body.postImage,
-                caption: req.body.caption,
-                location: req.body.location
-            });
-            // Save post in database
-            newPost.save()
-                .then(card => res.json(card))
-                .catch(err => console.log(err));
-        }
+    const newPost = new Card({
+        userId: req.body.userId,
+        userImage: req.body.userImage,
+        postImage: req.body.postImage,
+        caption: req.body.caption,
+        location: req.body.location
     });
+    // Save post in database
+    newPost.save()
+        .then(card => res.json(card))
+        .catch(err => console.log(err));
+    // Card.findOne({ id: req.body._id }).then(card => {
+    //     if(!card) return res.status(400).json({ id: "Post id already exists" });
+    //     else {
+    //         const newPost = new Card({
+    //             userId: req.body.userId,
+    //             userImage: req.body.userImage,
+    //             postImage: req.body.postImage,
+    //             caption: req.body.caption,
+    //             location: req.body.location
+    //         });
+    //         // Save post in database
+    //         newPost.save()
+    //             .then(card => res.json(card))
+    //             .catch(err => console.log(err));
+    //     }
+    // });
 });
 
 module.exports = router;

@@ -17,6 +17,8 @@ class Memento extends Component {
       postImage: "",
       caption: "",
       location: "",
+      picture: "",
+      file: null,
       // date: "",
       errors: {}
     };
@@ -39,7 +41,7 @@ class Memento extends Component {
     const postData = {
       userId: this.props.auth.user.id,
       userImage: this.props.auth.user.userImage,
-      postImage: this.state.postImage,
+      postImage: this.state.picture,
       caption: this.state.caption,
       location: this.state.location
       // date: ""
@@ -49,68 +51,109 @@ class Memento extends Component {
     this.props.postCard(postData);
   }
 
+  photoUpload = e => {
+    e.preventDefault();
+    const reader = new FileReader();
+    const file = e.target.files[0];
+    reader.onloadend = () => {
+      this.setState({
+        file: file,
+        picture: reader.result
+      });
+    };
+    reader.readAsDataURL(file);
+  };
+
   render() {
     const { errors } = this.state;
 
     return (
-        <div className="post-outer">
-          {/* <div className="image-div"> */}
-            {/* <div id="theimage"/> */}
-            {/*<img id="image" src={cover} alt=""/>*/}
-          {/* </div> */}
+      <div className="post-outer">
+          <h4 className="welcome-text">Share your story !</h4>
           <div className  ='post-div'>
-            {/* <div id=""> */}
-              {/* <img className='pup-image' src={dog} alt=''/> */}
-            {/* </div> */}
-            <h4 className="welcome-text">Mementos</h4>
-            {/* <input 
-              value={this.state.date}
-              className="input-style" 
-              type="date"
-              name="date" 
-              id="date"
-              onChange={this.onChange}
-              error={errors.date}
-            /> */}
-            <input 
-              value={this.state.caption}
-              className="input-style" 
-              type="caption"  
-              placeholder="Caption" 
-              name="caption" 
-              id="caption"
-              onChange={this.onChange}
-              error={errors.caption}
-            />
-            <input 
-              value={this.state.postImage}
-              className="input-style" 
-              type="postImage"  
-              placeholder="Post Image" 
-              name="postImage"
-              id="postImage" 
-              onChange={this.onChange}
-              error={errors.postImage}
-            />
-            <input 
-              value={this.state.location}
-              className="input-style"
-              type="location"
-              placeholder="Location"
-              name="location"
-              id="location"
-              onChange={this.onChange}
-              error={errors.location}
-            />
-            {/* <Link to="/user-page"> */}
-            <button className="post-card" onClick={this.onSubmit}>Post Card!</button>
-            {/* </Link> */}
-            <div className="divider-div"/>
-            {/* <p style={{fontSize: '0.7em', color: '#a9a9a9', bottom: 0, position: 'absolute'}}>Copyright © Korgi Inc 2019</p> */}
-            {/* <Uploader /> */}
+            <label className="custom-file-upload fas">
+              <div className="img-wrap img-upload">
+                <img alt="" src={this.state.picture}/>
+              </div>
+              <input type="file" id="postImage" value={this.state.postImage} onChange={this.photoUpload}/>
+            </label>
+          {/*<img className="image" src="https://img.freepik.com/free-vector/cute-animal-doing-dabbing_23-2147847948.jpg?size=338&ext=jpg" alt=""/>*/}
+          {/*<ImageUploader*/}
+          {/*    withIcon={false}*/}
+          {/*    buttonText='Choose images'*/}
+          {/*    onChange={this.onDrop}*/}
+          {/*    imgExtension={['.jpg', '.png']}*/}
+          {/*    maxFileSize={1048576} // in bytes*/}
+          {/*/>*/}
+          <div className="text-div">
+              <input type="file" accept="image/x-png,image/jpeg" title=" "/>
+                  <input
+                      value={this.state.location}
+                      className="input-style"
+                      type="text"
+                      placeholder="Location"
+                      name="location"
+                      id="location"
+                      onChange={this.onChange}
+                      error={errors.location}
+                      style={{width: "100%"}}
+                  />
+                  <textarea
+                      value={this.state.caption}
+                      className="input-style"
+                      placeholder="Caption"
+                      id="caption"
+                      onChange={this.onChange}
+                      error={errors.caption}
+                />
+              <button className="post-card" onClick={this.onSubmit}>Post Card!</button>
           </div>
         </div>
-    );
+      </div>
+  );
+    // return (
+    //     <div className="post-outer">
+    //       <div className  ='post-div'>
+    //         <h4 className="welcome-text">Mementos</h4>
+    //         <input 
+    //           value={this.state.caption}
+    //           className="input-style" 
+    //           type="caption"  
+    //           placeholder="Caption" 
+    //           name="caption" 
+    //           id="caption"
+    //           onChange={this.onChange}
+    //           error={errors.caption}
+    //         />
+    //         <input 
+    //           value={this.state.postImage}
+    //           className="input-style" 
+    //           type="postImage"  
+    //           placeholder="Post Image" 
+    //           name="postImage"
+    //           id="postImage" 
+    //           onChange={this.onChange}
+    //           error={errors.postImage}
+    //         />
+    //         <input 
+    //           value={this.state.location}
+    //           className="input-style"
+    //           type="location"
+    //           placeholder="Location"
+    //           name="location"
+    //           id="location"
+    //           onChange={this.onChange}
+    //           error={errors.location}
+    //         />
+    //         {/* <Link to="/user-page"> */}
+    //         <button className="post-card" onClick={this.onSubmit}>Post Card!</button>
+    //         {/* </Link> */}
+    //         <div className="divider-div"/>
+    //         {/* <p style={{fontSize: '0.7em', color: '#a9a9a9', bottom: 0, position: 'absolute'}}>Copyright © Korgi Inc 2019</p> */}
+    //         {/* <Uploader /> */}
+    //       </div>
+    //     </div>
+    // );
   }
 }
 
