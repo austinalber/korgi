@@ -3,20 +3,10 @@ import { Link, withRouter } from 'react-router-dom';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
-import "./style.css";
 import track from "./track.png";
+import "./style.css";
 
 class Navbar extends Component {
-    // May be unnecessary
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.auth.isAuthenticated) {
-            // console.log("User is currently logged in.")
-        }
-            // console.log("User is not currently logged in.")
-        if (nextProps.errors) {
-            console.log(nextProps.errors);
-        }
-    }
     onLogoutClick = e => {
         e.preventDefault();
         this.props.logoutUser();

@@ -1,12 +1,8 @@
 import React, { Component } from "react";
-// import { Link } from 'react-router-dom';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-// import Uploader from "../../components/Uploader";
 import { postCard } from "../../actions/authActions";
 import "./style.css";
-// import dog from './dog.png'
-// import API from "../../utils/API";
 
 class Memento extends Component {
   constructor() {
@@ -18,13 +14,11 @@ class Memento extends Component {
       caption: "",
       location: "",
       picture: "",
-      file: null,
-      // date: "",
       errors: {}
     };
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({
         errors: nextProps.errors
@@ -44,10 +38,8 @@ class Memento extends Component {
       postImage: this.state.picture,
       caption: this.state.caption,
       location: this.state.location
-      // date: ""
     };
 
-    console.log(postData);
     this.props.postCard(postData);
   }
 
@@ -77,83 +69,41 @@ class Memento extends Component {
               </div>
               <input type="file" id="postImage" value={this.state.postImage} onChange={this.photoUpload}/>
             </label>
-          {/*<img className="image" src="https://img.freepik.com/free-vector/cute-animal-doing-dabbing_23-2147847948.jpg?size=338&ext=jpg" alt=""/>*/}
-          {/*<ImageUploader*/}
-          {/*    withIcon={false}*/}
-          {/*    buttonText='Choose images'*/}
-          {/*    onChange={this.onDrop}*/}
-          {/*    imgExtension={['.jpg', '.png']}*/}
-          {/*    maxFileSize={1048576} // in bytes*/}
-          {/*/>*/}
           <div className="text-div">
               <input type="file" accept="image/x-png,image/jpeg" title=" "/>
-                  <input
-                      value={this.state.location}
-                      className="input-style"
-                      type="text"
-                      placeholder="Location"
-                      name="location"
-                      id="location"
-                      onChange={this.onChange}
-                      error={errors.location}
-                      style={{width: "100%"}}
-                  />
-                  <textarea
-                      value={this.state.caption}
-                      className="input-style"
-                      placeholder="Caption"
-                      id="caption"
-                      onChange={this.onChange}
-                      error={errors.caption}
-                />
+              {errors.postImage && (
+                  <p className="error-text">{errors.postImage}</p>
+              )}
+              <input
+                  value={this.state.location}
+                  className="input-style"
+                  type="text"
+                  placeholder="Location"
+                  name="location"
+                  id="location"
+                  onChange={this.onChange}
+                  error={errors.location}
+                  style={{width: "100%"}}
+              />
+              {errors.location && (
+              <p className="error-text">{errors.location}</p>
+              )}
+              <textarea
+                  value={this.state.caption}
+                  className="input-style"
+                  placeholder="Caption"
+                  id="caption"
+                  onChange={this.onChange}
+                  error={errors.caption}
+              />
+              {errors.caption && (
+              <p className="error-text">{errors.caption}</p>
+              )}
               <button className="post-card" onClick={this.onSubmit}>Post Card!</button>
           </div>
         </div>
       </div>
-  );
-    // return (
-    //     <div className="post-outer">
-    //       <div className  ='post-div'>
-    //         <h4 className="welcome-text">Mementos</h4>
-    //         <input 
-    //           value={this.state.caption}
-    //           className="input-style" 
-    //           type="caption"  
-    //           placeholder="Caption" 
-    //           name="caption" 
-    //           id="caption"
-    //           onChange={this.onChange}
-    //           error={errors.caption}
-    //         />
-    //         <input 
-    //           value={this.state.postImage}
-    //           className="input-style" 
-    //           type="postImage"  
-    //           placeholder="Post Image" 
-    //           name="postImage"
-    //           id="postImage" 
-    //           onChange={this.onChange}
-    //           error={errors.postImage}
-    //         />
-    //         <input 
-    //           value={this.state.location}
-    //           className="input-style"
-    //           type="location"
-    //           placeholder="Location"
-    //           name="location"
-    //           id="location"
-    //           onChange={this.onChange}
-    //           error={errors.location}
-    //         />
-    //         {/* <Link to="/user-page"> */}
-    //         <button className="post-card" onClick={this.onSubmit}>Post Card!</button>
-    //         {/* </Link> */}
-    //         <div className="divider-div"/>
-    //         {/* <p style={{fontSize: '0.7em', color: '#a9a9a9', bottom: 0, position: 'absolute'}}>Copyright © Korgi Inc 2019</p> */}
-    //         {/* <Uploader /> */}
-    //       </div>
-    //     </div>
-    // );
+    );
   }
 }
 

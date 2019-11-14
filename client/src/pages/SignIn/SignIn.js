@@ -12,11 +12,12 @@ class SignIn extends Component {
     this.state = {
       email: "",
       password: "",
+      message: "",
       errors: {}
     };
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
       this.props.history.push("/dashboard"); // push user to about when they login
     }
@@ -41,7 +42,8 @@ class SignIn extends Component {
   };
 
   render() {
-    // const { errors } = this.state;
+    const { errors } = this.state;
+
     return (
       <div className="signin-outer">
         <div className="image-div">
@@ -52,13 +54,32 @@ class SignIn extends Component {
             <img className='pup-image' src={dog} alt=''/>
           </div>
           <h4 className="welcome-text">Welcome to Korgi !</h4>
-          <input className="input-style" type="email"  placeholder="Email" name="email" id="email" value={this.state.email} onChange={this.onChange}/>
-          <input className="input-style" type="password"  placeholder="Password" name="password" id="password" value={this.state.password} onChange={this.onChange}/>
-          {/* <div className="remember-me-forgot-pass-div">
-            <input className="checkbox-input" type="checkbox" id="remember-me"/>
-            <label htmlFor="remember-me">Remember me</label>
-            <Link to='/forgot-password'>Forgot password?</Link>
-          </div> */}
+          <input 
+            className="input-style" 
+            type="email"  
+            placeholder="Email" 
+            name="email" 
+            id="email" 
+            value={this.state.email}
+            onChange={this.onChange}
+            error={errors.email}
+          />
+          {errors.email && (
+            <p className="error-text">{errors.email}</p>
+          )}
+          <input 
+            className="input-style" 
+            type="password"  
+            placeholder="Password" 
+            name="password" 
+            id="password" 
+            value={this.state.password} 
+            onChange={this.onChange}
+            error={errors.password}
+          />
+          {errors.password && (
+            <p className="error-text">{errors.password}</p>
+          )}
           <button className="sign-in" onClick={this.onSubmit}>Sign In</button>
           <div className="divider-div"/>
           <h6>Just in case...</h6>
