@@ -30,33 +30,23 @@ class Navbar extends Component {
             <img id="remove-image" src={track} alt="Main page" />
             <ul id="menu">
             <li>
-                <Link to="/home"
+                <Link to="/dashboard"
                     className={
-                        window.location.pathname === "/" || window.location.pathname === "/home"
+                        window.location.pathname === "/dashboard"
                             ? "nav-link active"
                             : "nav-link"
                     }>
-                    Home
+                    Dashboard
                 </Link>
             </li>
             <li>
-                <Link to="/task"
+                <Link to="/tasks"
                     className={
-                        window.location.pathname === "/task"
+                        window.location.pathname === "/tasks"
                             ? "nav-link active"
                             : "nav-link"
                     }>
                     Tasks
-                </Link>
-            </li>
-            <li>
-                <Link to="/user-page"
-                    className={
-                        window.location.pathname === "/user-page"
-                            ? "nav-link active"
-                            : "nav-link"
-                    }>
-                    My Page
                 </Link>
             </li>
             <li>
@@ -80,13 +70,13 @@ class Navbar extends Component {
                 </Link>
             </li>
             <li>
-                <Link to="/taskcard"
+                <Link to="/user-page"
                     className={
-                        window.location.pathname === "/taskcard"
+                        window.location.pathname === "/user-page"
                             ? "nav-link active"
                             : "nav-link"
                     }>
-                    TaskCard
+                    My Page
                 </Link>
             </li>
             <li style={{ float:"right" }}>
@@ -103,34 +93,33 @@ class Navbar extends Component {
         </ul>
         </nav>
         )} else {
-            return(
-                <nav className="navbar">
-                <img id="remove-image" src={track} alt="Main page" />
-                <ul id="menu">
-                <li>
-                    <Link to="/home"
-                        className={
-                            window.location.pathname === "/" || window.location.pathname === "/home"
-                                ? "nav-link active"
-                                : "nav-link"
-                        }>
-                        Home
-                    </Link>
-                </li>
-                <li style={{ float:"right" }}>
-                    <Link to="/login"
-                        className={
-                            window.location.pathname === "/login"
-                                ? "nav-link active"
-                                : "nav-link"
-                        }>
-                        Log In
-                    </Link>
-                </li>
-            </ul>
-            </nav>   
-            )
-
+        return(
+        <nav className="navbar">
+        <img id="remove-image" src={track} alt="Main page" />
+        <ul id="menu">
+            <li>
+                <Link to="/home"
+                    className={
+                        window.location.pathname === "/" || window.location.pathname === "/home"
+                            ? "nav-link active"
+                            : "nav-link"
+                    }>
+                    Home
+                </Link>
+            </li>
+            <li style={{ float:"right" }}>
+                <Link to="/login"
+                    className={
+                        window.location.pathname === "/login"
+                            ? "nav-link active"
+                            : "nav-link"
+                    }>
+                    Log In
+                </Link>
+            </li>
+        </ul>
+        </nav>   
+        )
         }
     }
 }
