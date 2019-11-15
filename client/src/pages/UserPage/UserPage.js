@@ -19,14 +19,20 @@ class UserPage extends Component {
 
   // When this component mounts, search for our friend array database with findAll()
   componentDidMount() {
-    API.getUsers("")
-      .then(res => this.setState({ friends: res.data }))
-      .catch(err => console.log(err));
-    
-    API.getAllCards()
-    .then(res => this.setState({ cards: res.data }))
-    .catch(err => console.log(err));
+    this.getAllFriends()
   }
+   
+  //   getFriends = () => {
+  //     API.getUsers("")
+  //     .then(res => this.setState({ friends: res.data }))
+  //     .catch(err => console.log(err))
+  // }
+       getAllFriends = () => {
+      API.getCards()
+      .then(res => this.setState({ cards: res.data }))
+      .catch(err => console.log(err)
+      );
+    }
 
   // This is where the page display the components 
   render() {
