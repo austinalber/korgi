@@ -12,7 +12,7 @@ const Modals = (props) => {
   const openModal = () => setShow(true); 
   const closeModal = () => setShow(false); 
 
-// !show in front of button element so that button only renders when a modal is not open 
+// show in front of button element so that button only renders when a modal is not open 
   return (
     <div className="Modal">
       {!show && <button onClick={openModal}>{props.text}</button>}

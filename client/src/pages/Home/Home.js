@@ -21,7 +21,7 @@ const About = props => {
           Like the dog, this application is based on those same <Link to="discover" style={{ textDecoration: 'blank', color: 'black'}}>quirks</Link>. 
           We serve as a platform for little humans and the one inside all of us to express our own individuality
           without the need of words, but with objects. So bring your dog or borrow one and lets explore together. 
-          Remember, it’s less of what we see but more of how we see things. 
+          Remember, it’s less of what we see but more of how we see things.
         </p>
         <Link to="/sign-up">
           <button className="join" type="button">Join</button>

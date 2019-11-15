@@ -12,12 +12,19 @@ class Navbar extends Component {
         this.props.logoutUser();
         this.props.history.push("/home");
     };
+    onHomeButtonClick = e => {
+        e.preventDefault();
+        this.props.history.push("/home");
+    }
     
     render() {
         if(this.props.auth.isAuthenticated) {
             return(        
             <nav className="navbar">
-            <img id="remove-image" src={track} alt="Main page" />
+            <img id="remove-image" src={track} alt="Main page"/>
+            {/* <Link to="/home">
+                <img id="remove-image" src={track} alt="Main page"/>
+            </Link> */}
             <ul id="menu">
             <li>
                 <Link to="/dashboard"

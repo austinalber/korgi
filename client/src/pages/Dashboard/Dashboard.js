@@ -13,7 +13,6 @@ class Dashboard extends Component {
   };
 
 render() {
-
     const { user } = this.props.auth;
     // let cards = this.props.getCard(user.id);
     // console.log(cards);
