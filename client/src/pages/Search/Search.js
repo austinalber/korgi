@@ -1,18 +1,19 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import API from "../../utils/API";
-import Container from "../../components/Container";
-import SearchForm from "../../components/SearchForm";
-import SearchResults from "../../components/SearchResults";
-import Alert from "../../components/Alert";
 import "./search-style.css";
 
 class Search extends Component {
-  state = {
-    search: "",
-    users: [],
-    results: [],
-    error: ""
-  };
+  constructor() {
+    super();
+    this.state = {
+      search: "",
+      users: [],
+      results: [],
+      errors: {}
+    };
+  }
 
   // When the component mounts, get a list of all available base breeds and update this.state.breeds
   componentDidMount() {
@@ -22,60 +23,61 @@ class Search extends Component {
       .catch(err => console.log(err));
   }}
 
-  handleInputChange = event => {
-    this.setState({ search: event.target.value });
+  onChange = e => {
+    this.setState({ [e.target.id]: e.target.value });
   };
 
-  handleFormSubmit = event => {
-    event.preventDefault();
-    // If email matches search. Use that user's id to find their info.
-    this.state.users.forEach(result => {
-      if(this.state.search === result.email) {
-        API.getUsers(result._id)
-          .then(res => {
-            if (res.data.status === "error") {
-              throw new Error(res.data.message);
-            }
-            this.setState({ results: res.data, error: "" })
-          })
-          .catch(err => this.setState({ error: err.message }));
-      } else {
-        // No emails under that name found
-      }
-    });
-  };
-
-  saveFriend = event => {
-    event.preventDefault();
-    // Grab that specific user's info and save to current user's friend's list
+  onSubmit = e => {
+    e.preventDefault();
+    const searchData = this.state.search;
+    console.log(searchData);
+    // this.props.findUser(searchData);
   };
 
   render() {
-    console.log(this.state.users);
+    const { errors } = this.state;
+
     return (
-      <div>
-        <Container style={{ minHeight: "80%" }}>
-          <h1 className="text-center">Search By Email!</h1>
-          <Alert
-            type="danger"
-            style={{ opacity: this.state.error ? 1 : 0, marginBottom: 10 }}
-          >
-            {this.state.error}
-          </Alert>
-          <SearchForm
-            handleFormSubmit={this.handleFormSubmit}
-            handleInputChange={this.handleInputChange}
-            users={this.state.users}
+      <div className="parent-div">
+        <div className="top-div">
+          <p>Friend Search</p>
+          <h5>Type an email in to find a friend . . .</h5>
+        </div>
+        <div className="bottom-div">
+          <input 
+              className="input-style" 
+              type="search"  
+              placeholder="Enter a valid email here . . ." 
+              name="search" 
+              id="search" 
+              value={this.state.search}
+              onChange={this.onChange}
+              error={errors.search}
           />
-          <SearchResults 
-            results={this.state.results} 
-            search={this.state.search}
-            saveFriend={this.saveFriend}
-          />
-        </Container>
+          <button className="sign-in" onClick={this.onSubmit}>Search User</button>
+        </div>
+        <div className="results-div">
+          {/* Return users by email here */}
+          <div className="container">
+            <div className="user-info">
+
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
 }
 
-export default Search;
+Search.propTypes = {
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+export default connect(
+  mapStateToProps,
+  { }
+)(Search);

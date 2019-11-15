@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser, getUser, getCard } from "../../actions/authActions";
 import "./dashboard-style.css";
+import image from "../../resources/images/scenery.jpeg";
 // import API from "../../utils/API";
 
 class Dashboard extends Component {
@@ -38,20 +39,18 @@ return (
         {/* Will map all posts here */}
         <div className="posts-div">
           <div className="post-image">
-            <img alt="" src="https://boygeniusreport.files.wordpress.com/2016/11/puppy-dog.jpg?quality=98&strip=all&w=782"/>
+            <img alt="" src={image}/>
           </div>
           <div className="post-caption">
             <p>
-              My walk through the forest today. I had a great time exploring the woods
-              next to my house and cannot wait for another opportunity to go exploring 
-              with my dog again!
+              Found this incredible view while hiking west of downtown Denver this past Summer! What an incredible trip that was!
             </p>
           </div>
           <div className="post-location">
-            <i>Lake Mary, FL.</i>
+            <i>Denver, Colorado.</i>
           </div>
           <div className="post-date">
-            <p>November 11th, 2019</p>
+            <p>November 14th, 2019</p>
           </div>
         </div>
         <div className="divider-div-blank"/>
