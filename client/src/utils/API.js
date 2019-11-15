@@ -29,7 +29,7 @@ export default {
   },
   // Get all cards
   getAllCards: function() {
-    axios.get("/api/cards/card")
+    return axios.get("/api/cards/card")
   },
   // Get a specific card(s)
   getCards: function(id) {
