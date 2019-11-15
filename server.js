@@ -4,6 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser');
 const passport = require("passport");
+const path = require("path");
 // Required Files
 const users = require("./routes/api/users");
 const cards = require("./routes/api/cards");
