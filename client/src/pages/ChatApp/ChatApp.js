@@ -10,7 +10,9 @@ import { tokenUrl, instanceLocator } from '../../config'
 class ChatApp extends Component {
 
   state = {
-    message: []
+    message: [], 
+    joinableRooms: [], 
+    joinedRooms: []
   }
 
 // hook up a React component with an API
@@ -22,10 +24,21 @@ class ChatApp extends Component {
           url: tokenUrl
         })
     })
+
     //curent user is the interface that communicates with the chatKit API
     chatManager.connect()
       .then(currentUser => {
         this.currentUser =currentUser
+
+        this.currentUser.getJoinableRooms()
+        .this(joinableRooms => {
+          this.setState({
+            joinableRooms,
+            joinedRooms: this.currentUser.rooms
+          })
+        })
+        .catch(err => console.log('error on joinableRooms: ',err))
+
         this.currentUser.subscribeToRoom({
           roomId: '21e16552-cff0-436d-8123-49ba56e523e9',
           messageLimit: 25, 
@@ -41,6 +54,7 @@ class ChatApp extends Component {
           }
         })
       })
+      .catch(err => console.log('error on connection: ', err))
     }
 
     sendMessage(text) {
@@ -54,7 +68,7 @@ class ChatApp extends Component {
   render() {
     return (
       <div className="chatApp">
-        <RoomList />
+        <RoomList rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]} />
         <MessageList messages={this.state.messages} />
         <SendMessageForm sendMessage={this.sendMessage} />
         <NewRoomForm />
