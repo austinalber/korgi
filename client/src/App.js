@@ -8,6 +8,7 @@ import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 // Pages
 import Discover from "./pages/Discover";
+import ChatApp from "./pages/ChatApp"; 
 import Home from "./pages/Home/Home";
 import Search from "./pages/Search/Search";
 import SignIn from "./pages/SignIn/SignIn"; 
@@ -56,6 +57,7 @@ const App = () => {
           <Route exact path="/login"  component={SignIn} />
           <Route exact path="/sign-up" component={SignUp} />
           <Switch>
+            <PrivateRoute exact path="/chatapp" component={chatapp} /> 
             <PrivateRoute exact path="/dashboard" component={Dashboard} /> 
             <PrivateRoute exact path="/search" component={Search} />
             <PrivateRoute exact path="/user-page" component={UserPage} />
