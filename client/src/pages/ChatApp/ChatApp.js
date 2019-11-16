@@ -1,12 +1,15 @@
 import React, {Component} from 'react'
-import Chatkit from '@pusher/chatkit'
-import MessageList from './components/MessageList'
-import SendMessageForm from './components/SendMessageForm'
-import RoomList from './components/RoomList'
-import NewRoomForm from './components/NewRoomForm'
+import Chatkit from '@pusher/chatkit-client'
+import MessageList from "../../components/MessageList"; 
+import SendMessageForm from '../../components/SendMessageForm'
+import RoomList from '../../components/RoomList'
+import NewRoomForm from '../../components/NewRoomForm'
+
+const tokenUrl = "https://us1.pusherplatform.io/services/chatkit_token_provider/v1/a4df3443-cb08-41b4-ac5f-0b9bac981b05/token";
+const instanceLocator = "v1:us1:a4df3443-cb08-41b4-ac5f-0b9bac981b05";
 
 // set the initial state of the object
-class ChatApp extends Compponent {
+class ChatApp extends Component {
 
   state = {
     message: []
