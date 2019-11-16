@@ -4,9 +4,7 @@ import MessageList from "../../components/MessageList";
 import SendMessageForm from '../../components/SendMessageForm'
 import RoomList from '../../components/RoomList'
 import NewRoomForm from '../../components/NewRoomForm'
-
-const tokenUrl = "https://us1.pusherplatform.io/services/chatkit_token_provider/v1/a4df3443-cb08-41b4-ac5f-0b9bac981b05/token";
-const instanceLocator = "v1:us1:a4df3443-cb08-41b4-ac5f-0b9bac981b05";
+import { tokenUrl, instanceLocator } from '../../config'
 
 // set the initial state of the object
 class ChatApp extends Component {
@@ -27,20 +25,28 @@ class ChatApp extends Component {
     //curent user is the interface that communicates with the chatKit API
     chatManager.connect()
       .then(currentUser => {
-        currentUser.subscribeToRoom({
+        this.currentUser =currentUser
+        this.currentUser.subscribeToRoom({
           roomId: '21e16552-cff0-436d-8123-49ba56e523e9',
           messageLimit: 25, 
           hooks: {
-          // fetch data from the chatKit API
+          // fetch data from the chatKit API             
             onNewMessage: message => {
               console.log('message.text: ', message.text);
-          // ... spread operator appends the new message to the previous message at the end - push method would modify the original array 
+          // ... spread operator go through the items + appends the new message to the previous message at the end - push method would modify the original array 
               this.setState({
                 messages: [...this.state.messages, message]
               })
             }
           }
         })
+      })
+    }
+
+    sendMessage(text) {
+      this.currentUser.sendMessage({
+        text: text, 
+        roomId: '21e16552-cff0-436d-8123-49ba56e523e9'
       })
     }
     
@@ -50,7 +56,7 @@ class ChatApp extends Component {
       <div className="chatApp">
         <RoomList />
         <MessageList messages={this.state.messages} />
-        <SendMessageForm />
+        <SendMessageForm sendMessage={this.sendMessage} />
         <NewRoomForm />
       </div>
     ); 
