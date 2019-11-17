@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import API from "../../utils/API";
-import "./search-style.css";
+import "./style.css";
 
 class Search extends Component {
   constructor() {
