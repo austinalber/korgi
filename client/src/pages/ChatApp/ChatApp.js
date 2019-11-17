@@ -8,13 +8,12 @@ import { tokenUrl, instanceLocator, userId } from '../../config'
 
 // set the initial state of the object
 class ChatApp extends Component {
-  
   state = {
     roomId: null,
     messages: [], 
     joinableRooms: [], 
     joinedRooms: [],
-    currentUsername: '' 
+    currentUser: null, 
   }
 
 // hook up a React component with an API
