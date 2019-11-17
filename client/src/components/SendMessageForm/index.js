@@ -6,17 +6,27 @@ class SendMessageForm extends Component {
   }
 
   handleChange(e) {
-    console.log(e.target.value)
+    const target = e.target;
+    const value = target.value;
+    const message = target.message;
+    // console.log(e.target.value)
     this.setState({
-      message: e.target.value
+      [message]: value
     })
   }
 
+ 
+
+
   handleSubmit(e) {
-    e.preventDefault(0)
+    e.preventDefault()
+    this.props.sendMessage(this.state.message)
+    this.setState({
+      message: ''
+    })
     this.console(this.state.message)
   }
- m 
+ 
   render() {
     console.log(this.state.message)
     return (
@@ -24,6 +34,7 @@ class SendMessageForm extends Component {
         onSubmit={this.handleSubmit} 
         className='send-meesage-form'>
         <input
+          disabled={this.props.disabled}
           onChange={this.handleChange}
           value={this.state.message}
           placeholder='Type your message and hit ENTER'
@@ -34,3 +45,4 @@ class SendMessageForm extends Component {
 }
 
 export default SendMessageForm; 
+

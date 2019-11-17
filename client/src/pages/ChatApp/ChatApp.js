@@ -10,72 +10,121 @@ import { tokenUrl, instanceLocator } from '../../config'
 class ChatApp extends Component {
 
   state = {
-    message: [], 
+    currentUser: null, 
+    messages: [], 
     joinableRooms: [], 
-    joinedRooms: []
+    joinedRooms: [],
+    roomId: null,
   }
 
 // hook up a React component with an API
   componentDidMount() {
     const chatManager = new Chatkit.ChatManager({
-        instanceLocator: instanceLocator, 
-        userId: 'korgi', 
-        tokenProvider: new Chatkit.TokenProvider({
-          url: tokenUrl
-        })
+      instanceLocator: instanceLocator, 
+      userId: 'korgi', 
+      tokenProvider: new Chatkit.TokenProvider({
+        url: tokenUrl
+      })
     })
 
     //curent user is the interface that communicates with the chatKit API
     chatManager.connect()
       .then(currentUser => {
-        this.currentUser =currentUser
+        this.currentUser = currentUser
+        this.getRooms()
+      })
+      .catch(err => {
+        console.log('error on connecting:', err)
+      })
+    }
 
-        this.currentUser.getJoinableRooms()
-        .this(joinableRooms => {
-          this.setState({
-            joinableRooms,
-            joinedRooms: this.currentUser.rooms
-          })
-        })
-        .catch(err => console.log('error on joinableRooms: ',err))
-
-        this.currentUser.subscribeToRoom({
-          roomId: '21e16552-cff0-436d-8123-49ba56e523e9',
-          messageLimit: 25, 
-          hooks: {
-          // fetch data from the chatKit API             
-            onNewMessage: message => {
-              console.log('message.text: ', message.text);
-          // ... spread operator go through the items + appends the new message to the previous message at the end - push method would modify the original array 
-              this.setState({
-                messages: [...this.state.messages, message]
-              })
-            }
-          }
+    getRooms() {
+      this.currentUser.getJoinableRooms()
+      .then(joinableRooms => {
+        this.setState({
+          joinableRooms,
+          joinedRooms: this.currentUser.rooms
         })
       })
-      .catch(err => console.log('error on connection: ', err))
+      .catch(err => {
+        console.log('error on joinableRooms: ',err)
+      })
+    }
+        
+    //     this.currentUser.subscribeToRoom({
+    //       roomId: '21e16552-cff0-436d-8123-49ba56e523e9',
+    //       messageLimit: 25, 
+    //       hooks: {
+    //       // fetch data from the chatKit API             
+    //         onNewMessage: message => {
+    //           console.log('message.text: ', message.text);
+    //       // ... spread operator go through the items + appends the new message to the previous message at the end - push method would modify the original array 
+    //           this.setState({
+    //             messages: [...this.state.messages, message]
+    //           })
+    //         }
+    //       }
+    //     })
+    //   })
+    //   .catch(err => console.log('error on connection: ', err))
+    // }
+
+    subscribeToRoom(roomId) {
+      this.setState({ messages: [] })
+      this.currentUser.subscribeToRoom({
+          roomId: roomId,
+          hooks: {
+              onNewMessage: message => {
+                  this.setState({
+                      messages: [...this.state.messages, message]
+                  })
+              }
+          }
+      })
+      .then(room => {
+        this.setState({
+            roomId: room.id
+        })
+        this.getRooms()
+      })
+      .catch(err => { 
+        console.log('error on subscribing to room: ', err)
+      })
     }
 
     sendMessage(text) {
       this.currentUser.sendMessage({
         text: text, 
-        roomId: '21e16552-cff0-436d-8123-49ba56e523e9'
+        roomId: 'this.state.roomId'
       })
     }
     
+    createRoom(name){
+      this.currentUser.createRoom({
+          name
+      })
+      .then(room => this.subscribeToRoom(room.id))
+      .catch(err => { 
+        console.log('error with createRoom: ', err)
+      })
+    }
   // everytime state/data changes, the page rerenders and the new data will be pass down to the messages via props [messages=]
-  render() {
-    return (
-      <div className="chatApp">
-        <RoomList rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]} />
-        <MessageList messages={this.state.messages} />
-        <SendMessageForm sendMessage={this.sendMessage} />
-        <NewRoomForm />
-      </div>
-    ); 
+    render() {
+      return (
+        <div className="app">
+            <RoomList
+                subscribeToRoom={this.subscribeToRoom}
+                rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]} />
+            <MessageList 
+                messages={this.state.messages} />
+            <SendMessageForm
+                sendMessage={this.sendMessage} />
+            <NewRoomForm createRoom={this.createRoom} />
+        </div>
+    );
   }
 }
+
 
 export default ChatApp; 
 
