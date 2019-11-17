@@ -1,18 +1,18 @@
-import React from 'react'
+import React, {Component} from 'react'
 
-class NewRoomForm extends React.Component {
+class NewRoomForm extends Component {
   
   state = {
     roomName: ''
   }
   
-  handleChange(e) {
+  handleChange = (e) => {
     this.setState({
-        roomName: e.target.value
+      roomName: e.target.value
     })
   };
   
-  handleSubmit(e) {
+  handleSubmit = (e) => {
       e.preventDefault()
       this.props.createRoom(this.state.roomName)
       this.setState({roomName: ''})
@@ -31,8 +31,8 @@ class NewRoomForm extends React.Component {
               <button id="create-room-btn" type="submit">+</button>
             </form>
           </div>
-      )
-    }
+        )
+      }
   };
 
 export default NewRoomForm;

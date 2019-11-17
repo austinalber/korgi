@@ -14,11 +14,11 @@ class RoomList extends Component {
               const active = this.props.roomId === room.id ? "active" : "";
               return (
                 <li key={room.id} className={"room " + active}>
-                    <a
-                        onClick={() => this.props.subscribeToRoom(room.id)}
-                        href="#">
-                        # {room.name}
-                    </a>
+                  <a 
+                    onClick={() => this.props.subscribeToRoom(room.id)} 
+                    href="#">
+                    # {room.name}
+                  </a>
                 </li>
               )
             })}

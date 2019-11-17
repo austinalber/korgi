@@ -10,11 +10,11 @@ import { tokenUrl, instanceLocator } from '../../config'
 class ChatApp extends Component {
 
   state = {
-    currentUser: null, 
+    roomId: null,
     messages: [], 
     joinableRooms: [], 
     joinedRooms: [],
-    roomId: null,
+    currentUser: null, 
   }
 
 // hook up a React component with an API
@@ -37,7 +37,7 @@ class ChatApp extends Component {
         console.log('error on connecting:', err)
       })
     }
-
+    
     getRooms() {
       this.currentUser.getJoinableRooms()
       .then(joinableRooms => {
@@ -69,7 +69,7 @@ class ChatApp extends Component {
     //   .catch(err => console.log('error on connection: ', err))
     // }
 
-    subscribeToRoom(roomId) {
+    subscribeToRoom= (roomId) => {
       this.setState({ messages: [] })
       this.currentUser.subscribeToRoom({
           roomId: roomId,
@@ -92,14 +92,14 @@ class ChatApp extends Component {
       })
     }
 
-    sendMessage(text) {
+    sendMessage = (text) => {
       this.currentUser.sendMessage({
         text: text, 
         roomId: 'this.state.roomId'
       })
     }
     
-    createRoom(name){
+    createRoom = (name) => {
       this.currentUser.createRoom({
           name
       })
@@ -107,15 +107,19 @@ class ChatApp extends Component {
       .catch(err => { 
         console.log('error with createRoom: ', err)
       })
+    
+    
     }
   // everytime state/data changes, the page rerenders and the new data will be pass down to the messages via props [messages=]
     render() {
       return (
         <div className="app">
             <RoomList
+                roomId={this.state.roomId}
                 subscribeToRoom={this.subscribeToRoom}
                 rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]} />
             <MessageList 
+                roomId={this.state.roomId}
                 messages={this.state.messages} />
             <SendMessageForm
                 sendMessage={this.sendMessage} />

@@ -51,6 +51,23 @@ app.get("*", function(req, res) {
 
 const PORT = process.env.PORT || 5000;
 
+var chatkitServer = require('../target/src/index');
+
+const chatkit = new chatkitServer.default({
+  instanceLocator: 'your:instance:locator',
+  key: 'your:key'
+});
+
+app.post('/auth', (req, res) => {
+  const authData = chatkit.authenticate({
+    userId: 'your-user-id'
+  });
+
+  res.status(authData.status)
+     .set(authData.headers)
+     .send(authData.body);
+})
+
 app.listen(PORT, () => console.log(`Server up and running on PORT: ${PORT}`));
 
 
