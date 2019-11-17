@@ -8,11 +8,18 @@ const path = require("path");
 // Required Files
 const users = require("./routes/api/users");
 const cards = require("./routes/api/cards");
-
+const chatkitServer = require('../target/src/index');
 const app = express();
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static('client/build'));
-}
+const cors = require("cors");
+
+
+// chatkit
+
+const chatkit = new chatkitServer.default({
+  instanceLocator: 'v1:us1:a4df3443-cb08-41b4-ac5f-0b9bac981b05',
+  key: '6c7b4fec-f9a4-4a84-8a19-77a14a1190ae:Y7rHBwrwn8oCCYrKCWN7CGofqeCgT1Z5yklFkUPlBXM='
+});
+
 // Bodyparser Middleware
 app.use(
   bodyParser.urlencoded({
@@ -20,6 +27,34 @@ app.use(
   })
 );
 app.use(bodyParser.json());
+
+//enable cors
+app.use(cors());
+
+// chatkit config
+app.post('/api/users', (req, res) => {
+    const { username } = req.body
+    chatkit
+      .createUser({ 
+     id: username, 
+     name: username 
+       })
+      .then(() => res.sendStatus(201))
+      .catch(error => {
+        if (error.error_type === 'services/chatkit/user_already_exists') {
+          res.sendStatus(200)
+        } else {
+          res.status(error.status).json(error)
+        }
+      })
+  })
+  
+  app.post('/authenticate', (req, res) => {
+    const authData = chatkit.authenticate({ userId: req.query.user_id })
+    res.status(authData.status).send(authData.body)
+  })
+
+  // end chatkit
 
 // DB Config
 const db = require("./config/keys").mongoURI;
@@ -49,5 +84,16 @@ app.get('*', (req,res) =>{
 });
 
 const PORT = process.env.PORT || 5000;
+
+
+// app.post('/auth', (req, res) => {
+//   const authData = chatkit.authenticate({
+//     userId: 'your-user-id'
+//   });
+
+//   res.status(authData.status)
+//      .set(authData.headers)
+//      .send(authData.body);
+// })
 
 app.listen(PORT, () => console.log(`Server up and running on PORT: ${PORT}`));

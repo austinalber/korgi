@@ -66,6 +66,17 @@ class Navbar extends Component {
                     Memento
                 </Link>
             </li>
+            <li>
+                <Link to="/chat"
+                    className={
+                        window.location.pathname === "/chat"
+                            ? "nav-link active"
+                            : "nav-link"
+                    }>
+                    Chat
+                </Link>
+            </li>
+            <li></li>
             {/* <li>
                 <Link to="/user-page"
                     className={
