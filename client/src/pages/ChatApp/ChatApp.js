@@ -4,7 +4,7 @@ import MessageList from "../../components/MessageList";
 import SendMessageForm from '../../components/SendMessageForm'
 import RoomList from '../../components/RoomList'
 import NewRoomForm from '../../components/NewRoomForm'
-import { tokenUrl, instanceLocator } from '../../config'
+import { tokenUrl, instanceLocator, userId } from '../../config'
 
 // set the initial state of the object
 class ChatApp extends Component {
@@ -21,7 +21,7 @@ class ChatApp extends Component {
   componentDidMount() {
     const chatManager = new Chatkit.ChatManager({
       instanceLocator: instanceLocator, 
-      userId: 'korgi', 
+      userId: userId, 
       tokenProvider: new Chatkit.TokenProvider({
         url: tokenUrl
       })
@@ -34,7 +34,7 @@ class ChatApp extends Component {
         this.getRooms()
       })
       .catch(err => {
-        console.log('error on connecting:', err)
+       console.log('error on connecting:', err)
       })
     }
     
@@ -72,14 +72,14 @@ class ChatApp extends Component {
     subscribeToRoom= (roomId) => {
       this.setState({ messages: [] })
       this.currentUser.subscribeToRoom({
-          roomId: roomId,
-          hooks: {
-              onNewMessage: message => {
-                  this.setState({
-                      messages: [...this.state.messages, message]
-                  })
-              }
+        roomId: roomId,
+        hooks: {
+          onNewMessage: message => {
+            this.setState({
+                messages: [...this.state.messages, message]
+            })
           }
+        }
       })
       .then(room => {
         this.setState({
@@ -103,6 +103,7 @@ class ChatApp extends Component {
       this.currentUser.createRoom({
           name
       })
+      // automatically log into the room generated
       .then(room => this.subscribeToRoom(room.id))
       .catch(err => { 
         console.log('error with createRoom: ', err)
@@ -114,21 +115,20 @@ class ChatApp extends Component {
     render() {
       return (
         <div className="app">
-            <RoomList
-                roomId={this.state.roomId}
-                subscribeToRoom={this.subscribeToRoom}
-                rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]} />
-            <MessageList 
-                roomId={this.state.roomId}
-                messages={this.state.messages} />
-            <SendMessageForm
-                sendMessage={this.sendMessage} />
-            <NewRoomForm createRoom={this.createRoom} />
+          <RoomList
+              roomId={this.state.roomId}
+              subscribeToRoom={this.subscribeToRoom}
+              rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]} />
+          <MessageList 
+              roomId={this.state.roomId}
+              messages={this.state.messages} />
+          <SendMessageForm
+              sendMessage={this.sendMessage} />
+          <NewRoomForm createRoom={this.createRoom} />
         </div>
     );
   }
 }
-
 
 export default ChatApp; 
 

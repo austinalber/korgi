@@ -15,6 +15,7 @@ class NewRoomForm extends Component {
   handleSubmit = (e) => {
       e.preventDefault()
       this.props.createRoom(this.state.roomName)
+      // empty out the room after submission
       this.setState({roomName: ''})
   };
   
