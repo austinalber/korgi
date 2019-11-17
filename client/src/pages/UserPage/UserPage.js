@@ -19,6 +19,7 @@ class UserPage extends Component {
 
   // When this component mounts, search for our friend array database with findAll()
   componentDidMount() {
+
     API.getUsers("")
       .then(res => this.setState({ friends: res.data }))
       .catch(err => console.log(err));
