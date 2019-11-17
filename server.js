@@ -9,6 +9,8 @@ const users = require("./routes/api/users");
 const cards = require("./routes/api/cards");
 const chatkitServer = require('../target/src/index');
 const app = express();
+const cors = require("cors");
+
 
 // chatkit
 
@@ -25,9 +27,11 @@ app.use(
 );
 app.use(bodyParser.json());
 
+//enable cors
+app.use(cors());
 
-// chatkit 
-app.post('/users', (req, res) => {
+// chatkit config
+app.post('/api/users', (req, res) => {
     const { username } = req.body
     chatkit
       .createUser({ 

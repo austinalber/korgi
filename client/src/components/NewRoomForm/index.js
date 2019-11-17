@@ -14,6 +14,7 @@ class NewRoomForm extends Component {
   
   handleSubmit = (e) => {
       e.preventDefault()
+      // inverse data flow - goes to parent instead of child
       this.props.createRoom(this.state.roomName)
       // empty out the room after submission
       this.setState({roomName: ''})
