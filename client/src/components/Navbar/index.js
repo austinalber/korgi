@@ -92,7 +92,9 @@ class Navbar extends Component {
         )} else {
         return(
         <nav className="navbar">
-        <img id="remove-image" src={track} alt="Main page" />
+        <button style={{borderWidth: 0, backgroundColor: "none"}}>
+            <img id="remove-image" src={track} alt="Main page" onClick={this.onHomeButtonClick}/>
+        </button>
         <ul id="menu">
             <li>
                 <Link to="/home"
