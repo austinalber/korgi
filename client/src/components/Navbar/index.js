@@ -14,6 +14,7 @@ class Navbar extends Component {
     };
     onHomeButtonClick = e => {
         e.preventDefault();
+        console.log("hi");
         this.props.history.push("/home");
     }
     
@@ -25,6 +26,7 @@ class Navbar extends Component {
             {/* <Link to="/home">
                 <img id="remove-image" src={track} alt="Main page"/>
             </Link> */}
+
             <ul id="menu">
             <li>
                 <Link to="/dashboard"
@@ -103,7 +105,9 @@ class Navbar extends Component {
         )} else {
         return(
         <nav className="navbar">
-        <img id="remove-image" src={track} alt="Main page" />
+        <button style={{borderWidth: 0, backgroundColor: "none"}}>
+            <img id="remove-image" src={track} alt="Main page" onClick={this.onHomeButtonClick}/>
+        </button>
         <ul id="menu">
             <li>
                 <Link to="/home"
