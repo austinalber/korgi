@@ -6,13 +6,14 @@ const About = props => {
   return (
     <div className="parent-div">
       <div className="top-div">
-        <p>Korgi</p>
-        <p>Though she be but little, she is fearless</p>
+        <p style={{ fontFamily: 'Gloria Hallelujah' }}>Korgi</p>
+        <p style={{ fontFamily: 'Reenie Beanie', fontSize: '30px'}}>Though she be but little, she is fearless</p>
       </div>
-      <div className="bottom-div">
-        <h3>Welcome!</h3>
-        <p>
-          Kor· gi - the word orginates from Wales, 
+      <div className="bottom-div" style= {{ margin: '0 150px', lineHeight: '45px'}}>
+       
+        <h3 style={{ fontFamily: 'Gloria Hallelujah', marginBottom: '5%', marginTop: '5%'}}>Welcome!</h3>
+        <p style={{ fontFamily: 'Gloria Hallelujah', fontSize: '20px'}}>
+          <span style={{ fontWeight: 800, letterSpacing: '5px' }}>Kor·gi</span> - the word orginates from Wales, 
           a mystical land of foggy rolling hills and castles.
 
           In their Welsh language, it means little dog. 
@@ -24,7 +25,7 @@ const About = props => {
           Remember, it’s less of what we see but more of how we see things.
         </p>
         <Link to="/sign-up">
-          <button className="join" type="button">Join</button>
+          <button className="join" type="button" style={{ fontFamily: 'Kranky', fontSize: '25px'}}>Join</button>
         </Link>
       </div>
     </div>
