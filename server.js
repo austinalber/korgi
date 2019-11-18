@@ -8,17 +8,26 @@ const path = require("path");
 // Required Files
 const users = require("./routes/api/users");
 const cards = require("./routes/api/cards");
-const chatkitServer = require('../target/src/index');
+const Chatkit = require('@pusher/chatkit-server')
 const app = express();
 const cors = require("cors");
 
 
 // chatkit
 
-const chatkit = new chatkitServer.default({
+const chatkit = new Chatkit.default({
   instanceLocator: 'v1:us1:a4df3443-cb08-41b4-ac5f-0b9bac981b05',
-  key: '6c7b4fec-f9a4-4a84-8a19-77a14a1190ae:Y7rHBwrwn8oCCYrKCWN7CGofqeCgT1Z5yklFkUPlBXM='
+  key: 'https://us1.pusherplatform.io/services/chatkit_token_provider/v1/a4df3443-cb08-41b4-ac5f-0b9bac981b05/token'
 });
+
+app.post('/auth', (req, res) => {
+  const authData = chatkit.authenticate({ 
+    userId: req.query.user_id 
+  });
+
+  res.status(authData.status)
+    .send(authData.body)
+})
 
 // Bodyparser Middleware
 app.use(
@@ -47,11 +56,6 @@ app.post('/api/users', (req, res) => {
           res.status(error.status).json(error)
         }
       })
-  })
-  
-  app.post('/authenticate', (req, res) => {
-    const authData = chatkit.authenticate({ userId: req.query.user_id })
-    res.status(authData.status).send(authData.body)
   })
 
   // end chatkit

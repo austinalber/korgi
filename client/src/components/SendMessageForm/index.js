@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 
 class SendMessageForm extends Component {
   state = {
-    message: ''
+   message: ''
   }
 
   handleChange = (e) => {
@@ -22,19 +22,20 @@ class SendMessageForm extends Component {
   render() {
     // console.log(this.state.message)
     return (
-      <form
-        onSubmit={this.handleSubmit} 
-        className='send-meesage-form'>
+      <form className='send-message-form'
+        onSubmit={this.handleSubmit}>
         <input
           disabled={this.props.disabled}
           onChange={this.handleChange}
           value={this.state.message}
           placeholder='Type your message and hit ENTER'
-          type='text'/>
+          type='text'
+        />
+        <button type='submit' className='button-message' disabled={this.props.disabled}>Submit</button>
       </form>
     )
   }
 }
 
-export default SendMessageForm; 
+export default SendMessageForm;
 
