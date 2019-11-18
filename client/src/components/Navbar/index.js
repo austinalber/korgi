@@ -53,7 +53,7 @@ class Navbar extends Component {
                             ? "nav-link active"
                             : "nav-link"
                     }>
-                    Friend Seach
+                    Pal-Finder
                 </Link>
             </li>
             <li>
