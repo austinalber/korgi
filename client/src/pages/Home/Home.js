@@ -11,7 +11,7 @@ const About = props => {
       </div>
       <div className="bottom-div" style= {{ margin: '0 150px', lineHeight: '45px'}}>
        
-        <h3 style={{ fontFamily: 'Gloria Hallelujah', marginBottom: '5%', marginTop: '5%'}}>Welcome!</h3>
+        <h2 style={{ fontFamily: 'Gloria Hallelujah', marginBottom: '5%', marginTop: '5%'}}>Welcome!</h2>
         <p style={{ fontFamily: 'Gloria Hallelujah', fontSize: '20px'}}>
           <span style={{ fontWeight: 800, letterSpacing: '5px' }}>Kor·gi</span> - the word orginates from Wales, 
           a mystical land of foggy rolling hills and castles.

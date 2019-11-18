@@ -20,7 +20,7 @@ class Navbar extends Component {
     render() {
         if(this.props.auth.isAuthenticated) {
             return(        
-            <nav className="navbar">
+            <nav className="navbar ">
             <img id="remove-image" src={track} alt="Main page"/>
             {/* <Link to="/home">
                 <img id="remove-image" src={track} alt="Main page"/>
