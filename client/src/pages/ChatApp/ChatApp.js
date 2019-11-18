@@ -5,27 +5,32 @@ import SendMessageForm from '../../components/SendMessageForm'
 import RoomList from '../../components/RoomList'
 import NewRoomForm from '../../components/NewRoomForm'
 import { tokenUrl, instanceLocator, userId } from '../../config'
+// import { tokenProvider, TokenProvider } from "@pusher/chatkit-client-react"
+
+// let tokenProvider = YourTokenProvider() 
+
 
 // set the initial state of the object
 class ChatApp extends Component {
-
   state = {
-    roomId: null,
-    messages: [], 
-    joinableRooms: [], 
-    joinedRooms: [],
-    currentUser: null, 
+  roomId: null,
+  messages: [], 
+  joinableRooms: [], 
+  joinedRooms: []
+  // currentUser: null, 
   }
 
+
+
 // hook up a React component with an API
-  componentDidMount() {
+  componentDidMount = () => {
     const chatManager = new Chatkit.ChatManager({
       instanceLocator: instanceLocator, 
       userId: userId, 
       tokenProvider: new Chatkit.TokenProvider({
         url: tokenUrl
-      })
     })
+  })
 
     //curent user is the interface that communicates with the chatKit API
     chatManager.connect()
@@ -38,7 +43,7 @@ class ChatApp extends Component {
       })
     }
     
-    getRooms() {
+    getRooms = () => {
       this.currentUser.getJoinableRooms()
       .then(joinableRooms => {
         this.setState({
@@ -69,12 +74,13 @@ class ChatApp extends Component {
     //   .catch(err => console.log('error on connection: ', err))
     // }
 
-    subscribeToRoom= (roomId) => {
+    subscribeToRoom = (roomId) => {
       this.setState({ messages: [] })
       this.currentUser.subscribeToRoom({
         roomId: roomId,
+        messageLimit: 25,
         hooks: {
-          onNewMessage: message => {
+          onMessage: message => {
             this.setState({
                 messages: [...this.state.messages, message]
             })
@@ -95,7 +101,7 @@ class ChatApp extends Component {
     sendMessage = (text) => {
       this.currentUser.sendMessage({
         text: text, 
-        roomId: 'this.state.roomId'
+        roomId: this.state.roomId
       })
     }
     
@@ -118,15 +124,19 @@ class ChatApp extends Component {
           <RoomList
               roomId={this.state.roomId}
               subscribeToRoom={this.subscribeToRoom}
-              rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]} />
+              rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]} 
+          />
           <MessageList 
               roomId={this.state.roomId}
-              messages={this.state.messages} />
+              messages={this.state.messages} 
+          />
           <SendMessageForm
-              sendMessage={this.sendMessage} />
-          <NewRoomForm createRoom={this.createRoom} />
+              sendMessage={this.sendMessage} /
+          >
+          <NewRoomForm createRoom={this.createRoom} 
+          />
         </div>
-    );
+    )
   }
 }
 

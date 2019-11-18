@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 
 class NewRoomForm extends Component {
-  
   state = {
     roomName: ''
   }
