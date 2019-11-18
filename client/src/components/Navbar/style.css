@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Kranky&display=swap');
+
+
 /* .navbar {
   width: 100vw;
   height: 50px;
@@ -56,6 +59,7 @@ ul#menu > li > a {
   align-items: center;
   z-index: 10;
   padding: 0 20px;
+  font-family: 'Kranky'
 }
 
 #home-image {
@@ -72,8 +76,8 @@ ul#menu > li > a {
   align-items: center;
   list-style: none;
   display: flex;
-  font-family: "Gill Sans", san-serif, serif;
-  font-size: 1.2em;
+  font-family: "Kranky", san-serif, serif;
+  font-size: 1.0em;
 }
 
 ul#menu > li {

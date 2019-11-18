@@ -21,10 +21,12 @@ class Navbar extends Component {
     render() {
         if(this.props.auth.isAuthenticated) {
             return(        
-            <nav className="navbar">
-            <button style={{borderWidth: 0, backgroundColor: "none"}}>
-                <img id="remove-image" src={track} alt="Main page" onClick={this.onHomeButtonClick}/>
-            </button>
+            <nav className="navbar ">
+            <img id="remove-image" src={track} alt="Main page"/>
+            {/* <Link to="/home">
+                <img id="remove-image" src={track} alt="Main page"/>
+            </Link> */}
+
             <ul id="menu">
             <li>
                 <Link to="/dashboard"
@@ -53,7 +55,7 @@ class Navbar extends Component {
                             ? "nav-link active"
                             : "nav-link"
                     }>
-                    Friend Seach
+                    Pal-Finder
                 </Link>
             </li>
             <li>
