@@ -4,7 +4,7 @@ class SendMessageForm extends Component {
   state = {
    message: ''
   }
-  
+
   handleChange = (e) => {
     this.setState ({
       message: e.target.value
@@ -29,7 +29,8 @@ class SendMessageForm extends Component {
           onChange={this.handleChange}
           value={this.state.message}
           placeholder='Type your message and hit ENTER'
-          type='text'/>
+          type='text'
+        />
         <button type='submit' className='button-message' disabled={this.props.disabled}>Submit</button>
       </form>
     )

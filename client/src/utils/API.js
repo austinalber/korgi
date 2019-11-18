@@ -13,7 +13,7 @@ export default {
   },
   // Search for all users
   getUsers: function(user) {
-    return axios.get("/api/users/user", user);
+    return axios.get("/api/users/users", user);
   },
   // Search for all users
   getUser: function(id) {
