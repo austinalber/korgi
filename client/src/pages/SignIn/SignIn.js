@@ -45,15 +45,17 @@ class SignIn extends Component {
     const { errors } = this.state;
 
     return (
-      <div className="signin-outer">
+      <div className="signin-outer" style={{ fontFamily: 'Gloria Hallelujah' }}>
         <div className="image-div">
-          <div id="theimage"/>
+          <div id="theimage" />
         </div>
         <form noValidate onSubmit={this.onSubmit} className='signin-div'>
+        <containter-top style={{marginBottom: '40%'}}>
           <div id="image-outer">
-            <img className='pup-image' src={dog} alt=''/>
+            <img className='pup-image' src={dog} alt='' />
           </div>
-          <h4 className="welcome-text">Welcome to Korgi !</h4>
+          <h4 className="welcome-text" style={{ fontFamily: 'Gloria Hallelujah', fontSize: '50px'}}>Welcome Back!</h4>
+        </containter-top>
           <input 
             className="input-style" 
             type="email"  
@@ -80,7 +82,7 @@ class SignIn extends Component {
           {errors.password && (
             <p className="error-text">{errors.password}</p>
           )}
-          <button className="sign-in" onClick={this.onSubmit}>Sign In</button>
+          <button className="sign-in" onClick={this.onSubmit}>Enter</button>
           <div className="divider-div"/>
           <h6>Just in case...</h6>
           <h5 style={{marginTop: '30px'}}>Don't have an account? <Link to={'/sign-up'}>Create one</Link></h5>
