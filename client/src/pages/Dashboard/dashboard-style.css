@@ -1,85 +1,141 @@
-.outer-div {
+.dash-container {
+    display: flex;
+    margin: 0 30px;
+    padding: 35px 0 0;
     width: 100%;
-    padding-top: 25px;
-    text-align: center;
-    float: center;
-    padding-bottom: 20%;
 }
 
+/* STYLING FOR PROFILE ----------------------------------------------------------------------------*/
 .user-profile {
-    float: center;
-    text-align: center;
-    margin-bottom: -200px;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    align-self: flex-start;
+    position: sticky;
+    top: 85px;
+    min-width: 250px;
+    flex-grow: 1;
+    /*background-color: #d8dcff;*/
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
 }
 
-.image-div {
-    float: center;
-    background-color: white;
+.profile-image-div {
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.profile-image-div > img {
+    width: 150px;
+    height: 150px;
+    border-radius: 500px;
+    border: 2px solid black;
+}
+
+.icon {
+    width: 25px;
+    margin-right: 10px;
 }
 
 .info-div {
-    float: center;
-    text-align: center;
-}
-
-.divider-div {
-    background-color: rgba(192,192,192,0.35);
-    height: 3px;
     width: 100%;
-    margin: 5px;
-    float: center;
-    text-align: center;
+    padding: 0 10px;
 }
 
-.divider-div-blank {
-    height: 3px;
+.info-div > * {
     width: 100%;
-    margin: 5px;
-    float: center;
-    text-align: center;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
 }
 
+.info-div div {
+    margin-top: 20px;
+}
+
+.info-div p {
+    margin: auto;
+    flex-grow: 2;
+}
+
+
+
+/* STYLING FOR POSTS ----------------------------------------------------------------------------*/
 .user-posts {
-    float: center;
-    text-align: center;
+    flex-grow: 2;
+    margin-left: 50px;
 }
 
-.center-div {
-    /* padding-top: 100px; */
-    padding-bottom: 100px;
+.user-posts .posts-div:first-child {
+    margin-top: 0;
 }
 
-.user-posts {
-    height: 50%;
+.user-posts .posts-div:last-child {
+    margin-bottom: 20px;
 }
 
 .posts-div {
-    width: 60%;
-    text-align: center;
-    border-style: solid;
-    border-width: 3px;
-    margin: auto;
+    margin-top: 20px;
+    box-shadow: 0 0 13px rgba(0,0,0,0.08);
+    border-radius: 10px;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    padding: 20px;
 }
 
-.posts-div > .post-image {
-    height: 200px;
-    width: 200px;
-    margin: auto;
-    padding-top: 5px;
-    text-align: center;
-    display: block;
+.posts-div > * {
+    width: 100%;
 }
 
-.posts-div > .post-image > img {
-    max-width: 100%;
-    max-height: 100%;
+.posts-div div:first-child > p {
+    color: #acb0b5;
+    flex-grow: 1;
+    text-align: right;
 }
 
-.posts-div > .post-caption {
-    text-align: center;
+.posts-div div:first-child {
+    display: flex;
+    flex-flow: row wrap;
 }
 
-.post-header {
-    padding-top: 10px;
-    padding-bottom: 10px;
+.posts-div > div:nth-child(2) {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: baseline;
+}
+
+.posts-div > div:first-child * {
+    margin: 0 0 5px;
+}
+
+
+/* STYLING FOR DEVICES - MEDIA QUERIES ----------------------------------------------------------------------------*/
+@media only screen and (max-width: 750px) {
+    .dash-container {
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    .user-profile {
+        align-self: unset;
+        position: unset;
+        top: unset;
+        width: 100%;
+    }
+
+    .profile-image-div > img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .user-posts {
+        margin: 20px 0 0;
+    }
+}
+
+@media screen and (max-width: 370px) {
+    .posts-div div:first-child > p { text-align: left }
+    .posts-div > div:first-child { flex-flow: column wrap }
 }
