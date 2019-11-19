@@ -1,6 +1,10 @@
+
+
+
 .top-div {
     height: 200px;
     background-color: #6C81FF;
+    font-family: 'Gloria Hallelujah';
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
@@ -16,6 +20,7 @@
 
 .bottom-div {
     margin: 30px 40px;
+    font-family: 'Gloria Hallelujah';
     display: flex;
     flex-flow: column wrap;
     align-items: center;
@@ -23,6 +28,8 @@
 
 .bottom-div > p {
     margin-bottom: 50px;
+    font-family: 'Gloria Hallelujah';
+
 }
 
 .join {
