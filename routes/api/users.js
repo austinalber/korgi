@@ -24,8 +24,8 @@ router.get("/all-users", (req, res) => {
   User.find({ }).then(user => {
     if(!user) return res.status(406).json({message: "User not found"});
     else { 
-      console.log(user);
-      return user;
+      // console.log(user);
+      res.send(user);
     }
   })
 });

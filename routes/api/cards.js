@@ -20,6 +20,16 @@ router.get("/card", (req, res) => {
         return arr;
     });
 });
+// Get all cards
+router.get("/all-cards", (req, res) => {
+    Card.find({ }).then(card => {
+      if(!card) return res.status(406).json({message: "Card not found"});
+      else { 
+        // console.log(card);
+        res.send(card);
+      }
+    })
+  });
 // Post card
 router.post("/card", (req, res) => {
     // Form validation
