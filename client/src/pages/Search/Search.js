@@ -57,8 +57,8 @@ class Search extends Component {
     return (
       <div className="parent-div">
         <div className="top-div">
-          <p>Friend Search</p>
-          <h5>Type an email in to find a friend . . .</h5>
+          <p>Connect</p>
+          <h5>Find a friend . . .</h5>
         </div>
         <div className="bottom-div">
           <input 
@@ -71,7 +71,7 @@ class Search extends Component {
               onChange={this.onChange}
               error={errors.search}
           />
-          <button className="sign-in" onClick={this.onSubmit}>Search User</button>
+          <button className="sign-in" onClick={this.onSubmit} style={{ fontFamily: 'Kranky', fontSize: '20px'}}>Search</button>
         </div>
         <div className="results-div">
           {/* Return users by email here */}
