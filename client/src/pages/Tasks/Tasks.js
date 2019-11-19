@@ -38,14 +38,14 @@ render() {
 return (
 <div className="parent-div">
       <div className="top-div">
-        <p>Task Generator</p>
-        <h5>Todays task is to find something related to . . .</h5>
+        <p>This Week Task</p>
+        {/* <h5>Todays task is to find something related to . . .</h5> */}
       </div>
       <div className="bottom-div">
         <h3>
           {taskItem}
         </h3>
-        <Link to="/memento" className="link">
+        <Link to="/memento" className="link" style={{ fontFamily: 'Kranky', fontSize: '22px'}}>
           <button className="join" type="button">Create Post!</button>
         </Link>
       </div>
