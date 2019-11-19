@@ -16,49 +16,66 @@ render() {
     const { user } = this.props.auth;
     // let cards = this.props.getCard(user.id);
     // console.log(cards);
-return (
-  <div className="container">
-    <div className="outer-div">
-      <div className="user-profile">
-        <h1>Your Profile:</h1>
-        <div className="image-div">
-          <img alt={user.firstName} src={user.userImage} />
-        </div>
-        <div className="info-div">
-          <h2><b>Name: </b>{user.firstName} {user.lastName}</h2>
-          <h2><b>Email: </b>{user.email}</h2>
-          <h2><b>Birthday: </b>{user.birthday}</h2>
-          <h2><b>Zipcode: </b>{user.zipcode}</h2>
-        </div>
-      </div>
-    </div>
-    <div className="center-div">
-      <div className="divider-div"/>
-      <div className="user-posts">
-        <h1 className="post-header">Your Post History:</h1>
-        {/* Will map all posts here */}
-        <div className="posts-div">
-          <div className="post-image">
-            <img alt="" src={image}/>
+    return (
+      <div className="dash-container">
+        <div className="user-profile">
+          <div className="profile-image-div">
+            <img alt={user.firstName} src={user.userImage} />
+            <h5 style={{textAlign: "center", marginTop: "20px"}}>{user.firstName} {user.lastName}</h5>
           </div>
-          <div className="post-caption">
+          <div className="info-div">
+            <div>
+              <img className="icon" alt="Email" src="https://image.flaticon.com/icons/svg/1033/1033956.svg"/>
+              <p>{user.email}</p>
+            </div>
+            <div>
+              <img className="icon" alt="Birthday" src="https://image.flaticon.com/icons/svg/864/864800.svg"/>
+              <p>{user.birthday}</p>
+            </div>
+            <div>
+              <img className="icon" alt="Location" src="https://image.flaticon.com/icons/svg/252/252106.svg"/>
+              <p>{user.zipcode}</p>
+            </div>
+          </div>
+        </div>
+        <div className="user-posts">
+          {/* Will map all posts here */}
+          <div className="posts-div">
+            <div>
+              <h5>{user.firstName} {user.lastName}</h5>
+              <p>November 14th, 2019</p>
+            </div>
+            <div>
+              <img style={{width: "15px"}} alt="Location" src="https://image.flaticon.com/icons/svg/252/252106.svg"/>
+              <p style={{marginLeft: "5px", fontSize: "0.8em"}}>Denver, Colorado</p>
+            </div>
             <p>
               Found this incredible view while hiking west of downtown Denver this past Summer! What an incredible trip that was!
             </p>
+            {image && (
+                <img alt="" src={image}/>
+            )}
           </div>
-          <div className="post-location">
-            <i>Denver, Colorado.</i>
+          <div className="posts-div">
+            <div>
+              <h5>{user.firstName} {user.lastName}</h5>
+              <p>November 14th, 2019</p>
+            </div>
+            <div>
+              <img style={{width: "15px"}} alt="Location" src="https://image.flaticon.com/icons/svg/252/252106.svg"/>
+              <p style={{marginLeft: "5px", fontSize: "0.8em"}}>Denver, Colorado</p>
+            </div>
+            <p>
+              Found this incredible view while hiking west of downtown Denver this past Summer! What an incredible trip that was!
+            </p>
+            {image && (
+                <img alt="" src={image}/>
+            )}
           </div>
-          <div className="post-date">
-            <p>November 14th, 2019</p>
-          </div>
+            {/* End mapping */}
         </div>
-        <div className="divider-div-blank"/>
-        {/* End mapping */}
-      </div>
-    </div>
-  </div>
-    );
+       </div>
+        );
   }
 }
 Dashboard.propTypes = {
