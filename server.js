@@ -12,9 +12,18 @@ const Chatkit = require('@pusher/chatkit-server')
 const app = express();
 const cors = require("cors");
 
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+
+// Send every request to the React app
+// Define any API routes before this runs
+app.get("*", function(req, res) {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
 
 // chatkit
-
 const chatkit = new Chatkit.default({
   instanceLocator: 'v1:us1:a4df3443-cb08-41b4-ac5f-0b9bac981b05',
   key: 'https://us1.pusherplatform.io/services/chatkit_token_provider/v1/a4df3443-cb08-41b4-ac5f-0b9bac981b05/token'
@@ -82,10 +91,6 @@ app.use("/api/cards", cards);
 
 // CORS
 app.use(require("cors"));
-
-app.get('*', (req,res) =>{
-  res.sendFile('client/build/index.html');
-});
 
 const PORT = process.env.PORT || 5000;
 
