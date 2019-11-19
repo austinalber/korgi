@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { getAllUsers } from "../../actions/authActions";
 import API from "../../utils/API";
+import axios from "axios";
 import "./style.css";
 
 class Search extends Component {
@@ -17,11 +19,14 @@ class Search extends Component {
 
   // When the component mounts, get a list of all available base breeds and update this.state.breeds
   componentDidMount() {
-    for(var i = 0; i < 5; i++) {
-    API.getUsers(i)
-      .then(res => this.setState({ users: res.data }))
-      .catch(err => console.log(err));
-  }}
+    // console.log(this.props.getAllUsers());
+    axios.get("api/users/user")
+      .then(res => {this.setState({ users: res.data })
+      }).catch(err => console.log(err));
+    // API.getUsers()
+    //   .then(res => this.setState({ users: res }))
+    //   .catch(err => console.log(err));
+  }
 
   onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
@@ -31,11 +36,15 @@ class Search extends Component {
     e.preventDefault();
     const searchData = this.state.search;
     console.log(searchData);
-    // this.props.findUser(searchData);
+
+    API.getUsers()
+      .then(res => this.setState({ users: res }))
+      .catch(err => console.log(err));
   };
 
   render() {
     const { errors } = this.state;
+    console.log(this.state.users);
 
     return (
       <div className="parent-div">
@@ -70,6 +79,7 @@ class Search extends Component {
 }
 
 Search.propTypes = {
+  getAllUsers: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -79,5 +89,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { }
+  { getAllUsers }
 )(Search);

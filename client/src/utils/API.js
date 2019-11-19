@@ -12,12 +12,16 @@ export default {
     return axios.get("https://dog.ceo/api/breeds/list");
   },
   // Search for all users
-  getUsers: function(user) {
-    return axios.get("/api/users/users", user);
+  getUsers: function() {
+    return axios.get("/api/users/user");
   },
   // Search for all users
   getUser: function(id) {
     return axios.get("/api/users/" + id);
+  },
+  // Search for all users
+  getUserMlab: function() {
+    return axios.get("https://v1.api.mlab.com/api/1/databases/heroku_v3sdsmd9/collections/users/6753013084211642000?apiKey=SS6I-2hyw8lj-V-uRugby71j1kfzs83I");
   },
   // Save user on signup
   saveUser: function(userData) {

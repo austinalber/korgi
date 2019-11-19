@@ -19,6 +19,18 @@ export const getUser = userData => dispatch => {
       })
     )
 };
+// Get All Users
+export const getAllUsers = () => dispatch => {
+  axios
+    .get("/api/users/:user")
+    .then(res => console.log(res)) // Log response. Used for testing
+    .catch(err => 
+      dispatch({ 
+        type: GET_ERRORS, 
+        payload: err.response.data
+      })
+    )
+};
 // Get Cards
 export const getCard = (id) => dispatch => {
   return axios

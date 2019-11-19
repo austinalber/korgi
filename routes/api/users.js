@@ -9,16 +9,26 @@ const validateLoginInput = require("../../validation/login");
 // Load User model
 const User = require("../../models/User");
 
+// Get user by email
 router.get("/user", (req, res) => {
-  const id = req.body._id;
-  User.findOne({ id }).then(user => {
+  User.findOne({ email: req.body.email }).then(user => {
     if(!user) return res.status(406).json({message: "User not found"});
     else { 
       console.log(user);
       return user;
     }
   })
-})
+});
+
+router.get("/user", (req, res) => {
+  User.findAll({ }).then(user => {
+    if(!user) return res.status(406).json({message: "User not found"});
+    else { 
+      console.log(user);
+      return user;
+    }
+  })
+});
 
 router.post("/register", (req, res) => {
     // Form validation
