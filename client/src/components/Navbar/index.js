@@ -23,9 +23,9 @@ class Navbar extends Component {
             return(        
             <nav className="navbar ">
             <img id="remove-image" src={track} alt="Main page"/>
-            {/* <Link to="/home">
+            <Link to="/home">
                 <img id="remove-image" src={track} alt="Main page"/>
-            </Link> */}
+            </Link>
 
             <ul id="menu">
             <li>
@@ -109,7 +109,7 @@ class Navbar extends Component {
             <img id="remove-image" src={track} alt="Main page" onClick={this.onHomeButtonClick}/>
         </button>
         <ul id="menu">
-            <li>
+            {/* <li>
                 <Link to="/home"
                     className={
                         window.location.pathname === "/" || window.location.pathname === "/home"
@@ -118,7 +118,7 @@ class Navbar extends Component {
                     }>
                     Home
                 </Link>
-            </li>
+            </li> */}
             <li style={{ float:"right" }}>
                 <Link to="/login"
                     className={
