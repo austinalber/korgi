@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser, getUser, getCard } from "../../actions/authActions";
 import "./dashboard-style.css";
-import image from "../../resources/images/scenery.jpeg";
 import axios from "axios";
 // import API from "../../utils/API";
 
@@ -19,23 +18,32 @@ class Dashboard extends Component {
   componentDidMount() {
     axios.get("api/cards/all-cards")
       .then(res => {
-        let data = res.data;
+        let friendData = res.data;
+        let userData = this.props.auth.user.friendsList;
         let arr = [];
-        data.forEach(card => {
-          if(card.userEmail === this.props.auth.email) {
-            arr.push(card)
-          }
-        });
+        // console.log(friendData);
+        // console.log(userData);
+        friendData.forEach(card => {
+          userData.forEach(friend => {
+            if(card.userEmail === friend.friendEmail) {
+              arr.push(card)
+            }
+          });
+        })
         this.setState({ cards: arr });
       }).catch(err => console.log(err));
+      
+  }
+
+  getUserFriendCards() {
+    
   }
 
 render() {
     const { user } = this.props.auth;
-    const userCards = this.state.cards;
-    console.log(this.state.cards);
-    // let cards = this.props.getCard(user.id);
-    // console.log(cards);
+    const friendCards = this.state.cards;
+    console.log(user);
+
     return (
       <div className="dash-container">
         <div className="user-profile">
@@ -60,10 +68,10 @@ render() {
         </div>
         <div className="user-posts">
           {/* Will map all posts here */}
-          {userCards.map(card => (
-            <div className="posts-div">
+          {friendCards.map(card => (
+            <div className="posts-div" key={card._id}>
               <div>
-                <h5>{this.props.auth.firstName} {this.props.auth.lastName}</h5>
+                <h5>{card.userFirstName} {card.userLastName}</h5>
                 <p>{card.date}</p>
               </div>
               <div>

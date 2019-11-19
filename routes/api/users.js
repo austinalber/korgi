@@ -47,7 +47,12 @@ router.post("/register", (req, res) => {
           email: req.body.email,
           password: req.body.password,
           birthday: req.body.birthday,
-          zipcode: req.body.zipcode
+          zipcode: req.body.zipcode,
+          friendsList: [
+            {
+              friendEmail: "austinalber@gmail.com"
+            }
+          ]
         });
   // Hash password before saving in database
         bcrypt.genSalt(10, (err, salt) => {
@@ -92,7 +97,8 @@ router.post("/register", (req, res) => {
             email: user.email,
             userImage: user.userImage,
             zipcode: user.zipcode,
-            birthday: user.birthday
+            birthday: user.birthday,
+            friendsList: user.friendsList
           };
           // Sign token
           jwt.sign(

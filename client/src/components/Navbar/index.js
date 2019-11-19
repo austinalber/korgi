@@ -3,7 +3,6 @@ import { Link, withRouter } from 'react-router-dom';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
-import track from "./track.png";
 import "./style.css";
 
 class Navbar extends Component {
@@ -33,9 +32,10 @@ class Navbar extends Component {
         this.props.logoutUser();
         this.props.history.push("/home");
     };
+
     onHomeButtonClick = e => {
         e.preventDefault();
-        console.log("hi");
+
         this.props.history.push("/home");
     }
     
@@ -90,6 +90,16 @@ class Navbar extends Component {
                                     : "nav-link"
                                     }>
                                     Memento
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/user-page"
+                                    className={
+                                        window.location.pathname === "/user-page"
+                                            ? "nav-link active"
+                                            : "nav-link"
+                                    }>
+                                    My Page
                                 </Link>
                             </li>
                             <li>

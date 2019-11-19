@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import Giphy from "../../components/Giphy"; 
+// import Giphy from "../../components/Giphy"; 
 import "./style.css";
 
 const About = props => {
@@ -35,5 +35,3 @@ const About = props => {
 }
 
 export default About;
-
-// initial
