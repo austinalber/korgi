@@ -6,3 +6,10 @@
 .text-center {
     margin-top: 20px;
 }
+
+.friends-container {
+    width: 100%;
+    padding-top: 15px;
+    padding-bottom: 30px;
+    text-align: center;
+}

@@ -4,16 +4,36 @@ import { connect } from "react-redux";
 import { logoutUser, getUser, getCard } from "../../actions/authActions";
 import "./dashboard-style.css";
 import image from "../../resources/images/scenery.jpeg";
+import axios from "axios";
 // import API from "../../utils/API";
 
 class Dashboard extends Component {
-  onLogoutClick = e => {
-    e.preventDefault();
-    this.props.logoutUser();
-  };
+  constructor() {
+    super();
+    this.state = {
+      cards: [],
+      errors: {}
+    };
+  }
+
+  componentDidMount() {
+    axios.get("api/cards/all-cards")
+      .then(res => {
+        let data = res.data;
+        let arr = [];
+        data.forEach(card => {
+          if(card.userEmail === this.props.auth.email) {
+            arr.push(card)
+          }
+        });
+        this.setState({ cards: arr });
+      }).catch(err => console.log(err));
+  }
 
 render() {
     const { user } = this.props.auth;
+    const userCards = this.state.cards;
+    console.log(this.state.cards);
     // let cards = this.props.getCard(user.id);
     // console.log(cards);
     return (
@@ -40,7 +60,23 @@ render() {
         </div>
         <div className="user-posts">
           {/* Will map all posts here */}
-          <div className="posts-div">
+          {userCards.map(card => (
+            <div className="posts-div">
+              <div>
+                <h5>{this.props.auth.firstName} {this.props.auth.lastName}</h5>
+                <p>{card.date}</p>
+              </div>
+              <div>
+                <img style={{width: "15px"}} alt="Location" src="https://image.flaticon.com/icons/svg/252/252106.svg"/>
+                <p style={{marginLeft: "5px", fontSize: "0.8em"}}>{card.location}</p>
+              </div>
+          <p>{card.caption}</p>
+              {card.postImage && (
+                  <img alt="" src={card.postImage}/>
+              )}
+            </div>
+          ))}
+          {/* <div className="posts-div">
             <div>
               <h5>{user.firstName} {user.lastName}</h5>
               <p>November 14th, 2019</p>
@@ -55,23 +91,7 @@ render() {
             {image && (
                 <img alt="" src={image}/>
             )}
-          </div>
-          <div className="posts-div">
-            <div>
-              <h5>{user.firstName} {user.lastName}</h5>
-              <p>November 14th, 2019</p>
-            </div>
-            <div>
-              <img style={{width: "15px"}} alt="Location" src="https://image.flaticon.com/icons/svg/252/252106.svg"/>
-              <p style={{marginLeft: "5px", fontSize: "0.8em"}}>Denver, Colorado</p>
-            </div>
-            <p>
-              Found this incredible view while hiking west of downtown Denver this past Summer! What an incredible trip that was!
-            </p>
-            {image && (
-                <img alt="" src={image}/>
-            )}
-          </div>
+          </div> */}
             {/* End mapping */}
         </div>
        </div>

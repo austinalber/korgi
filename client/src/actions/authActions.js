@@ -4,7 +4,8 @@ import jwt_decode from "jwt-decode";
 import {
   GET_ERRORS,
   SET_CURRENT_USER,
-  USER_LOADING
+  USER_LOADING,
+  GET_USERS
 } from "./types";
 
 // Get User
@@ -12,6 +13,25 @@ export const getUser = userData => dispatch => {
   axios
     .get("/api/users/user", userData)
     .then(res => console.log(res)) // Log response. Used for testing
+    .catch(err => 
+      dispatch({ 
+        type: GET_ERRORS, 
+        payload: err.response.data
+      })
+    )
+};
+// Get All Users
+export const getAllUsers = () => dispatch => {
+  axios
+    .get("/api/users/all-users", {})
+    .then(res => {
+      // console.log(res.data)
+      dispatch({
+        type: GET_USERS,
+        payload: res.data
+      })
+      return res.data
+    }) // Log response. Used for testing
     .catch(err => 
       dispatch({ 
         type: GET_ERRORS, 
