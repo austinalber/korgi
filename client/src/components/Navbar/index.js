@@ -55,7 +55,7 @@ class Navbar extends Component {
                             ? "nav-link active"
                             : "nav-link"
                     }>
-                    Pal-Finder
+                    Connect
                 </Link>
             </li>
             <li>
