@@ -20,8 +20,8 @@ router.get("/user", (req, res) => {
   })
 });
 
-router.get("/user", (req, res) => {
-  User.findAll({ }).then(user => {
+router.get("/all-users", (req, res) => {
+  User.find({ }).then(user => {
     if(!user) return res.status(406).json({message: "User not found"});
     else { 
       console.log(user);

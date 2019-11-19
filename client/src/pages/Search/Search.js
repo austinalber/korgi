@@ -19,10 +19,10 @@ class Search extends Component {
 
   // When the component mounts, get a list of all available base breeds and update this.state.breeds
   componentDidMount() {
-    // console.log(this.props.getAllUsers());
-    axios.get("api/users/user")
-      .then(res => {this.setState({ users: res.data })
-      }).catch(err => console.log(err));
+    
+    // axios.get("api/users/user")
+    //   .then(res => {this.setState({ users: res.data })
+    //   }).catch(err => console.log(err));
     // API.getUsers()
     //   .then(res => this.setState({ users: res }))
     //   .catch(err => console.log(err));
@@ -37,14 +37,12 @@ class Search extends Component {
     const searchData = this.state.search;
     console.log(searchData);
 
-    API.getUsers()
-      .then(res => this.setState({ users: res }))
-      .catch(err => console.log(err));
+    this.setState({ users: this.props.getAllUsers()});
+    console.log(this.state.users);
   };
 
   render() {
     const { errors } = this.state;
-    console.log(this.state.users);
 
     return (
       <div className="parent-div">
