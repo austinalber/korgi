@@ -15,6 +15,7 @@ class Search extends Component {
       matchedUser: {},
       results: [],
       isSeachPressed: false,
+      isSearchValid: false,
       errors: {}
     };
   }
@@ -39,6 +40,9 @@ class Search extends Component {
     usersArray.forEach(user => {
       if(user.email === this.state.search) {
         this.setState({ matchedUser: user });
+        this.setState({ isSearchValid: true })
+      } else {
+        this.setState({ isSearchValid: false})
       }
     });
   };
@@ -77,19 +81,7 @@ class Search extends Component {
           <div className="friends-container">
             {this.state.isSeachPressed ? (
               <div className="filtered-friends-div">
-                <h1>Showing all friends with matching email</h1>
-                <div className="user-div" key={this.state.matchedUser.email}>
-                  <div className="img-container">
-                    <img alt={this.state.matchedUser.firstName} src={this.state.matchedUser.userImage}/>
-                  </div>
-                  <div className="user-info">
-                    <p>{this.state.matchedUser.firstName} {this.state.matchedUser.lastName}</p>
-                    <p>{this.state.matchedUser.email} {this.state.matchedUser.zipcode} {this.state.matchedUser.birthday}</p>
-                  </div>
-                  <div className="add-friend-div">
-                    <button className="add-friend" onClick={this.onAddFriend}>Add Friend</button>
-                  </div>
-                </div>
+                <h1>Showing friends with matching email</h1>
               </div>
             ) : (
               <div>
@@ -108,6 +100,28 @@ class Search extends Component {
                     </div>
                   </div>
                 ))}
+              </div>
+            )}
+            {this.state.isSearchValid ? (
+              <div>
+              <div className="filtered-friends-div">
+                <h1>Showing friends with matching email</h1>
+                <div className="user-div" key={this.state.matchedUser.email}>
+                  <div className="img-container">
+                    <img alt={this.state.matchedUser.firstName} src={this.state.matchedUser.userImage}/>
+                  </div>
+                  <div className="user-info">
+                    <p>{this.state.matchedUser.firstName} {this.state.matchedUser.lastName}</p>
+                    <p>{this.state.matchedUser.email} {this.state.matchedUser.zipcode} {this.state.matchedUser.birthday}</p>
+                  </div>
+                  <div className="add-friend-div">
+                    <button className="add-friend" onClick={this.onAddFriend}>Add Friend</button>
+                  </div>
+                </div>
+              </div>
+              </div>
+            ) : (
+              <div className="invalid-search">
               </div>
             )}
           </div>
