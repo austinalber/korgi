@@ -50,7 +50,7 @@ class SignIn extends Component {
           <div id="theimage" />
         </div>
         <form noValidate onSubmit={this.onSubmit} className='signin-div'>
-        <containter-top style={{marginBottom: '40%'}}>
+        <containter-top>
           <div id="image-outer">
             <img className='pup-image' src={dog} alt='' />
           </div>

@@ -15,6 +15,7 @@ class Search extends Component {
       matchedUser: {},
       results: [],
       isSeachPressed: false,
+      isSearchValid: false,
       errors: {}
     };
   }
@@ -24,6 +25,8 @@ class Search extends Component {
     axios.get("api/users/all-users")
       .then(res => {this.setState({ users: res.data })
       }).catch(err => console.log(err));
+
+    this.setState({ isSearchValid: false });
   }
 
   onChange = e => {
@@ -32,8 +35,7 @@ class Search extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    const searchData = this.state.search;
-    console.log(searchData);
+
     this.setState({ isSeachPressed: true });
     let usersArray = this.state.users;
     usersArray.forEach(user => {
@@ -51,7 +53,6 @@ class Search extends Component {
   render() {
     const { errors } = this.state;
     let usersArray = this.state.users;
-    
 
     return (
       <div className="parent-div">
@@ -76,20 +77,8 @@ class Search extends Component {
           {/* Return users by email here */}
           <div className="friends-container">
             {this.state.isSeachPressed ? (
-              <div className="filtered-friends-div">
-                <h1>Showing all friends with matching email</h1>
-                <div className="user-div" key={this.state.matchedUser.email}>
-                  <div className="img-container">
-                    <img alt={this.state.matchedUser.firstName} src={this.state.matchedUser.userImage}/>
-                  </div>
-                  <div className="user-info">
-                    <p>{this.state.matchedUser.firstName} {this.state.matchedUser.lastName}</p>
-                    <p>{this.state.matchedUser.email} {this.state.matchedUser.zipcode} {this.state.matchedUser.birthday}</p>
-                  </div>
-                  <div className="add-friend-div">
-                    <button className="add-friend" onClick={this.onAddFriend}>Add Friend</button>
-                  </div>
-                </div>
+              <div className="no-match-div">
+                <h1>Showing friends with matching email</h1>
               </div>
             ) : (
               <div>
@@ -99,9 +88,17 @@ class Search extends Component {
                     <div className="img-container">
                       <img alt={user.firstName} src={user.userImage}/>
                     </div>
-                    <div className="user-info">
+                    <div className="user-name">
                       <p>{user.firstName} {user.lastName}</p>
-                      <p>{user.email} {user.zipcode} {user.birthday}</p>
+                    </div>
+                    <div className="user-email">
+                      <p>{user.email}</p>
+                    </div>
+                    <div className="user-zipcode">
+                      <p>{user.zipcode}</p>
+                    </div>
+                    <div className="user-birthday">
+                      <p>{user.birthday}</p>
                     </div>
                     <div className="add-friend-div">
                       <button className="add-friend" onClick={this.onAddFriend}>Add Friend</button>
@@ -109,6 +106,27 @@ class Search extends Component {
                   </div>
                 ))}
               </div>
+            )}
+            {this.state.isSearchValid ? (
+              <div className="invalid-search">
+                <br></br>
+                <h2>Nah homie bad search</h2>
+            </div>
+            ) : (
+            <div className="filtered-friends-div">
+              <div className="user-div" key={this.state.matchedUser.email}>
+                <div className="img-container">
+                  <img alt={this.state.matchedUser.firstName} src={this.state.matchedUser.userImage}/>
+                </div>
+                <div className="user-info">
+                  <p>{this.state.matchedUser.firstName} {this.state.matchedUser.lastName}</p>
+                  <p>{this.state.matchedUser.email} {this.state.matchedUser.zipcode} {this.state.matchedUser.birthday}</p>
+                </div>
+                <div className="add-friend-div" style={{ paddingBottom: "50px" }}>
+                  <button className="add-friend" onClick={this.onAddFriend}>Add Friend</button>
+                </div>
+              </div>
+            </div>
             )}
           </div>
         </div>

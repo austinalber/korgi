@@ -1,13 +1,6 @@
 const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
-const friendSchema = new Schema({
-    friendId: {
-        type: String,
-        required: true
-    }
-});
-
 const userSchema = new Schema({
     firstName: {
         type: String,
@@ -45,12 +38,15 @@ const userSchema = new Schema({
         type: Number,
         required: true
     },
-    friendList: {
+    friendsList: [
         // Array for all friends of this user
         // Default is undefined or no friends initially
-        type: [friendSchema],
-        default: undefined
-    },
+        // type: [friendSchema],
+        // default: undefined}
+        {
+            friendEmail: { type: String, default:"austinalber@gmail.com"}
+        }
+    ],
     creationDate: {
         type: Date,
         default: Date.now

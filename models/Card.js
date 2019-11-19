@@ -6,8 +6,20 @@ const cardSchema = new Schema({
         type: String,
         required: true
     },
+    userEmail: {
+        type: String,
+        required: true
+    },
     userImage: {
         type: String,
+    },
+    userFirstName: {
+        type: String,
+        required: true
+    },
+    userLastName: {
+        type: String,
+        required: false
     },
     postImage: {
         type: String,

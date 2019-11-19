@@ -33,15 +33,21 @@ class Memento extends Component {
 
   onSubmit = e => {
     e.preventDefault();
+
+    console.log(this.props.auth.user);
     const postData = {
       userId: this.props.auth.user.id,
+      userEmail: this.props.auth.user.email,
       userImage: this.props.auth.user.userImage,
+      userFirstName: this.props.auth.user.firstName,
+      userLastName: this.props.auth.user.lastName,
       postImage: this.state.picture,
       caption: this.state.caption,
       location: this.state.location
     };
 
     this.props.postCard(postData);
+    // this.props.history.push("/user-page");
   }
 
   photoUpload = e => {

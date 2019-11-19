@@ -38,7 +38,10 @@ router.post("/card", (req, res) => {
     if(!isValid) return res.status(400).json(errors);
     const newPost = new Card({
         userId: req.body.userId,
+        userEmail: req.body.userEmail,
         userImage: req.body.userImage,
+        userFirstName: req.body.userFirstName,
+        userLastName: req.body.userLastName,
         postImage: req.body.postImage,
         caption: req.body.caption,
         location: req.body.location
@@ -47,22 +50,6 @@ router.post("/card", (req, res) => {
     newPost.save()
         .then(card => res.json(card))
         .catch(err => console.log(err));
-    // Card.findOne({ id: req.body._id }).then(card => {
-    //     if(!card) return res.status(400).json({ id: "Post id already exists" });
-    //     else {
-    //         const newPost = new Card({
-    //             userId: req.body.userId,
-    //             userImage: req.body.userImage,
-    //             postImage: req.body.postImage,
-    //             caption: req.body.caption,
-    //             location: req.body.location
-    //         });
-    //         // Save post in database
-    //         newPost.save()
-    //             .then(card => res.json(card))
-    //             .catch(err => console.log(err));
-    //     }
-    // });
 });
 
 module.exports = router;

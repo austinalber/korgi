@@ -22,18 +22,12 @@ module.exports = function validatePostInput(data) {
   if (Validator.isEmpty(data.caption)) {
     errors.caption = "Caption field is required";
   }
-  if (!Validator.isLength(data.caption, { min: 2, max: 60 })) {
+  if (!Validator.isLength(data.caption, { min: 2, max: 120 })) {
     errors.caption = "Caption field must be at least 2 characters";
   }
   if (Validator.isEmpty(data.location)) {
     errors.location = "Location field is required";
   }
-  // // if (Validator.isEmpty(data.date)) {
-  // //   errors.date = "Date field is required";
-  // // }
-  // // if (Validator.isLength(data.date, { min: 10, max: 10 })) {
-  // //   errors.date = "Birthday must be valid date format (MM/DD/YYYY)";
-  // // } 
 return {
     errors,
     isValid: isEmpty(errors)
