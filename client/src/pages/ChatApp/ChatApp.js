@@ -106,7 +106,7 @@ class ChatApp extends Component {
     // everytime state/data changes, the page rerenders and the new data will be pass down to the messages via props [messages=]
     render() {
       return (
-        <div className="app">
+        <div className="ChatApp">
           <RoomList
               roomId={this.state.roomId}
               subscribeToRoom={this.subscribeToRoom}

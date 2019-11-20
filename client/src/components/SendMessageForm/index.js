@@ -5,13 +5,13 @@ class SendMessageForm extends Component {
    message: ''
   }
 
-  handleChange = (e) => {
+  handleChange = e => {
     this.setState ({
       message: e.target.value
     })
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault()
     this.props.sendMessage(this.state.message)
     this.setState({
