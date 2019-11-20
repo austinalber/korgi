@@ -5,13 +5,13 @@ class NewRoomForm extends Component {
     roomName: ''
   }
 
-  handleChange = (e) => {
+  handleChange = e => {
     this.setState({
       roomName: e.target.value
     })
   };
   
-  handleSubmit = (e) => {
+  handleSubmit = e => {
       e.preventDefault()
       // inverse data flow - goes to parent instead of child
       this.props.createRoom(this.state.roomName)
@@ -32,7 +32,7 @@ class NewRoomForm extends Component {
                   placeholder="Create a Room" 
                   required 
               />
-              <button id="create-room-btn" type="submit">+</button>
+              <button id="create-room-button" type="submit">+</button>
             </form>
           </div>
       )
