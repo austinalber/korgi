@@ -83,7 +83,7 @@ class Search extends Component {
             ) : (
               <div>
                 <h1>Showing all users</h1>
-                {usersArray.map(user => (
+                {usersArray.forEach(user => (
                   <div className="user-div" key={user.email}>
                     <div className="img-container">
                       <img alt={user.firstName} src={user.userImage}/>

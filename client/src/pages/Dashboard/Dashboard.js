@@ -23,8 +23,8 @@ class Dashboard extends Component {
         let arr = [];
         // console.log(friendData);
         // console.log(userData);
-        friendData.forEach(card => {
-          userData.forEach(friend => {
+        friendData.map(card => {
+          userData.map(friend => {
             if(card.userEmail === friend.friendEmail) {
               arr.push(card)
             }
