@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getAllUsers } from "../../actions/authActions";
-// import API from "../../utils/API";
 import axios from "axios";
 import "./style.css";
 
