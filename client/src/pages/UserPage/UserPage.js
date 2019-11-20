@@ -56,7 +56,7 @@ render() {
         </div>
         <div className="user-posts">
           {/* Will map all posts here */}
-          {userCards.map(card => (
+          {userCards.forEach(card => (
             <div className="posts-div" key={card._id}>
               <div>
                 <h5>{user.firstName} {user.lastName}</h5>

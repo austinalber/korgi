@@ -21,8 +21,8 @@ class Dashboard extends Component {
         let friendData = res.data;
         let userData = this.props.auth.user.friendsList;
         let arr = [];
-        friendData.map(card => {
-          userData.map(friend => {
+        friendData.forEach(card => {
+          userData.forEach(friend => {
             if(card.userEmail === friend.friendEmail) {
               arr.push(card)
             }
@@ -65,7 +65,7 @@ render() {
         </div>
         <div className="user-posts">
           {/* Will map all posts here */}
-          {friendCards.map(card => (
+          {friendCards.forEach(card => (
             <div className="posts-div" key={card._id}>
               <div>
                 <h5>{card.userFirstName} {card.userLastName}</h5>
