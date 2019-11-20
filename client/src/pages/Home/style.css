@@ -1,5 +1,5 @@
 .parent-div {
-    padding-bottom: 50px;
+    /* padding-bottom: 50px; */
 }
 
 .top-div {
@@ -23,6 +23,7 @@
     display: flex;
     flex-flow: column wrap;
     align-items: center;
+    padding-bottom: 50px;
 }
 
 .bottom-div > p {
@@ -36,4 +37,10 @@
     border-radius: 500px;
     border-width: 0;
     background-color: #6C81FF;
+}
+
+.background-img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
 }
