@@ -70,7 +70,7 @@ class Navbar extends Component {
                                         className={
                                         window.location.pathname === "/tasks"
                                         ? "nav-link active"
-                                        : "nav-link"}> Tasks
+                                        : "nav-link"}> Task
                                 </Link>
                             </li>
                             <li>
@@ -79,7 +79,7 @@ class Navbar extends Component {
                                     window.location.pathname === "/search"
                                     ? "nav-link active"
                                     : "nav-link"}>
-                                    Friend Seach
+                                    Connect
                                 </Link>
                             </li>
                             <li>
