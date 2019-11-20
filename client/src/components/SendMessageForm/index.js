@@ -28,7 +28,7 @@ class SendMessageForm extends Component {
           disabled={this.props.disabled}
           onChange={this.handleChange}
           value={this.state.message}
-          placeholder='Type your message and hit ENTER'
+          placeholder='Type here'
           type='text'
         />
         <button type='submit' className='button-message' disabled={this.props.disabled}>Submit</button>
