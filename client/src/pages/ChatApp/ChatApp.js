@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import './style.css';
 import Chatkit from '@pusher/chatkit-client'
 import MessageList from "../../components/MessageList"; 
 import SendMessageForm from '../../components/SendMessageForm'

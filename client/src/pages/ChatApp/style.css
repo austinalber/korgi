@@ -1,0 +1,191 @@
+.ChatApp {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* REACT-CHAT-APP */
+
+.app {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: minmax(250px, auto) repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr) 60px;
+  grid-template-areas:
+    "r m m m m m"
+    "r m m m m m"
+    "r m m m m m"
+    "r m m m m m"
+    "r m m m m m"
+    "n f f f f f";
+}
+
+.new-room-form {
+  grid-area: n;
+}
+
+.rooms-list {
+  grid-area: r;
+}
+
+.message-list {
+  grid-area: m;
+}
+
+.send-message-form {
+  grid-area: f;
+}
+
+/* REST OF CSS */
+.rooms-list {
+  box-sizing: border-box;
+  padding: 10px;
+  background-color: var(--main-color);
+  overflow: auto;
+  height: 100%;
+}
+
+.rooms-list>ul {
+  list-style-type: none;
+  padding: 0;
+  overflow: scoll;
+}
+
+.rooms-list li {
+  margin: 10px 0;
+}
+
+.rooms-list>h3 {
+  font-size: 1.5em;
+  margin: 5px 0;
+  color: var(--main-text-color);
+}
+
+.rooms-list .room div {
+  color: var(--secondary-text-color);
+  /* font-weight: 600; */
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0.5em;
+}
+
+.rooms-list .room.active div {
+  color: var(--main-text-color);
+  font-weight: 600;
+}
+
+.new-room-form {
+  padding: 0 0.5em;
+  background: var(--background-color);
+  color: var(--primary-message-color);
+}
+
+.new-room-form form {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.new-room-form input {
+  width: 135px;
+  background: var(--background-color);
+  font-size: 0.8em;
+}
+
+.new-room-form button {
+  background: var(--background-color);
+  color: var(--primary-message-color);
+  border: 0;
+}
+
+.new-room-form input::placeholder {
+  color: var(--primary-message-color);
+  font-weight: 300;
+}
+
+.new-room-form input:focus {
+  outline-width: 0;
+}
+
+.new-room-form input {
+  border: 0;
+}
+
+.new-room-form button {
+  border: 0;
+}
+
+.message-list {
+  box-sizing: border-box;
+  padding-left: 6px;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: var(--background-color);
+}
+
+.message-list .join-room {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 34px;
+  font-weight: 300;
+}
+
+.send-message-form {
+  background: var(--send-message-form);
+  display: flex;
+}
+
+.send-message-form input {
+  width: 100%;
+  padding: 15px 10px;
+  margin: 0;
+  border-style: none;
+  background: var(--send-message-form);
+  font-weight: 300;
+  font-size: 1em;
+}
+
+.send-message-form input:focus {
+  outline-width: 0;
+}
+
+.send-message-form input::placeholder {
+  color: var(--primary-message-color);
+}
+
+.help-text {
+  position: absolute;
+  top: 10px;
+}
