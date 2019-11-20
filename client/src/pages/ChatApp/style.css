@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Kranky&display=swap');
+
+
 :root {
   --main-color: #5ea3d0;
   --secondary-color: white;
@@ -6,11 +9,12 @@
   --send-message-form: #F5F5F5;
 }
 
+
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  font-family: system-ui;
+  font-family: 'Kranky'; 
   font-weight: 200;
   color: 	#3e5869; 
 }
