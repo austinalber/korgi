@@ -21,10 +21,8 @@ class Dashboard extends Component {
         let friendData = res.data;
         let userData = this.props.auth.user.friendsList;
         let arr = [];
-        // console.log(friendData);
-        // console.log(userData);
-        friendData.map(card => {
-          userData.map(friend => {
+        friendData.forEach(card => {
+          userData.forEach(friend => {
             if(card.userEmail === friend.friendEmail) {
               arr.push(card)
             }
@@ -42,7 +40,6 @@ class Dashboard extends Component {
 render() {
     const { user } = this.props.auth;
     const friendCards = this.state.cards;
-    console.log(user);
 
     return (
       <div className="dash-container">

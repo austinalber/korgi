@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getAllUsers } from "../../actions/authActions";
-// import API from "../../utils/API";
 import axios from "axios";
 import "./style.css";
 
@@ -83,7 +82,7 @@ class Search extends Component {
             ) : (
               <div>
                 <h1>Showing all users</h1>
-                {usersArray.forEach(user => (
+                {usersArray.map(user => (
                   <div className="user-div" key={user.email}>
                     <div className="img-container">
                       <img alt={user.firstName} src={user.userImage}/>
