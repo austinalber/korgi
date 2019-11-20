@@ -30,11 +30,23 @@ html, body {
       "r m m m m m"
       "r m m m m m"
       "r m m m m m"
-      "n f f f f f";
+      "n s s s s s";
 }
 
 .new-room-form {
   grid-area: n;
+}
+
+.rooms-list {
+  grid-area: r;
+}
+
+.message-list {
+  grid-area: m;
+}
+
+.send-message-form {
+  grid-area: s;
 }
 
 /* REST OF CSS */
