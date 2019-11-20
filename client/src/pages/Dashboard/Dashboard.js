@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { logoutUser, getUser, getCard } from "../../actions/authActions";
 import "./dashboard-style.css";
 import axios from "axios";
+import image from "../../resources/images/scenery.jpeg";
 // import API from "../../utils/API";
 
 class Dashboard extends Component {
@@ -40,8 +41,51 @@ class Dashboard extends Component {
 render() {
     const { user } = this.props.auth;
     const friendCards = this.state.cards;
+    const placeholderCards = [
+      {
+        _id: 1,
+        userFirstName: "Austin",
+        userLastName: "Alber",
+        location: "Lake Mary, FL",
+        date: "November 18th, 2019",
+        postImage: "https://cdn.shopify.com/s/files/1/0627/5517/products/chrono_s_blue_brown_1_2048x2048.jpg?v=1567122358",
+        liked: false,
+        task: "Find something you're grateful for"
+      }
+    ];
 
     return (
+      // <div className="container">
+      //   <div className="task-div">
+      //     <div className="weekly-task">
+      //       <h5>Weekly Mission</h5>
+      //       <p>Find something that you are grateful for. . .</p>
+      //     </div>
+      //     <div className="kudos-div">
+      //       <h5>Kudos</h5>
+      //       <p>Find something that you are grateful for. . .</p>
+      //     </div>
+      //   </div>
+      //   <div className="cards-div">
+      //     {placeholderCards.map(card => (
+      //       <div className="posts-div" key={card._id}>
+      //         <div>
+      //           <h5>{card.userFirstName} {card.userLastName}</h5>
+      //           <p>{card.date}</p>
+      //         </div>
+      //         <div>
+      //           <img style={{width: "15px"}} alt="Location" src="https://image.flaticon.com/icons/svg/252/252106.svg"/>
+      //           <p style={{marginLeft: "5px", fontSize: "0.8em"}}>{card.location}</p>
+      //         </div>
+      //         <p>{card.caption}</p>
+      //         {card.postImage && (
+      //           <img alt="" src={card.postImage}/>
+      //       )}
+      //       </div>
+      //     ))}
+      //   </div>
+      // </div>
+
       <div className="dash-container">
         <div className="user-profile">
           <div className="profile-image-div">
@@ -64,6 +108,7 @@ render() {
           </div>
         </div>
         <div className="user-posts">
+          <h1>Your Friend's Posts'</h1>
           {/* Will map all posts here */}
           {friendCards.map(card => (
             <div className="posts-div" key={card._id}>
@@ -81,9 +126,9 @@ render() {
               )}
             </div>
           ))}
-          {/* <div className="posts-div">
+          <div className="posts-div">
             <div>
-              <h5>{user.firstName} {user.lastName}</h5>
+              <h5>Austin Alber</h5>
               <p>November 14th, 2019</p>
             </div>
             <div>
@@ -96,7 +141,7 @@ render() {
             {image && (
                 <img alt="" src={image}/>
             )}
-          </div> */}
+          </div>
             {/* End mapping */}
         </div>
        </div>
