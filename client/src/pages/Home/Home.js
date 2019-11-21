@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom';
 // import Giphy from "../../components/Giphy"; 
 import "./style.css";
+import background from "../../resources/images/background.png"
 
 const About = props => {
   return (
@@ -29,7 +30,9 @@ const About = props => {
             <button className="join-btn" type="button" style={{ fontFamily: 'Kranky', fontSize: '25px'}}>Join</button>
           </Link>
         </div>
-        {/* <Giphy /> */}
+        <div className="background-div">
+          <img className="background-img" alt="background" src={background}/>
+        </div>
     </div>
   );
 }

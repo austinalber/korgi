@@ -47,7 +47,7 @@ class Memento extends Component {
     };
 
     this.props.postCard(postData);
-    // this.props.history.push("/user-page");
+    this.props.history.push("/user-page");
   }
 
   photoUpload = e => {

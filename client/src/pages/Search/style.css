@@ -11,6 +11,136 @@
     width: 100%;
     padding-top: 15px;
     padding-bottom: 30px;
+}
+
+.top-search-div {
+    background-color: #00023f !important;
+}
+
+.header {
+    color: whitesmoke !important;
+    font-family: "Avenir Next Condensed", sans-serif;
+    font-weight: 500;
+    letter-spacing: .4em !important;
+    text-align: center;
+    font-size: 1.8em !important;
+    margin: 0;
+}
+
+.search-input {
+    padding: 0 15px;
+    height: 50px;
+    border-width: 0;
+    background-color: #f5f7fb;
+    border-top-left-radius: 500px;
+    border-bottom-left-radius: 500px;
+    flex-grow: 2;
+}
+
+.search-div {
+    display: flex;
+    width: 100%;
+    padding: 0 5%;
+    margin: 15px 0;
+}
+
+.search-btn {
+    background-color: #9BB1FE;
+    border-width: 0;
+    height: 50px;
+    width: 50px;
+    border-top-right-radius: 500px;
+    border-bottom-right-radius: 500px;
+    padding: 0 15px 3px 10px;
+}
+
+.search-btn *:first-child {
+    width: 68%;
+}
+
+.user-div {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px 8%;
+    align-items: center;
+    border-bottom: 1px solid #dddddd;
+}
+
+.profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 500px;
+}
+
+.user-info {
+    flex-grow: 2;
+    display: flex;
+    flex-flow: column wrap;
+    margin: 0 0 20px 20px;
+}
+
+.user-info * {
+    padding: 0 !important;
+    margin: 5px 0 !important;
+}
+
+.user-info p {
+    margin-left: 10px !important;
+}
+
+.add-friend-btn {
+    width: 50px;
+    height: 50px;
+}
+
+.add-friend-btn > img:first-child {
+    width: 70%;
+}
+
+.button {
+    border-width: 0;
+    background-color: #9BB1FE;
+    border-radius: 500px;
+}
+
+@media only screen and (max-width: 450px) {
+    .user-div {
+        flex-flow: column wrap;
+        justify-content: center;
+    }
+
+    .add-friend-btn { margin-bottom: 20px }
+    .user-info { margin-bottom: 5px }
+}
+
+.empty-state-div {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+}
+
+.empty-img{
+    width: 25%;
+    margin: 15px 0 50px;
+}
+
+.empty-state-div > p {
+    color: #b1b1b1;
+}
+
+/* .container-div {
+    width: 100%;
+    padding-top: 30px;
+}
+
+.text-center {
+    margin-top: 20px;
+}
+
+.friends-container {
+    width: 100%;
+    padding-top: 15px;
+    padding-bottom: 30px;
     text-align: center;
 }
 
@@ -21,11 +151,14 @@
 
 .user-div {
     border-style: solid;
-    border-width: 2px;
+    border-width: 1px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.08);
+    border-radius: 10px;
     width: 50%;
     text-align: center;
     justify-content: center;
     margin: auto;
+    margin-bottom: 5px;
 }
 
 .img-container {
@@ -41,3 +174,10 @@
     width: 100%;
     height: 100%;
 }
+
+.divider-div {
+    background-color: rgba(192,192,192,0.35);
+    height: 1px;
+    width: 80%;
+    margin: 25px 0;
+} */
