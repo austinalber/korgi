@@ -51,7 +51,7 @@ class Discover extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{ marginLeft:"28%" }}>
         <h1 className="text-center">Make New Friends</h1>
         <h3 className="text-center">
           Thumbs up on any pups you'd like to meet!

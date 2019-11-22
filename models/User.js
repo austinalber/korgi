@@ -6,25 +6,53 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    lastName: String,
-    password: {
+    lastName: {
         type: String,
-        required: true,
-        allowNull: false,
-        validate: {
-            len: [1, 60]
-        }
+        required: true
     },
     email: {
         type: String,
         required: true,
         unique: true,
-        allowNull: false,
-        validate: {
-            len: [1, 40]
-        }
+        // validate: {
+        //     len: [1, 40]
+        // }
     },
-    zipCode: Number
-})
+    password: {
+        type: String,
+        required: true,
+        // validate: {
+        //     len: [1, 60]
+        // }
+    },
+    userImage: {
+        type: String,
+        // required: false
+        default: "https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png"
+    },
+    birthday: {
+        type: String,
+        required: true
+    },
+    zipcode: {
+        type: Number,
+        required: true
+    },
+    friendsList: [
+        // Array for all friends of this user
+        // Default is undefined or no friends initially
+        // type: [friendSchema],
+        // default: undefined}
+        {
+            friendEmail: { type: String, default:"austinalber@gmail.com"}
+        }
+    ],
+    creationDate: {
+        type: Date,
+        default: Date.now
+    }
+});
 
-mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
+
+module.exports = User;
