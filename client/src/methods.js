@@ -1,23 +1,24 @@
 import Chatkit from '@pusher/chatkit-client';
 import axios from 'axios';
 
-function sendMessage(event) {
-  event.preventDefault();
-  const { newMessage, currentUser, currentRoom } = this.state;
+// function sendMessage(event) {
+//   event.preventDefault();
+//   const { newMessage, currentUser, currentRoom } = this.state;
 
-  if (newMessage.trim() === '') return;
+//   if (newMessage.trim() === '') return;
 
-  currentUser.sendMessage({
-    text: newMessage,
-    roomId: `${currentRoom.id}`,
-  });
+//   currentUser.sendMessage({
+//     text: newMessage,
+//     roomId: `${currentRoom.id}`,
+//   });
 
-  this.setState({
-    newMessage: '',
-  });
-}
+//   this.setState({
+//     newMessage: '',
+//   });
+// }
 
 function handleInput(event) {
+  console.log(event)
   const { value, name } = event.target;
 
   this.setState({
@@ -25,52 +26,52 @@ function handleInput(event) {
   });
 }
 
-function connectToRoom(id = '21e16552-cff0-436d-8123-49ba56e523e9') {
-  const { currentUser } = this.state;
+// function connectToRoom(id = '21e16552-cff0-436d-8123-49ba56e523e9') {
+//   const { currentUser } = this.state;
 
-  this.setState({
-    messages: [],
-  });
+//   this.setState({
+//     messages: [],
+//   });
 
-  return currentUser
-    .subscribeToRoom({
-      roomId: `${id}`,
-      messageLimit: 100,
-      hooks: {
-        onMessage: message => {
-          this.setState({
-            messages: [...this.state.messages, message],
-          });
-        },
-        onPresenceChanged: () => {
-          const { currentRoom } = this.state;
-          this.setState({
-            roomUsers: currentRoom.users.sort(a => {
-              if (a.presence.state === 'online') return -1;
+//   return currentUser
+//     .subscribeToRoom({
+//       roomId: `${id}`,
+//       messageLimit: 100,
+//       hooks: {
+//         onMessage: message => {
+//           this.setState({
+//             messages: [...this.state.messages, message],
+//           });
+//         },
+//         onPresenceChanged: () => {
+//           const { currentRoom } = this.state;
+//           this.setState({
+//             roomUsers: currentRoom.users.sort(a => {
+//               if (a.presence.state === 'online') return -1;
 
-              return 1;
-            }),
-          });
-        },
-      },
-    })
-    .then(currentRoom => {
-      const roomName =
-        currentRoom.customData && currentRoom.customData.isDirectMessage
-          ? currentRoom.customData.userIds.filter(
-              id => id !== currentUser.id
-            )[0]
-          : currentRoom.name;
+//               return 1;
+//             }),
+//           });
+//         },
+//       },
+//     })
+//     .then(currentRoom => {
+//       const roomName =
+//         currentRoom.customData && currentRoom.customData.isDirectMessage
+//           ? currentRoom.customData.userIds.filter(
+//               id => id !== currentUser.id
+//             )[0]
+//           : currentRoom.name;
 
-      this.setState({
-        currentRoom,
-        roomUsers: currentRoom.users,
-        rooms: currentUser.rooms,
-        roomName,
-      });
-    })
-    .catch(console.error);
-}
+//       this.setState({
+//         currentRoom,
+//         roomUsers: currentRoom.users,
+//         rooms: currentUser.rooms,
+//         roomName,
+//       });
+//     })
+//     .catch(console.error);
+// }
 
 function connectToChatkit(event) {
   event.preventDefault();
@@ -82,9 +83,9 @@ function connectToChatkit(event) {
     return;
   }
 
-  this.setState({
-    isLoading: true,
-  });
+  // this.setState({
+  //   isLoading: true,
+  // });
 
   axios
     .post('http://localhost:5000/users', { userId })
@@ -113,57 +114,61 @@ function connectToChatkit(event) {
             {
               currentUser,
               showLogin: false,
-              isLoading: false,
+              // isLoading: false,
               rooms: currentUser.rooms,
             },
-            () => connectToRoom.call(this)
+            // () => connectToRoom.call(this)
           );
         });
     })
     .catch(console.error);
 }
 
-function createPrivateRoom(id) {
-  const { currentUser, rooms } = this.state;
-  const roomName = `${currentUser.id}_${id}`;
+export { handleInput, connectToChatkit }
 
-  const isPrivateChatCreated = rooms.filter(room => {
-    if (room.customData && room.customData.isDirectMessage) {
-      const arr = [currentUser.id, id];
-      const { userIds } = room.customData;
 
-      if (arr.sort().join('') === userIds.sort().join('')) {
-        return {
-          room,
-        };
-      }
-    }
+// function createPrivateRoom(id) {
+//   const { currentUser, rooms } = this.state;
+//   const roomName = `${currentUser.id}_${id}`;
 
-    return false;
-  });
+//   const isPrivateChatCreated = rooms.filter(room => {
+//     if (room.customData && room.customData.isDirectMessage) {
+//       const arr = [currentUser.id, id];
+//       const { userIds } = room.customData;
 
-  if (isPrivateChatCreated.length > 0) {
-    return Promise.resolve(isPrivateChatCreated[0]);
-  }
+//       if (arr.sort().join('') === userIds.sort().join('')) {
+//         return {
+//           room,
+//         };
+//       }
+//     }
 
-  return currentUser.createRoom({
-    name: `${roomName}`,
-    private: true,
-    addUserIds: [`${id}`],
-    customData: {
-      isDirectMessage: true,
-      userIds: [currentUser.id, id],
-    },
-  });
-}
+//     return false;
+//   });
 
-function sendDM(id) {
-  createPrivateRoom.call(this, id).then(room => {
-    connectToRoom.call(this, room.id);
-  });
-}
+//   if (isPrivateChatCreated.length > 0) {
+//     return Promise.resolve(isPrivateChatCreated[0]);
+//   }
 
-export { sendMessage, handleInput, connectToRoom, connectToChatkit, sendDM };
+//   return currentUser.createRoom({
+//     name: `${roomName}`,
+//     private: true,
+//     addUserIds: [`${id}`],
+//     customData: {
+//       isDirectMessage: true,
+//       userIds: [currentUser.id, id],
+//     },
+//   });
+// }
+
+// function sendDM(id) {
+//   createPrivateRoom.call(this, id).then(room => {
+//     connectToRoom.call(this, room.id);
+//   });
+// }
+
+
+// export { sendMessage, handleInput, connectToRoom, connectToChatkit, sendDM };
 // function sendMessage(event) {
 //   event.preventDefault();
 //   const { newMessage, currentUser, currentRoom } = this.state;
