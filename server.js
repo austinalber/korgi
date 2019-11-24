@@ -1,9 +1,10 @@
 // NPM Dependencies
-require("dotenv").config();
+require("dotenv").config({ path: '.env'});
 const express = require('express');
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser');
 const passport = require("passport");
+const cors = require('cors'); 
 const path = require("path");
 // Required Files
 const users = require("./routes/api/users");
@@ -18,8 +19,8 @@ if (process.env.NODE_ENV === "production") {
 
 // ! chatkit
 const chatkit = new Chatkit.default({
-  instanceLocator: 'v1:us1:a4df3443-cb08-41b4-ac5f-0b9bac981b05',
-  key: 'https://us1.pusherplatform.io/services/chatkit_token_provider/v1/a4df3443-cb08-41b4-ac5f-0b9bac981b05/token'
+  instanceLocator: process.env.CHATKIT_INSTANCE_LOCATOR, 
+  key: process.env.CHATKIT_SECRET_KEY,
 });
 
 app.post('/auth', (req, res) => {
@@ -40,22 +41,34 @@ app.use(
 app.use(bodyParser.json());
 
 // chatkit config
-app.post('/api/users', (req, res) => {
-    const { username } = req.body
+app.post('/users', (req, res) => {
+    const { userId } = req.body;
+
     chatkit
       .createUser({ 
-     id: username, 
-     name: username 
-       })
-      .then(() => res.sendStatus(201))
+     id: userId, 
+     name: userId,
+      })
+      .then(() => {
+        res.sendStatus(201);
+      })
       .catch(error => {
         if (error.error_type === 'services/chatkit/user_already_exists') {
           res.sendStatus(200)
         } else {
           res.status(error.status).json(error)
         }
-      })
-  })
+      });
+  });
+
+  // authenicate 
+
+  app.post ('/authenticate', (req, res) => {
+    const authData = chatkit.authenticate({
+      userId: req.query.user_id, 
+    });
+    res.status(authData.status).send(authData.body); 
+  }); 
 
   //! end chatkit
 
@@ -85,9 +98,7 @@ app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
-// CORS
+
 app.use(require("cors"));
-
 const PORT = process.env.PORT || 5000;
-
 app.listen(PORT, () => console.log(`Server up and running on PORT: ${PORT}`));

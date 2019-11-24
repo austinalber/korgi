@@ -1,37 +1,152 @@
-import React, {Component} from 'react'
-import './style.css';
-import Chatkit from '@pusher/chatkit-client'
-import MessageList from "../../components/MessageList"; 
-import SendMessageForm from '../../components/SendMessageForm'
-import RoomList from '../../components/RoomList'
-import NewRoomForm from '../../components/NewRoomForm'
-import { tokenUrl, instanceLocator, userId } from '../../config'
 // import { tokenProvider, TokenProvider } from "@pusher/chatkit-client-react"
 
-// let tokenProvider = YourTokenProvider() 
 
+import React, { Component } from 'react';
+import {
+  handleInput,
+  connectToChatkit,
+  connectToRoom,
+  sendMessage,
+  sendDM,
+} from '../../methods';
+import Dialog from '../../components/Dialog';
+import RoomList from '../../components/RoomList';
+import ChatSession from '../../components/ChatSession';
+import RoomUsers from '../../components/RoomUsers';
+// css 
+import 'skeleton-css/css/normalize.css';
+import 'skeleton-css/css/skeleton.css';
+import './style.css';
 
-// set the initial state of the object
 class ChatApp extends Component {
-  state = {
-  roomId: null,
-  messages: [], 
-  joinableRooms: [], 
-  joinedRooms: []
-  // currentUser: null, 
+  constructor() {
+    super();
+    this.state = {
+      userId: '',
+      showLogin: true,
+      isLoading: false,
+      currentUser: null,
+      currentRoom: null,
+      rooms: [],
+      roomUsers: [],
+      roomName: null,
+      messages: [],
+      newMessage: '',
+    };
+
+    this.handleInput = handleInput.bind(this);
+    this.connectToChatkit = connectToChatkit.bind(this);
+    this.connectToRoom = connectToRoom.bind(this);
+    this.sendMessage = sendMessage.bind(this);
+    this.sendDM = sendDM.bind(this);
   }
 
+  render() {
+    const {
+      userId,
+      showLogin,
+      rooms,
+      currentRoom,
+      currentUser,
+      messages,
+      newMessage,
+      roomUsers,
+      roomName,
+    } = this.state;
+
+    return (
+      <div className="ChatApp">
+        <aside className="sidebar left-sidebar">
+          {currentUser ? (
+            <div className="user-profile">
+              <span className="username">{currentUser.name}</span>
+              <span className="user-id">{`@${currentUser.id}`}</span>
+            </div>
+          ) : null}
+          {currentRoom ? (
+            <RoomList
+              rooms={rooms}
+              currentRoom={currentRoom}
+              connectToRoom={this.connectToRoom}
+              currentUser={currentUser}
+            />
+          ) : null}
+        </aside>
+        <section className="chat-screen">
+          <header className="chat-header">
+            {currentRoom ? <h3>{roomName}</h3> : null}
+          </header>
+          <ul className="chat-messages">
+            <ChatSession messages={messages} />
+          </ul>
+          <footer className="chat-footer">
+            <form onSubmit={this.sendMessage} className="message-form">
+              <input
+                type="text"
+                value={newMessage}
+                name="newMessage"
+                className="message-input"
+                placeholder="Type your message and hit ENTER to send"
+                onChange={this.handleInput}
+              />
+            </form>
+          </footer>
+        </section>
+        <aside className="sidebar right-sidebar">
+          {currentRoom ? (
+            <RoomUsers
+              currentUser={currentUser}
+              sendDM={this.sendDM}
+              roomUsers={roomUsers}
+            />
+          ) : null}
+        </aside>
+        {showLogin ? (
+          <Dialog
+            userId={userId}
+            handleInput={this.handleInput}
+            connectToChatkit={this.connectToChatkit}
+          />
+        ) : null}
+      </div>
+    );
+  }
+}
 
 
-  // hook up a React component with an API
-  componentDidMount() {
-    const chatManager = new Chatkit.ChatManager({
-      instanceLocator: instanceLocator, 
-      userId: userId, 
-      tokenProvider: new Chatkit.TokenProvider({
-        url: tokenUrl
-    })
-  })
+export default ChatApp;
+    
+    /*
+    import React, {Component} from 'react'
+    import './style.css';
+    import Chatkit from '@pusher/chatkit-client'
+    import MessageList from "../../components/MessageList"; 
+    import SendMessageForm from '../../components/SendMessageForm'
+    import RoomList from '../../components/RoomList'
+    import NewRoomForm from '../../components/NewRoomForm'
+    import { tokenUrl, instanceLocator, userId } from '../../config'
+    
+    // set the initial state of the object
+    class ChatApp extends Component {
+      state = {
+        roomId: null,
+        messages: [], 
+        joinableRooms: [], 
+        joinedRooms: []
+        // currentUser: null, 
+      }
+      
+      
+      
+      // hook up a React component with an API
+      componentDidMount() {
+        const chatManager = new Chatkit.ChatManager({
+          instanceLocator: instanceLocator, 
+          userId: userId, 
+          tokenProvider: new Chatkit.TokenProvider({
+            url: tokenUrl
+          })
+        })
 
     // curent user is the interface that communicates with the chatKit API
     chatManager.connect()
@@ -44,7 +159,7 @@ class ChatApp extends Component {
       })
     }
     
-    getRooms= () => {
+    getRooms = () => {
       this.currentUser.getJoinableRooms()
       .then(joinableRooms => {
         this.setState({
@@ -126,6 +241,7 @@ class ChatApp extends Component {
   }
 }
 
-export default ChatApp; 
+*/
+
 
 // whenever chatkit register a new message in thh chatroom, hooks listen for it, then the  event handler onnewMessage is called 
