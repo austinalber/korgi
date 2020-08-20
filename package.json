@@ -28,7 +28,7 @@
     "@pusher/chatkit-client": "^1.13.2",
     "@pusher/chatkit-client-react": "^0.1.2",
     "@pusher/chatkit-server": "^2.1.1",
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "chatkit": "0.0.1-security",
